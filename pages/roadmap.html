@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خريطة الطريق - Digital IC Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: #000000;
+            --secondary-bg: #1a1a1a;
+            --card-bg: #0a0a0a;
+            --accent-mint: #CFFFE2;
+            --accent-sage: #A2D5C6;
+            --accent-teal: #006A67;
+            --highlight-gold: #FFF4B7;
+            --highlight-lime: #E6FF94;
+            --text-primary: #F6F6F6;
+            --text-secondary: #A2D5C6;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-mint), var(--accent-sage));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-mint);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-mint), var(--highlight-lime));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-teal), var(--accent-mint));
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Roadmap Container */
+        .roadmap-wrapper {
+            max-width: 1400px;
+            margin: 4rem auto;
+            padding: 0 2rem 4rem;
+            position: relative;
+        }
+
+        /* The Road Path */
+        .road-path {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--accent-teal), var(--accent-mint), var(--highlight-lime));
+            transform: translateX(-50%);
+            opacity: 0.3;
+        }
+
+        /* Phase Container */
+        .phase-section {
+            margin-bottom: 6rem;
+            position: relative;
+        }
+
+        .phase-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .phase-number {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-sage));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 auto 1rem;
+            box-shadow: 0 10px 30px rgba(207,255,226,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .phase-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent-mint);
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        /* Tracks Grid */
+        .tracks-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+        }
+
+        /* Track Card */
+        .track-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .track-card:hover {
+            border-color: var(--accent-mint);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(207,255,226,0.2);
+        }
+
+        .track-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-mint));
+            color: var(--primary-bg);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .track-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--highlight-gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .track-note {
+            background: rgba(207,255,226,0.05);
+            border-right: 3px solid var(--accent-mint);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Course List */
+        .courses-list {
+            list-style: none;
+        }
+
+        .course-item {
+            background: rgba(255,255,255,0.02);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .course-item:hover {
+            background: rgba(207,255,226,0.05);
+            border-color: var(--accent-sage);
+            transform: translateX(-5px);
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-mint);
+            margin-bottom: 0.5rem;
+        }
+
+        .course-rating {
+            display: flex;
+            gap: 0.2rem;
+            font-size: 1.2rem;
+        }
+
+        .star-filled {
+            color: var(--highlight-gold);
+        }
+
+        .star-empty {
+            color: var(--border-color);
+        }
+
+        .course-instructor {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .course-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .course-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0,106,103,0.2);
+            color: var(--accent-sage);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .course-link:hover {
+            background: var(--accent-teal);
+            color: var(--text-primary);
+        }
+
+        .optional-badge {
+            background: rgba(230,255,148,0.2);
+            color: var(--highlight-lime);
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-teal), var(--accent-sage));
+            color: var(--primary-bg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(207,255,226,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-mint);
+            border: 2px solid var(--accent-mint);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-mint);
+            color: var(--primary-bg);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-bg);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .tracks-container {
+                grid-template-columns: 1fr;
+            }
+
+            .course-header {
+                flex-direction: column;
+            }
+
+            .course-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">🔌 Digital IC Design</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">الرئيسية</a></li>
+                <li><a href="roadmap.html">خريطة الطريق</a></li>
+                <li><a href="resources.html">المصادر</a></li>
+                <li><a href="tools.html">الأدوات</a></li>
+                <li><a href="ai-tools.html">مساعد AI</a></li>
+                <li><a href="tips.html">نصائح الخبراء</a></li>
+                <li><a href="about.html">عن الموقع</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">🗺️ خريطة الطريق الكاملة</h1>
+        <p class="hero-subtitle">من الصفر إلى الاحتراف - مسار تعليمي مُنظّم ومُفصّل</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text">ابدأ رحلتك الآن وتابع تقدمك خطوة بخطوة</p>
+        </div>
+    </section>
+
+    <!-- Roadmap -->
+    <div class="roadmap-wrapper">
+        <div class="road-path"></div>
+
+        <!-- PHASE 1: الأساسيات -->
+        <section class="phase-section">
+            <div class="phase-header">
+                <div class="phase-number">1️⃣</div>
+                <h2 class="phase-title">المرحلة الأولى: الأساسيات</h2>
+                <p class="phase-subtitle">بناء القاعدة الصلبة - المبادئ والأساسيات</p>
+            </div>
+
+            <div class="tracks-container">
+                <!-- Track 1 -->
+                <div class="track-card">
+                    <span class="track-badge">المسار الأول - First Track</span>
+                    <h3 class="track-title">📘 المواد الأساسية (الأولويات)</h3>
+                    <div class="track-note">
+                        💡 <strong>ملاحظة:</strong> ابدأ بهذا المسار أولاً - هذه هي الأساسيات التي لا غنى عنها
+                    </div>
+
+                    <ul class="courses-list">
+                        <!-- Logic Design -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Logic Design</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. أيمن وهبة</div>
+                            <div class="course-links">
+                                <a href="https://youtube.com/playlist?list=PLBt5ZQGn4YKTD2mVI1eBwAVR1gsqpWkwg" target="_blank" class="course-link">
+                                    🎥 شاهد الكورس
+                                </a>
+                                <a href="https://jolink.notion.site/Logic-Design-be435324aa854fe2bbfc0cab435e44d3" target="_blank" class="course-link">
+                                    📝 ملاحظات
+                                </a>
+                            </div>
+                        </li>
+
+                        <!-- Digital Electronics -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Digital Electronics</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 م. وليد عيسى | Neso Academy</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 وليد عيسى</a>
+                                <a href="#" class="course-link">🎥 Neso Academy</a>
+                            </div>
+                        </li>
+
+                        <!-- Computer Organization -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Computer Organization</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. واثق</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+
+                        <!-- VLSI Design -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">VLSI Design</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. ضياء الدين خليل | د. بسام جميل</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 د. ضياء</a>
+                                <a href="#" class="course-link">🎥 د. بسام</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Track 2 -->
+                <div class="track-card">
+                    <span class="track-badge">المسار الثاني - Second Track</span>
+                    <h3 class="track-title">⚡ الدوائر الكهربائية</h3>
+                    <div class="track-note">
+                        💡 <strong>ملاحظة:</strong> ادرس هذا المسار بالتوازي مع المسار الأول
+                    </div>
+
+                    <ul class="courses-list">
+                        <!-- Electrical Circuits -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Electrical Circuits</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★</span>
+                                        <span class="star-empty">★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 Dr. Razavi</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+
+                        <!-- Introduction to Electronics -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Introduction to Electronics</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★</span>
+                                        <span class="star-empty">★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. هشام | Dr. Razavi</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 د. هشام (نظري)</a>
+                                <a href="#" class="course-link">🎥 د. هشام (عملي)</a>
+                                <a href="#" class="course-link">🎥 Razavi</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PHASE 2: التخصص المتقدم -->
+        <section class="phase-section">
+            <div class="phase-header">
+                <div class="phase-number">2️⃣</div>
+                <h2 class="phase-title">المرحلة الثانية: التخصص المتقدم</h2>
+                <p class="phase-subtitle">الدخول في صميم مجال Digital IC Design</p>
+            </div>
+
+            <div class="tracks-container">
+                <!-- Track 3 -->
+                <div class="track-card">
+                    <span class="track-badge">المسار الثالث - Third Track</span>
+                    <h3 class="track-title">🔬 تصميم الدوائر المتكاملة</h3>
+
+                    <ul class="courses-list">
+                        <!-- Analog IC Design 1 -->
+                        <li class="course-item">
+                            <div class="course-name">Analog IC Design 1 (جزء CMOS فقط)</div>
+                            <div class="course-instructor">👨‍🏫 د. هشام عمران</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+
+                        <!-- Digital Integrated Circuits -->
+                        <li class="course-item">
+                            <div class="course-name">Digital Integrated Circuits</div>
+                            <div class="course-instructor">👨‍🏫 د. كريم أسامة</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+
+                        <!-- Digital IC Design 1, 2, 3 -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Digital IC Design 1, 2, 3</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. هشام عمران</div>
+                            <div class="track-note" style="margin-top: 1rem;">
+                                ⚠️ <strong>أساسية جداً للمجال!</strong>
+                            </div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 Part 1</a>
+                                <a href="#" class="course-link">🎥 Part 2</a>
+                                <a href="#" class="course-link">🎥 Part 3</a>
+                            </div>
+                        </li>
+
+                        <!-- Digital Signal Processing -->
+                        <li class="course-item">
+                            <div class="course-name">Digital Signal Processing</div>
+                            <div class="course-instructor">👨‍🏫 Michael Ibrahim</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Track 4 -->
+                <div class="track-card">
+                    <span class="track-badge">المسار الرابع - Fourth Track</span>
+                    <h3 class="track-title">💻 معماريات الحاسب</h3>
+                    <div class="track-note">
+                        💡 <strong>ملاحظة:</strong> ادرس هذا المسار بالتوازي مع المسار الثالث
+                    </div>
+
+                    <ul class="courses-list">
+                        <!-- Computer Architecture -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Computer Architecture</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. إبراهيم قمر | د. خطاب ود. حسام فهمي</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 د. إبراهيم</a>
+                                <a href="#" class="course-link">🎥 د. خطاب</a>
+                                <a href="#" class="course-link">📝 Materials</a>
+                            </div>
+                        </li>
+
+                        <!-- Advanced Computer Architecture -->
+                        <li class="course-item">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-name">Advanced Computer Architecture</div>
+                                    <div class="course-rating">
+                                        <span class="star-filled">★★★★</span>
+                                        <span class="star-empty">★</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-instructor">👨‍🏫 د. حسام فهمي</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+
+                        <!-- Digital Design & Computer Architecture -->
+                        <li class="course-item">
+                            <div class="course-name">Digital Design & Computer Architecture</div>
+                            <div class="course-instructor">👨‍🏫 ETH Zürich</div>
+                            <div class="course-links">
+                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="resources.html" class="btn btn-primary">
+                📚 عرض جميع المصادر التفصيلية
+            </a>
+            <a href="ai-tools.html" class="btn btn-secondary">
+                🤖 استخدم مساعد AI
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">© 2025 Ahmed Mohamed Attia - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // Progress bar animation
+        window.addEventListener('load', () => {
+            const progressFill = document.getElementById('progressFill');
+            setTimeout(() => {
+                progressFill.style.width = '10%';
+            }, 500);
+        });
+
+        // Update progress on scroll
+        window.addEventListener('scroll', () => {
+            const progressFill = document.getElementById('progressFill');
+            const roadmapWrapper = document.querySelector('.roadmap-wrapper');
+            const rect = roadmapWrapper.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+                const scrolled = Math.min(
+                    Math.max(((viewportHeight - rect.top) / (rect.height + viewportHeight)) * 100, 0),
+                    100
+                );
+                progressFill.style.width = scrolled + '%';
+            }
+        });
+
+        // Course item click to expand (future feature)
+        document.querySelectorAll('.course-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('course-link')) {
+                    this.classList.toggle('expanded');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

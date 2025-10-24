@@ -1,0 +1,18 @@
+:root {
+    --primary-bg: #000000;          /* أسود نقي */
+    --secondary-bg: #1a1a1a;        /* رمادي داكن جداً */
+    --card-bg: #0a0a0a;             /* خلفية الكروت */
+    
+    --accent-mint: #CFFFE2;         /* نعناع فاتح */
+    --accent-sage: #A2D5C6;         /* أخضر مائي */
+    --accent-teal: #006A67;         /* تركواز داكن */
+    
+    --highlight-gold: #FFF4B7;      /* ذهبي فاتح */
+    --highlight-lime: #E6FF94;      /* أخضر ليموني */
+    
+    --text-primary: #F6F6F6;        /* أبيض مائل للرمادي */
+    --text-secondary: #A2D5C6;      /* أخضر ثانوي */
+    
+    --border-color: #333333;        /* حدود رمادية */
+    --shadow: rgba(207, 255, 226, 0.1); /* ظل بلون النعناع */
+}
