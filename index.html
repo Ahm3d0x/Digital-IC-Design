@@ -3,282 +3,372 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دليل تصميم الدوائر الرقمية - Digital IC Design Roadmap</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        * {margin: 0; padding: 0; box-sizing: border-box;}
-
-        :root {
-            --primary-bg: #000000;
-            --secondary-bg: #1a1a1a;
-            --card-bg: #0a0a0a;
-            --accent-mint: #CFFFE2;
-            --accent-sage: #A2D5C6;
-            --accent-teal: #006A67;
-            --highlight-gold: #FFF4B7;
-            --highlight-lime: #E6FF94;
-            --text-primary: #F6F6F6;
-            --text-secondary: #A2D5C6;
-            --border-color: #333333;
+    <title>الدليل الشامل لتعلم Digital IC Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#000000',
+                            secondary: '#0a0a0a',
+                            tertiary: '#121212',
+                        },
+                        accent: {
+                            primary: '#CFFFE2',
+                            secondary: '#A2D5C6',
+                            tertiary: '#006A67',
+                        },
+                        light: {
+                            primary: '#F6F6F6',
+                            warning: '#FFF4B7',
+                            success: '#E6FF94',
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
         }
-
+    </script>
+    <style>
         body {
             font-family: 'Cairo', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            line-height: 1.8;
-            overflow-x: hidden;
         }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.7rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-mint), var(--accent-sage));
+        .gradient-text {
+            background: linear-gradient(135deg, #CFFFE2, #A2D5C6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
+        .gradient-bg {
+            background: linear-gradient(135deg, #006A67, #A2D5C6);
         }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            position: relative;
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; box-shadow: 0 0 20px #CFFFE2; }
+            50% { opacity: 0.5; box-shadow: 0 0 10px #CFFFE2; }
         }
-
-        .nav-links a:hover {
-            color: var(--accent-mint);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-mint);
-            transition: width 0.3s;
-        }
-
-        .nav-links a:hover::after {width: 100%;}
-
-        .menu-toggle {display: none; flex-direction: column; gap: 5px; cursor: pointer;}
-        .menu-toggle span {width: 25px; height: 3px; background: var(--accent-mint); transition: 0.3s;}
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(207,255,226,0.06) 0%, transparent 70%);
-            top: -300px;
-            right: -200px;
-            border-radius: 50%;
-        }
-
-        .hero-content {
-            max-width: 1000px;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .hero-title {
-            font-size: 3.8rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-mint), var(--accent-sage), var(--highlight-lime));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1.2s ease;
-        }
-
-        .cta-buttons {display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;}
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {background: linear-gradient(135deg, var(--accent-teal), var(--accent-sage)); color: var(--primary-bg);}
-        .btn-primary:hover {transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3);}
-
-        .btn-secondary {background: transparent; color: var(--accent-mint); border: 2px solid var(--accent-mint);}
-        .btn-secondary:hover {background: var(--accent-mint); color: var(--primary-bg);}
-
-        @keyframes fadeInUp {from {opacity: 0; transform: translateY(30px);} to {opacity: 1; transform: translateY(0);}}
-
-        .features {
-            padding: 6rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-mint), var(--accent-sage));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .section-subtitle {text-align: center; color: var(--text-secondary); margin-bottom: 4rem; font-size: 1.2rem;}
-
-        .features-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;}
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card:hover {transform: translateY(-5px); border-color: var(--accent-sage); box-shadow: 0 15px 40px rgba(207,255,226,0.1);}
-
-        .feature-icon {font-size: 3rem; margin-bottom: 1.5rem;}
-        .feature-title {font-size: 1.5rem; font-weight: 700; color: var(--accent-mint); margin-bottom: 1rem;}
-        .feature-desc {color: var(--text-secondary); line-height: 1.8;}
-
-        .footer {
-            background: var(--secondary-bg);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-text {color: var(--text-secondary); margin-bottom: 1rem;}
-        .footer-links {display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem;}
-        .footer-links a {color: var(--accent-mint); text-decoration: none; transition: color 0.3s;}
-        .footer-links a:hover {color: var(--highlight-gold);}
-
-        @media (max-width: 768px) {
-            .nav-links {position: fixed; top: 70px; right: -100%; flex-direction: column; background: rgba(0,0,0,0.98); width: 100%; padding: 2rem; transition: right 0.3s;}
-            .nav-links.active {right: 0;}
-            .menu-toggle {display: flex;}
-            .hero-title {font-size: 2.5rem;}
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
         }
     </style>
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">⚡ Digital IC Design</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">الرئيسية</a></li>
-                <li><a href="pages/roadmap.html">خريطة الطريق</a></li>
-                <li><a href="pages/resources.html">المصادر</a></li>
-                <li><a href="pages/tools.html">الأدوات</a></li>
-                <li><a href="pages/ai-tools.html">مساعد AI</a></li>
-                <li><a href="pages/tips.html">نصائح الخبراء</a></li>
-                <li><a href="pages/contact.html">تواصل / ملاحظات</a></li>
-                <li><a href="pages/about.html">عن الموقع</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span><span></span><span></span>
+<body class="bg-dark-bg text-light-primary">
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 bg-dark-bg/95 backdrop-blur-lg border-b border-accent-primary/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center gap-3">
+                    <span class="text-3xl">🎯</span>
+                    <span class="text-xl font-bold gradient-text">Digital IC Learning</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex items-center gap-6">
+                    <li><a href="index.html" class="px-3 py-2 rounded-lg bg-accent-primary/10 text-accent-primary font-semibold transition hover:bg-accent-primary/20">الرئيسية</a></li>
+                    <li><a href="roadmap.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">خريطة الطريق</a></li>
+                    <li><a href="resources.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">المصادر</a></li>
+                    <li><a href="tools.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">الأدوات</a></li>
+                    <li><a href="experts.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">نصائح الخبراء</a></li>
+                    <li><a href="about.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">عن الموقع</a></li>
+                    <li><a href="contact.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">تواصل معنا</a></li>
+                </ul>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-accent-primary/10 transition">
+                    <svg class="w-6 h-6 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <ul class="flex flex-col gap-2">
+                    <li><a href="index.html" class="block px-4 py-3 rounded-lg bg-accent-primary/10 text-accent-primary font-semibold">الرئيسية</a></li>
+                    <li><a href="roadmap.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">خريطة الطريق</a></li>
+                    <li><a href="resources.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">المصادر</a></li>
+                    <li><a href="tools.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">الأدوات</a></li>
+                    <li><a href="experts.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">نصائح الخبراء</a></li>
+                    <li><a href="about.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">عن الموقع</a></li>
+                    <li><a href="contact.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">تواصل معنا</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">بوابتك الاحترافية لتعلم تصميم الدوائر الرقمية</h1>
-            <p class="hero-subtitle">ابدأ من الأساس وتدرّج حتى الاحتراف بخريطة طريق منظمة ومصادر دقيقة</p>
-            <div class="cta-buttons">
-                <a href="pages/roadmap.html" class="btn btn-primary">ابدأ الآن 🚀</a>
-                <a href="pages/resources.html" class="btn btn-secondary">تصفح المصادر</a>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center relative overflow-hidden">
+        <!-- Background Gradients -->
+        <div class="absolute inset-0 bg-gradient-to-br from-accent-tertiary/10 via-transparent to-accent-primary/5"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="space-y-6 animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+                        <span class="gradient-text">الدليل الشامل</span>
+                        <br>لتعلم Digital IC Design
+                    </h1>
+                    <p class="text-xl text-accent-secondary leading-relaxed">
+                        طريقك المنظم والواضح من الصفر إلى الاحتراف في تصميم الدوائر المتكاملة الرقمية
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="roadmap.html" class="inline-flex items-center gap-2 px-8 py-4 gradient-bg text-dark-bg font-bold rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+                            <span>ابدأ رحلتك الآن</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </a>
+                        <a href="#features" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-accent-primary text-accent-primary font-bold rounded-xl hover:bg-accent-primary/10 transition-all duration-300">
+                            <span>اكتشف المزيد</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Visual - Circuit Animation -->
+                <div class="relative h-96 flex items-center justify-center">
+                    <div class="relative w-80 h-80">
+                        <!-- Nodes -->
+                        <div class="absolute top-16 right-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow"></div>
+                        <div class="absolute top-16 left-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow" style="animation-delay: 0.5s"></div>
+                        <div class="absolute bottom-16 right-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow" style="animation-delay: 1s"></div>
+                        <div class="absolute bottom-16 left-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow" style="animation-delay: 1.5s"></div>
+                        
+                        <!-- Lines -->
+                        <div class="absolute top-16 right-16 left-16 h-0.5 bg-gradient-to-l from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
+                        <div class="absolute bottom-16 right-16 left-16 h-0.5 bg-gradient-to-l from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
+                        <div class="absolute top-16 bottom-16 right-16 w-0.5 bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
+                        <div class="absolute top-16 bottom-16 left-16 w-0.5 bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="features">
-        <h2 class="section-title">ماذا يقدم الموقع؟</h2>
-        <p class="section-subtitle">وجهتك المنظمة لتعلم تصميم الدوائر المتكاملة خطوة بخطوة</p>
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-dark-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">لماذا هذا الموقع؟</h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    رحلة تعليمية منظمة ومُبسّطة، مبنية على تجارب حقيقية وخبرات من الميدان
+                </p>
+            </div>
 
-        <div class="features-grid">
-            <div class="feature-card"><div class="feature-icon">🗺️</div><h3 class="feature-title">خريطة طريق تفاعلية</h3><p class="feature-desc">خطة تعليمية مرتبة حسب المراحل، مع نصائح للدراسة لكل جزء أثناء تقدمك.</p></div>
-            <div class="feature-card"><div class="feature-icon">📘</div><h3 class="feature-title">مصادر مرتبة</h3><p class="feature-desc">كل مصدر مرتبط بمرحلة معينة في خريطة الطريق لتجنب التشتت.</p></div>
-            <div class="feature-card"><div class="feature-icon">🤖</div><h3 class="feature-title">مساعد AI</h3><p class="feature-desc">ذكاء اصطناعي يساعدك في الشرح، التطبيق، والمشاريع الواقعية.</p></div>
-            <div class="feature-card"><div class="feature-icon">🧠</div><h3 class="feature-title">نصائح الخبراء</h3><p class="feature-desc">تعلم من تجارب مهندسين في مجال الـIC Design حول العالم.</p></div>
-            <div class="feature-card"><div class="feature-icon">🛠️</div><h3 class="feature-title">أدوات قوية</h3><p class="feature-desc">مجموعة شاملة من أدوات المحاكاة، التصميم، والتحليل.</p></div>
-            <div class="feature-card"><div class="feature-icon">📩</div><h3 class="feature-title">تواصل وتغذية راجعة</h3><p class="feature-desc">صفحة مخصصة لاستقبال اقتراحاتك أو الإبلاغ عن أي مشكلة.</p></div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-5xl mb-4">🗺️</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mb-3">خريطة طريق واضحة</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        مسار تعليمي مُنظم خطوة بخطوة، من الأساسيات إلى الاحتراف، بدون تشتت أو ضياع وقت
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-5xl mb-4">📚</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mb-3">مصادر مُرتبة ومُنظمة</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        كل مصدر في مكانه الصحيح، مع توضيح المرحلة التعليمية المناسبة له
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-5xl mb-4">🛠️</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mb-3">أدوات عملية</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        دليل شامل للأدوات البرمجية وطريقة استخدامها، مع مشاريع تطبيقية
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-5xl mb-4">💡</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mb-3">نصائح من الخبراء</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        تجارب حقيقية ونصائح عملية من مهندسين ومتخصصين في المجال
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-5xl mb-4">🤖</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mb-3">مساعد ذكي</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        أدوات AI لمساعدتك في الفهم والتطبيق والإجابة على استفساراتك
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mb-3">تركيز وعدم تشتت</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        كل شيء في مكانه، بدون معلومات زائدة أو روابط ميتة
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <p class="footer-text">تم بناء هذا الموقع لخدمة الطلاب والمجتمع التعليمي ❤️</p>
-        <p class="footer-text">مشروع مفتوح المصدر وغير ربحي تمامًا</p>
-        <div class="footer-links">
-            <a href="pages/contact.html">تواصل معنا</a>
-            <a href="https://github.com/Ahm3d0x" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank">LinkedIn</a>
+    <!-- Quick Start Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold gradient-text text-center mb-16">ابدأ من هنا</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="relative bg-dark-tertiary border-2 border-accent-primary/10 rounded-2xl p-8 hover:border-accent-primary hover:-translate-y-2 transition-all duration-300">
+                    <div class="absolute -top-6 right-8 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-dark-bg font-bold text-xl shadow-lg">1</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mt-4 mb-3">تعرّف على المجال</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        افهم ما هو Digital IC Design وما المسارات الوظيفية المتاحة
+                    </p>
+                    <a href="about.html" class="inline-flex items-center text-accent-secondary font-semibold hover:text-accent-primary transition">
+                        اقرأ المزيد ←
+                    </a>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative bg-dark-tertiary border-2 border-accent-primary/10 rounded-2xl p-8 hover:border-accent-primary hover:-translate-y-2 transition-all duration-300">
+                    <div class="absolute -top-6 right-8 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-dark-bg font-bold text-xl shadow-lg">2</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mt-4 mb-3">اطّلع على خريطة الطريق</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        تعرف على المراحل التعليمية والمهارات المطلوبة في كل مرحلة
+                    </p>
+                    <a href="roadmap.html" class="inline-flex items-center text-accent-secondary font-semibold hover:text-accent-primary transition">
+                        شاهد الخريطة ←
+                    </a>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative bg-dark-tertiary border-2 border-accent-primary/10 rounded-2xl p-8 hover:border-accent-primary hover:-translate-y-2 transition-all duration-300">
+                    <div class="absolute -top-6 right-8 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-dark-bg font-bold text-xl shadow-lg">3</div>
+                    <h3 class="text-2xl font-bold text-accent-primary mt-4 mb-3">ابدأ بالمصادر الأساسية</h3>
+                    <p class="text-gray-400 mb-4 leading-relaxed">
+                        اختر الكورسات والكتب المناسبة لمستواك وابدأ التعلم
+                    </p>
+                    <a href="resources.html" class="inline-flex items-center text-accent-secondary font-semibold hover:text-accent-primary transition">
+                        تصفح المصادر ←
+                    </a>
+                </div>
+            </div>
         </div>
-        <p class="footer-text" style="margin-top:2rem;font-size:0.9rem;">© 2025 Ahmed Mohamed Attia - جميع الحقوق محفوظة</p>
+    </section>
+
+    <!-- Updates Section -->
+    <section class="py-20 bg-dark-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold gradient-text text-center mb-16">آخر التحديثات</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Update 1 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-6 hover:border-accent-secondary hover:shadow-xl transition-all duration-300">
+                    <span class="inline-block px-3 py-1 gradient-bg text-dark-bg text-xs font-bold rounded-full mb-4">جديد</span>
+                    <h3 class="text-xl font-bold text-accent-primary mb-2">إضافة قسم UVM المتقدم</h3>
+                    <p class="text-gray-400 mb-4">تم إضافة مصادر جديدة لتعلم Universal Verification Methodology</p>
+                    <span class="text-sm text-gray-500 italic">منذ يومين</span>
+                </div>
+
+                <!-- Update 2 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-6 hover:border-accent-secondary hover:shadow-xl transition-all duration-300">
+                    <span class="inline-block px-3 py-1 bg-accent-secondary/20 text-accent-secondary text-xs font-bold rounded-full mb-4">تحديث</span>
+                    <h3 class="text-xl font-bold text-accent-primary mb-2">تحديث روابط الكورسات</h3>
+                    <p class="text-gray-400 mb-4">تم مراجعة وتحديث جميع روابط المصادر التعليمية</p>
+                    <span class="text-sm text-gray-500 italic">منذ أسبوع</span>
+                </div>
+
+                <!-- Update 3 -->
+                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-6 hover:border-accent-secondary hover:shadow-xl transition-all duration-300">
+                    <span class="inline-block px-3 py-1 gradient-bg text-dark-bg text-xs font-bold rounded-full mb-4">جديد</span>
+                    <h3 class="text-xl font-bold text-accent-primary mb-2">نصائح جديدة للمقابلات</h3>
+                    <p class="text-gray-400 mb-4">أضفنا دليل شامل للتحضير لمقابلات العمل في المجال</p>
+                    <span class="text-sm text-gray-500 italic">منذ أسبوعين</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 gradient-bg opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl font-bold mb-6">هل أنت جاهز لبدء رحلتك؟</h2>
+            <p class="text-xl text-accent-secondary mb-8">
+                انضم لمئات الطلاب الذين بدأوا رحلتهم في مجال Digital IC Design
+            </p>
+            <a href="roadmap.html" class="inline-flex items-center gap-3 px-10 py-5 gradient-bg text-dark-bg font-bold text-lg rounded-xl shadow-2xl hover:shadow-accent-primary/50 hover:-translate-y-1 transition-all duration-300">
+                <span>ابدأ الآن</span>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-secondary border-t border-accent-primary/10 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-12 mb-8">
+                <!-- About -->
+                <div>
+                    <h3 class="text-xl font-bold text-accent-primary mb-4">Digital IC Learning</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        دليلك الشامل لتعلم تصميم الدوائر المتكاملة الرقمية من الصفر
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold text-accent-primary mb-4">روابط سريعة</h4>
+                    <ul class="space-y-2">
+                        <li><a href="roadmap.html" class="text-gray-400 hover:text-accent-primary transition">خريطة الطريق</a></li>
+                        <li><a href="resources.html" class="text-gray-400 hover:text-accent-primary transition">المصادر</a></li>
+                        <li><a href="tools.html" class="text-gray-400 hover:text-accent-primary transition">الأدوات</a></li>
+                        <li><a href="experts.html" class="text-gray-400 hover:text-accent-primary transition">نصائح الخبراء</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold text-accent-primary mb-4">تواصل معنا</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="https://github.com/Ahm3d0x" target="_blank" class="text-gray-400 hover:text-accent-primary transition">
+                                GitHub
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" class="text-gray-400 hover:text-accent-primary transition">
+                                LinkedIn
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:ahm3d.m.attia@gmail.com" class="text-gray-400 hover:text-accent-primary transition">
+                                Email
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-accent-primary/10 pt-8 text-center">
+                <p class="text-gray-500">
+                    &copy; 2025 Digital IC Learning. صُمم بـ ❤️ بواسطة Ahmed Mohamed Attia
+                </p>
+            </div>
+        </div>
     </footer>
 
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
-
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            navbar.style.background = window.scrollY > 50 ? 'rgba(0,0,0,0.98)' : 'rgba(0,0,0,0.95)';
-        });
-    </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
