@@ -4,136 +4,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عن موقع بوصلة</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Font (Cairo) -->
+    <link rel="stylesheet" href="../css/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
 
-    <style>
-        /* تطبيق الخط والألوان الأساسية للـ Dark Mode حسب التوجيهات */
-        body {
-            font-family: 'Cairo', sans-serif;
-            background-color: #000000;
-            color: #F6F6F6;
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        'b-bg': '#000000',
+                        'b-text': '#F6F6F6',
+                        'b-primary': '#006A67',
+                        'b-hl-light': '#22C45D',
+                        'b-hl-medium': '#22C45D',
+                        'b-hl-green': '#E6FF94',
+                        'b-hl-yellow': '#FFF4B7',
+                        'b-surface': '#111111',
+                        'b-border': '#222222',
+                    },
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
         }
+    </script>
+</head> 
+<body class="antialiased bg-b-bg text-b-text font-cairo">
 
-        /* ألوان مخصصة للروابط والتمييز */
-        .text-primary { color: #006A67; }
-        .hover\:text-primary-light:hover { color: #CFFFE2; }
-        .bg-accent-1 { background-color: #A2D5C6; }
-        .bg-accent-2 { background-color: #E6FF94; }
-        .bg-accent-3 { background-color: #FFF4B7; }
-        
-        /* تخصيص الـ Card ليتناسب مع الـ Dark Mode */
-        .contributor-card {
-            background-color: #1a1a1a; /* لون أغمق قليلاً من الأسود الصريح للتمييز */
-            border: 1px solid #333;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .contributor-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 106, 103, 0.2), 0 4px 6px -2px rgba(0, 106, 103, 0.1);
-        }
+    <!-- Header -->
+    <header class="bg-b-surface shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-3xl font-bold text-b-primary hover:text-b-hl-light transition-all duration-300 hover:scale-105 flex items-center gap-3">
+                        <i>🧭</i>
+                        <span class="gradient-text">بوصلة</span>
+                    </a>
+                </div>
 
-        /* ستايل النافذة العائمة (Modal) */
-        #modal-overlay {
-            background-color: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
-        #modal-content {
-            background-color: #111;
-            border: 1px solid #444;
-        }
-        #modal-close-btn {
-            color: #F6F6F6;
-            transition: transform 0.2s ease;
-        }
-        #modal-close-btn:hover {
-            transform: scale(1.1);
-        }
-    </style>
-</head>
-<body class="antialiased">
+                <div class="hidden lg:flex lg:items-center lg:space-x-1 lg:space-x-reverse">
+                    <a href="index.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الرئيسية</a>
+                    <a href="roadmap.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">خريطة الطريق</a>
+                    <a href="resources.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">المصادر</a>
+                    <a href="tools.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الأدوات</a>
+                    <a href="experts.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">نصائح الخبراء</a>
+                    <a href="about.html" class="text-white font-semibold bg-b-surface px-4 py-2 rounded-lg border-b-2 border-b-primary" aria-current="page">عن الموقع</a>
+                </div>
 
-    <!-- Navbar (Placeholder - يمكنك استبداله بالـ Navbar الثابت الخاص بك) -->
-    <nav class="bg-[#111] p-4 shadow-md sticky top-0 z-50 border-b border-gray-800">
-        <div class="container mx-auto max-w-7xl flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-[#E6FF94]">بوصلة</h1>
-            <div class="space-x-4 space-x-reverse">
-                <a href="index.html" class="text-gray-300 hover:text-primary-light">الرئيسية</a>
-                <a href="roadmap.html" class="text-gray-300 hover:text-primary-light">خريطة الطريق</a>
-                <a href="resources.html" class="text-gray-300 hover:text-primary-light">المصادر</a>
-                <a href="about.html" class="text-[#CFFFE2] font-bold">عن الموقع</a>
-                <a href="contact.html" class="text-gray-300 hover:text-primary-light">تواصل معنا</a>
+                <div class="flex items-center lg:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-b-surface focus:outline-none focus:ring-2 focus:ring-inset focus:ring-b-primary transition-all" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">فتح القائمة الرئيسية</span>
+                        <i data-feather="menu" class="block h-6 w-6" id="icon-open"></i>
+                        <i data-feather="x" class="hidden h-6 w-6" id="icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="lg:hidden hidden bg-b-surface border-t border-b-border" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الرئيسية</a>
+                <a href="roadmap.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">خريطة الطريق</a>
+                <a href="resources.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">المصادر</a>
+                <a href="tools.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الأدوات</a>
+                <a href="experts.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">نصائح الخبراء</a>
+                <a href="about.html" class="bg-b-surface text-white block px-3 py-3 rounded-md text-base font-medium border-r-4 border-b-primary" aria-current="page">عن الموقع</a>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- المحتوى الرئيسي -->
-    <div class="container mx-auto max-w-7xl p-6 md:p-12">
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
 
-        <!-- قسم: عن الفكرة -->
-        <section class="mb-16 text-center">
-            <h2 class="text-4xl font-bold mb-4 text-[#CFFFE2]">عن "بوصلة"</h2>
-            <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                في عالم الـ Digital IC Design، المعلومة موجودة لكنها مبعثرة. "بوصلة" وُجد ليكون المرشد.
-                هدفنا ليس فقط تجميع المصادر، بل تنظيمها في مسار واضح، خطوة بخطوة، يبدأ معك من الصفر (الـ Diode والـ Transistor) ويأخذ بيدك حتى تصل إلى مستوى متقدم يمكنك من بناء مشاريع حقيقية.
-                هذا الموقع هو أداة تعليمية بحتة، هادئة ومنظمة، مصممة لمنع التشتت ومساعدتك على التركيز في رحلتك.
-            </p>
+        <!-- Hero Section -->
+        <section class="mb-20 text-center animate-fade-in-up">
+            <div class="inline-block -mb-6">
+            <i data-feather="info" class="w-20 h-20 text-b-primary mx-auto"></i>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 p-6 gradient-text">عن بوصلة</h1>
+            <div class="max-w-4xl mx-auto bg-b-surface border border-b-border rounded-2xl p-8 md:p-10 shadow-2xl">
+                <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
+                    في عالم الـ <span class="text-b-hl-light font-semibold">Digital IC Design</span>، المعلومة موجودة لكنها مبعثرة. 
+                    <span class="text-b-hl-green font-semibold">بوصلة</span> وُجد ليكون المرشد.
+                    هدفنا ليس فقط تجميع المصادر، بل تنظيمها في مسار واضح، خطوة بخطوة، يبدأ معك من الصفر 
+                    ويأخذ بيدك حتى تصل إلى مستوى متقدم يمكنك من بناء مشاريع حقيقية.
+                </p>
+            </div>
         </section>
 
         <!-- قسم: منشئ الموقع -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-center text-[#A2D5C6]">منشئ الموقع</h2>
+        <section class="mb-20 animate-fade-in-up stagger-1">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i data-feather="user" class="w-8 h-8 text-b-primary"></i>
+                    <h2 class="text-4xl font-bold text-b-hl-light">منشئ الموقع</h2>
+                </div>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-b-primary to-transparent mx-auto"></div>
+            </div>
             <div id="creator-container" class="flex justify-center">
                 <!-- سيتم ملء هذا الكارت بواسطة JavaScript -->
             </div>
         </section>
 
         <!-- قسم: المساهمون الرئيسيون -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-center text-[#A2D5C6]">المساهمون الرئيسيون في المحتوى</h2>
-            <div id="contributors-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <section class="mb-20 animate-fade-in-up stagger-2">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i data-feather="users" class="w-8 h-8 text-b-hl-light"></i>
+                    <h2 class="text-4xl font-bold text-b-hl-light">المساهمون الرئيسيون</h2>
+                </div>
+                <p class="text-gray-400 mt-4">الأشخاص الذين ساهموا في بناء وإثراء محتوى بوصلة</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-b-hl-light to-transparent mx-auto mt-4"></div>
+            </div>
+            <div id="contributors-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- سيتم ملء الكروت هنا بواسطة JavaScript -->
             </div>
         </section>
 
         <!-- قسم: الأساتذة والخبراء -->
-        <section class="mb-16">
-            <h2 class="text-3xl font-bold mb-6 text-center text-[#A2D5C6]">شكر خاص للأساتذة والخبراء</h2>
-            <div id="experts-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <section class="mb-20 animate-fade-in-up stagger-3">
+            <div class="text-center mb-12">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <i data-feather="award" class="w-8 h-8 text-b-hl-green"></i>
+                    <h2 class="text-4xl font-bold text-b-hl-green">شكر خاص للأساتذة والخبراء</h2>
+                </div>
+                <p class="text-gray-400 mt-4">الذين قدموا علمهم وخبرتهم لإثراء المجتمع التعليمي</p>
+                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-b-hl-green to-transparent mx-auto mt-4"></div>
+            </div>
+            <div id="experts-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 <!-- سيتم ملء الكروت هنا بواسطة JavaScript -->
             </div>
         </section>
 
         <!-- قسم: رسالة شكر -->
-        <section class="text-center max-w-4xl mx-auto p-8 bg-[#111] rounded-xl border border-gray-800 shadow-lg">
-            <h2 class="text-3xl font-bold mb-4 text-[#FFF4B7]">شكر وتقدير</h2>
-            <p class="text-lg text-gray-300 leading-relaxed">
-                هذا العمل لم يكن ليظهر للنور لولا فضل الله أولاً، ثم جهود ومساهمات كل شخص مذكور في هذه الصفحة.
-                كل الشكر والتقدير لكل من ساهم بوقته، معرفته، أو حتى بكلمة تشجيعية. "بوصلة" هو نتاج جهد جماعي نأمل أن يكون علماً يُنتفع به.
-            </p>
+        <section class="text-center max-w-4xl mx-auto animate-fade-in-up stagger-4">
+            <div class="bg-gradient-to-br from-b-surface via-b-bg to-b-surface p-10 md:p-12 rounded-2xl border border-b-border shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-b-primary opacity-5 rounded-full -mr-20 -mt-20"></div>
+                <div class="absolute bottom-0 left-0 w-40 h-40 bg-b-hl-light opacity-5 rounded-full -ml-20 -mb-20"></div>
+                <div class="relative z-10">
+                    <div class="inline-block mb-6">
+                        <i data-feather="heart" class="w-16 h-16 text-red-500 mx-auto"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold mb-6 text-b-hl-yellow">شكر وتقدير</h2>
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                        هذا العمل لم يكن ليظهر للنور لولا فضل الله أولاً، ثم جهود ومساهمات كل شخص مذكور في هذه الصفحة.
+                        كل الشكر والتقدير لكل من ساهم بوقته، معرفته، أو حتى بكلمة تشجيعية. 
+                        <span class="text-b-hl-light font-semibold">بوصلة</span> هو نتاج جهد جماعي نأمل أن يكون علماً يُنتفع به.
+                    </p>
+                </div>
+            </div>
         </section>
 
-    </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-b-surface border-t border-b-border mt-32" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-2 mb-4">
+                    <i data-feather="heart" class="w-5 h-5 text-red-500"></i>
+                    <p class="text-gray-400">صُنع بكل حب لمساعدة الطلاب</p>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="current-year"></span> منصة بوصلة | تم إنشاؤه بواسطة 
+                    <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-hl-light transition-all font-semibold">
+                        Ahmed M. Attia
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
 
     <!-- النافذة العائمة (Modal) -->
-    <div id="modal-overlay" class="fixed inset-0 w-full h-full z-[100] flex items-center justify-center p-4 hidden">
-        <!-- محتوى النافذة -->
-        <div id="modal-content" class="w-full max-w-lg rounded-2xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <!-- زر الإغلاق -->
-            <button id="modal-close-btn" class="absolute top-4 left-4 text-3xl font-bold">&times;</button>
+    <div id="modal-overlay" class="fixed inset-0 w-full h-full z-[100] bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 hidden transition-all duration-300">
+        <div id="modal-content" class="bg-b-surface border border-b-border w-full max-w-2xl rounded-2xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button id="modal-close-btn" class="absolute top-4 left-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold transition-all z-10 shadow-lg">
+                ×
+            </button>
             
-            <!-- جسم النافذة (سيتم ملؤه بـ JS) -->
             <div id="modal-body" class="p-8 md:p-12">
                 <!-- المحتوى الديناميكي يوضع هنا -->
             </div>
         </div>
     </div>
 
-    <!-- ملف الجافاسكربت -->
+    <script src="https://unpkg.com/feather-icons"></script>
     <script type="module" src="../js/about.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        feather.replace();
+    </script>
 </body>
 </html>

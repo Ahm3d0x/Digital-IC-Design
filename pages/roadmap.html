@@ -8,37 +8,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
-
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'b-bg': '#0a0a0a',
-                        'b-text': '#F6F6F6',
-                        'b-primary': '#00d9ff',
-                        'b-primary-dark': '#0099cc',
-                        'b-surface': '#1a1a1a',
-                        'b-border': '#2a2a2a',
-                        'panel': '#141414',
-                    },
-                    fontFamily: {
-                        'cairo': ['Cairo', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    
+    <link rel="stylesheet" href="css/global.css">
     <style>
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            background-color: #000000;
             font-family: 'Cairo', sans-serif;
         }
 
         .gradient-text {
-            background: linear-gradient(135deg, #00d9ff 0%, #a78bfa 50%, #f472b6 100%);
+            background: linear-gradient(135deg, #006A67 0%, #22C45D 50%, #E6FF94 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -83,7 +61,7 @@
             transform: translateY(-50%);
             width: 3px;
             height: 0;
-            background: linear-gradient(to bottom, #00d9ff, #a78bfa);
+            background: linear-gradient(to bottom, #006A67, #22C45D);
             transition: height 0.3s ease;
             border-radius: 2px;
         }
@@ -113,8 +91,8 @@
         .stagger-4 { animation-delay: 0.4s; opacity: 0; }
 
         .spinner {
-            border: 3px solid rgba(0, 217, 255, 0.1);
-            border-top: 3px solid #00d9ff;
+            border: 3px solid rgba(0, 106, 103, 0.1);
+            border-top: 3px solid #006A67;
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -127,38 +105,65 @@
             100% { transform: rotate(360deg); }
         }
 
-        .phase-badge {
-            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
-            border: 1px solid rgba(0, 217, 255, 0.3);
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(0, 106, 103, 0.3);
+        }
+
+        .glow-green {
+            box-shadow: 0 0 20px rgba(34, 196, 93, 0.3);
         }
     </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'b-bg': '#000000',
+                        'b-text': '#F6F6F6',
+                        'b-primary': '#006A67',
+                        'b-hl-light': '#22C45D',
+                        'b-hl-medium': '#22C45D',
+                        'b-hl-green': '#E6FF94',
+                        'b-hl-yellow': '#FFF4B7',
+                        'b-surface': '#111111',
+                        'b-border': '#222222',
+                    },
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+
 </head>
 
 <body class="antialiased bg-b-bg text-b-text">
 
     <!-- Header -->
-    <header class="bg-panel shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+    <header class="bg-b-surface shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
         <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html" class="text-3xl font-bold text-b-primary hover:text-b-primary-dark transition-all duration-300 hover:scale-105 flex items-center gap-3">
-                        <i data-feather="compass" class="w-9 h-9"></i>
+                    <a href="index.html" class="text-3xl font-bold text-b-primary hover:text-b-hl-light transition-all duration-300 hover:scale-105 flex items-center gap-3">
+                        <i>🧭</i>
                         <span class="gradient-text">بوصلة</span>
                     </a>
                 </div>
 
-                <div class="hidden md:flex md:items-center md:space-x-1 md:space-x-reverse">
-                    <a href="index.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الرئيسية</a>
+                <div class="hidden lg:flex lg:items-center lg:space-x-1 lg:space-x-reverse">
+                    <a href="index.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الرئيسية</a>
                     <a href="roadmap.html" class="text-white font-semibold bg-b-surface px-4 py-2 rounded-lg border-b-2 border-b-primary" aria-current="page">خريطة الطريق</a>
-                    <a href="resources.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">المصادر</a>
-                    <a href="tools.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الأدوات</a>
-                    <a href="experts.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">نصائح الخبراء</a>
-                    <a href="about.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">عن الموقع</a>
-                    <a href="contact.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">تواصل معنا</a>
+                    <a href="resources.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">المصادر</a>
+                    <a href="tools.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الأدوات</a>
+                    <a href="experts.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">نصائح الخبراء</a>
+                    <a href="about.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">عن الموقع</a>
                 </div>
 
-                <div class="flex items-center md:hidden">
+                <div class="flex items-center lg:hidden">
                     <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-b-surface focus:outline-none focus:ring-2 focus:ring-inset focus:ring-b-primary transition-all" aria-controls="mobile-menu" aria-expanded="false">
                         <span class="sr-only">فتح القائمة الرئيسية</span>
                         <i data-feather="menu" class="block h-6 w-6" id="icon-open"></i>
@@ -168,7 +173,7 @@
             </div>
         </nav>
 
-        <div class="md:hidden hidden bg-panel border-t border-b-border" id="mobile-menu">
+        <div class="lg:hidden hidden bg-b-surface border-t border-b-border" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="index.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الرئيسية</a>
                 <a href="roadmap.html" class="bg-b-surface text-white block px-3 py-3 rounded-md text-base font-medium border-r-4 border-b-primary" aria-current="page">خريطة الطريق</a>
@@ -176,7 +181,6 @@
                 <a href="tools.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الأدوات</a>
                 <a href="experts.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">نصائح الخبراء</a>
                 <a href="about.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">عن الموقع</a>
-                <a href="contact.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">تواصل معنا</a>
             </div>
         </div>
     </header>
@@ -197,15 +201,15 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center text-sm text-gray-500">
                 <div class="flex items-center gap-3">
-                    <i data-feather="check-circle" class="w-5 h-5 text-b-primary"></i>
+                    <i data-feather="check-circle" class="w-5 h-5 text-b-hl-light"></i>
                     <span>مصادر موثوقة ومجربة</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <i data-feather="clock" class="w-5 h-5 text-b-primary"></i>
+                    <i data-feather="clock" class="w-5 h-5 text-b-hl-light"></i>
                     <span>مدة متوقعة لكل مرحلة</span>
                 </div>
                 <div class="flex items-center gap-3">
-                    <i data-feather="target" class="w-5 h-5 text-b-primary"></i>
+                    <i data-feather="target" class="w-5 h-5 text-b-hl-light"></i>
                     <span>إرشادات عملية</span>
                 </div>
             </div>
@@ -222,7 +226,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-panel border-t border-b-border mt-32" aria-labelledby="footer-heading">
+    <footer class="bg-b-surface border-t border-b-border mt-32" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
             <div class="text-center">
@@ -232,7 +236,7 @@
                 </div>
                 <p class="text-gray-500 text-sm">
                     &copy; <span id="current-year"></span> منصة بوصلة | تم إنشاؤه بواسطة 
-                    <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-primary-dark transition-all font-semibold">
+                    <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-hl-light transition-all font-semibold">
                         Ahmed M. Attia
                     </a>
                 </p>
@@ -262,12 +266,12 @@
             };
             const iconName = iconMap[resource.type] || iconMap['default'];
             const authorLinkHTML = resource.authorLink 
-                ? `<a href="${resource.authorLink}" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-primary-dark font-bold transition-colors">${resource.author}</a>`
+                ? `<a href="${resource.authorLink}" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-hl-light font-bold transition-colors">${resource.author}</a>`
                 : `<strong class="text-white font-bold">${resource.author}</strong>`;
 
             if (resource.link) {
                 return `
-                    <a href="${resource.link}" target="_blank" rel="noopener noreferrer" class="${baseClasses} bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 hover:border-b-primary hover:shadow-xl group">
+                    <a href="${resource.link}" target="_blank" rel="noopener noreferrer" class="${baseClasses} bg-b-surface hover:bg-opacity-80 border border-b-border hover:border-b-primary hover:shadow-xl group">
                         <div class="flex items-start gap-4">
                             <div class="flex-shrink-0 w-12 h-12 bg-b-primary bg-opacity-10 rounded-lg flex items-center justify-center group-hover:bg-opacity-20 transition-all">
                                 <i data-feather="${iconName}" class="w-6 h-6 text-b-primary"></i>
@@ -276,14 +280,14 @@
                                 <div class="mb-2">${authorLinkHTML}</div>
                                 <p class="text-sm text-gray-400 leading-relaxed">${resource.note || ''}</p>
                             </div>
-                            <span class="flex-shrink-0 text-b-primary text-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 mr-2">
+                            <span class="flex-shrink-0 text-b-hl-light text-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 mr-2">
                                 <i data-feather="external-link" class="w-4 h-4"></i>
                             </span>
                         </div>
                     </a>`;
             } else {
                 return `
-                    <div class="${baseClasses} bg-gray-900 opacity-70 cursor-not-allowed border border-gray-800">
+                    <div class="${baseClasses} bg-b-surface opacity-70 cursor-not-allowed border border-b-border">
                         <div class="flex items-start gap-4">
                             <div class="flex-shrink-0 w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
                                 <i data-feather="${iconName}" class="w-6 h-6 text-gray-600"></i>
@@ -292,7 +296,7 @@
                                 <div class="mb-2">${authorLinkHTML}</div>
                                 <p class="text-sm text-gray-500 leading-relaxed">${resource.note || ''}</p>
                             </div>
-                            <span class="flex-shrink-0 text-yellow-500 text-xs flex items-center gap-1 mr-2">
+                            <span class="flex-shrink-0 text-b-hl-yellow text-xs flex items-center gap-1 mr-2">
                                 <i data-feather="search" class="w-4 h-4"></i>
                             </span>
                         </div>
@@ -300,28 +304,28 @@
             }
         }
 
-        function createGuidanceNotes(guidance, title = "💡 نصيحة البوصلة", iconName = "lightbulb", borderColor = "border-blue-500") {
+        function createGuidanceNotes(guidance, title = "💡 نصيحة البوصلة", iconName = "lightbulb", borderColor = "border-b-primary") {
             if (!guidance || guidance.length === 0) return '';
             const guidanceArray = Array.isArray(guidance) ? guidance : [guidance];
 
             let guidanceHTML = `
-                <div class="my-8 p-6 bg-gradient-to-br from-blue-900 via-blue-950 to-gray-900 bg-opacity-30 rounded-xl border-r-4 ${borderColor} shadow-lg">
-                    <h4 class="text-lg font-bold text-blue-300 mb-5 flex items-center gap-3">
+                <div class="my-8 p-6 bg-b-surface bg-opacity-80 rounded-xl border-r-4 ${borderColor} shadow-lg">
+                    <h4 class="text-lg font-bold text-b-hl-light mb-5 flex items-center gap-3">
                         <i data-feather="${iconName}" class="w-6 h-6"></i>
                         <span>${title}</span>
                     </h4>
                     <ul class="space-y-4 text-gray-300">`;
             
-            guidanceArray.forEach(note => {
-                const formattedNote = note.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
-                guidanceHTML += `
-                    <li class="flex items-start gap-3">
-                        <i data-feather="check-circle" class="w-5 h-5 text-b-primary mt-0.5 flex-shrink-0"></i>
-                        <span class="leading-relaxed">${formattedNote}</span>
-                    </li>`;
-            });
-            guidanceHTML += '</ul></div>';
-            return guidanceHTML;
+guidanceArray.forEach(note => {
+    const formattedNote = note.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+    guidanceHTML += `
+        <li class="flex items-start gap-3">
+            <i data-feather="check-circle" class="w-5 h-5 text-b-hl-light mt-0.5 flex-shrink-0"></i>
+            <span class="leading-relaxed">${formattedNote}</span>
+        </li>`;
+});
+guidanceHTML += '</ul></div>';
+return guidanceHTML;
         }
 
         function createModules(modules) {
@@ -330,9 +334,9 @@
             let modulesHTML = '<div class="space-y-12">';
             modules.forEach(module => {
                 modulesHTML += `
-                    <div class="border-b border-gray-800 pb-12 last:border-b-0 last:pb-0">
+                    <div class="border-b border-b-border pb-12 last:border-b-0 last:pb-0">
                         <div class="flex items-start gap-4 mb-6">
-                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-b-primary to-b-hl-light rounded-lg flex items-center justify-center">
                                 <i data-feather="book-open" class="w-5 h-5 text-white"></i>
                             </div>
                             <div class="flex-grow">
@@ -346,22 +350,22 @@
                         </div>
                         
                         ${module.topics ? `
-                        <div class="mr-14 mb-6 p-4 bg-gray-900 bg-opacity-50 rounded-lg border border-gray-800">
+                        <div class="mr-14 mb-6 p-4 bg-b-surface bg-opacity-50 rounded-lg border border-b-border">
                             <strong class="text-gray-200 block mb-2 flex items-center gap-2">
-                                <i data-feather="list" class="w-4 h-4 text-b-primary"></i>
+                                <i data-feather="list" class="w-4 h-4 text-b-hl-light"></i>
                                 المواضيع الرئيسية:
                             </strong>
                             <p class="text-gray-400 leading-relaxed">${module.topics}</p>
                         </div>` : ''}
                         
-                        ${createGuidanceNotes(module.guidance, "📍 إرشادات الوحدة", "navigation", "border-purple-500")}
+                        ${createGuidanceNotes(module.guidance, "📍 إرشادات الوحدة", "navigation", "border-b-hl-light")}
 
                         ${module.resources && module.resources.length > 0 ? `
                         <div class="mr-14 mt-8">
                             <h5 class="text-lg font-bold text-gray-200 mb-5 flex items-center gap-3">
-                                <i data-feather="link" class="w-5 h-5 text-b-primary"></i>
+                                <i data-feather="link" class="w-5 h-5 text-b-hl-light"></i>
                                 <span>المصادر الموصى بها</span>
-                                <span class="text-xs font-normal text-gray-500 bg-gray-800 px-3 py-1 rounded-full">${module.resources.length} مصدر</span>
+                                <span class="text-xs font-normal text-gray-500 bg-b-surface px-3 py-1 rounded-full">${module.resources.length} مصدر</span>
                             </h5>
                             <div class="space-y-4">
                                 ${module.resources.map(createResourceLink).join('')}
@@ -379,13 +383,13 @@
             
             let tracksHTML = '<div class="space-y-10">';
             tracks.forEach((track, index) => {
-                const parallelText = track.parallelWith ? `<span class="text-sm text-gray-400 font-normal mr-3 bg-gray-800 px-3 py-1 rounded-full">بالتوازي مع ${track.parallelWith}</span>` : '';
+                const parallelText = track.parallelWith ? `<span class="text-sm text-gray-400 font-normal mr-3 bg-b-surface px-3 py-1 rounded-full">بالتوازي مع ${track.parallelWith}</span>` : '';
                 
                 tracksHTML += `
-                    <div class="border border-gray-700 rounded-2xl p-8 bg-gradient-to-br from-gray-900 to-black shadow-2xl hover:shadow-b-primary/10 transition-all duration-300">
-                        <div class="flex flex-wrap items-center gap-3 mb-8 pb-6 border-b border-gray-800">
+                    <div class="border border-b-border rounded-2xl p-8 bg-b-surface shadow-2xl hover:shadow-b-primary/20 transition-all duration-300 hover:border-b-primary">
+                        <div class="flex flex-wrap items-center gap-3 mb-8 pb-6 border-b border-b-border">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-gradient-to-br from-b-primary to-purple-600 rounded-lg flex items-center justify-center">
+                                <div class="w-10 h-10 bg-gradient-to-br from-b-primary to-b-hl-light rounded-lg flex items-center justify-center">
                                     <i data-feather="git-branch" class="w-6 h-6 text-white"></i>
                                 </div>
                                 <h3 class="text-2xl font-bold text-white">${track.title}</h3>
@@ -415,15 +419,15 @@
                 roadmapData.forEach((phase, index) => {
                     const staggerClass = `stagger-${Math.min(index + 1, 4)}`;
                     const phaseColors = [
-                        { bg: 'from-blue-900/20 to-cyan-900/20', border: 'border-blue-500', badge: 'bg-blue-500' },
-                        { bg: 'from-purple-900/20 to-pink-900/20', border: 'border-purple-500', badge: 'bg-purple-500' },
-                        { bg: 'from-green-900/20 to-emerald-900/20', border: 'border-green-500', badge: 'bg-green-500' },
-                        { bg: 'from-orange-900/20 to-red-900/20', border: 'border-orange-500', badge: 'bg-orange-500' }
+                        { bg: 'from-b-primary/10 via-b-primary/5 to-transparent', border: 'border-b-primary', badge: 'bg-b-primary', icon: 'compass' },
+                        { bg: 'from-b-hl-light/10 via-b-hl-light/5 to-transparent', border: 'border-b-hl-light', badge: 'bg-b-hl-light', icon: 'layers' },
+                        { bg: 'from-b-hl-green/10 via-b-hl-green/5 to-transparent', border: 'border-b-hl-green', badge: 'bg-b-hl-medium', icon: 'zap' },
+                        { bg: 'from-b-hl-yellow/10 via-b-hl-yellow/5 to-transparent', border: 'border-b-hl-yellow', badge: 'bg-b-primary', icon: 'award' }
                     ];
                     const colors = phaseColors[index % phaseColors.length];
                     
                     const phaseHTML = `
-                        <div class="bg-panel border border-b-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up ${staggerClass} hover:shadow-b-primary/10 transition-all duration-300">
+                        <div class="bg-b-surface border border-b-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up ${staggerClass} hover:shadow-b-primary/20 transition-all duration-300 hover:border-b-primary">
                             <button class="accordion-button w-full flex justify-between items-center p-8 text-right cursor-pointer hover:bg-gradient-to-r ${colors.bg} transition-all duration-300 group" data-target="#content-${phase.id}">
                                 <div class="flex items-start gap-5 flex-grow">
                                     <div class="flex-shrink-0">
@@ -432,23 +436,23 @@
                                         </div>
                                     </div>
                                     <div class="text-right flex-grow">
-                                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-b-primary transition-colors">${phase.title}</h3>
+                                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-b-hl-light transition-colors">${phase.title}</h3>
                                         <div class="flex items-center gap-2 text-sm">
-                                            <i data-feather="calendar" class="w-4 h-4 text-b-primary"></i>
-                                            <span class="text-b-primary font-semibold">${phase.duration}</span>
+                                            <i data-feather="calendar" class="w-4 h-4 text-b-hl-light"></i>
+                                            <span class="text-b-hl-light font-semibold">${phase.duration}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <span class="accordion-icon mr-4 text-gray-400 group-hover:text-b-primary transition-colors flex-shrink-0">
+                                <span class="accordion-icon mr-4 text-gray-400 group-hover:text-b-hl-light transition-colors flex-shrink-0">
                                     <i data-feather="chevron-down" class="w-7 h-7"></i>
                                 </span>
                             </button>
                             
                             <div id="content-${phase.id}" class="accordion-content px-8 md:px-10">
-                                <div class="border-t border-gray-700 pt-8">
+                                <div class="border-t border-b-border pt-8">
                                     <div class="mb-8 p-6 bg-gradient-to-br ${colors.bg} rounded-xl border ${colors.border} border-opacity-30">
                                         <div class="flex items-start gap-3">
-                                            <i data-feather="info" class="w-6 h-6 text-b-primary flex-shrink-0 mt-1"></i>
+                                            <i data-feather="info" class="w-6 h-6 text-b-hl-light flex-shrink-0 mt-1"></i>
                                             <p class="text-lg text-gray-300 leading-relaxed">${phase.description}</p>
                                         </div>
                                     </div>
@@ -476,8 +480,8 @@
                             <i data-feather="alert-circle" class="w-20 h-20 text-red-400 mx-auto"></i>
                         </div>
                         <h3 class="text-2xl font-bold text-red-400 mb-4">⛔ حدث خطأ أثناء تحميل خريطة الطريق</h3>
-                        <p class="text-gray-500 mb-4">الرجاء التأكد من وجود ملف <code class="bg-gray-700 px-2 py-1 rounded text-sm text-b-primary">roadmap-data.json</code> في المسار الصحيح.</p>
-                        <button onclick="location.reload()" class="mt-4 px-6 py-3 bg-b-primary hover:bg-b-primary-dark text-white rounded-lg transition-colors font-semibold">
+                        <p class="text-gray-500 mb-4">الرجاء التأكد من وجود ملف <code class="bg-b-surface px-2 py-1 rounded text-sm text-b-primary">roadmap-data.json</code> في المسار الصحيح.</p>
+                        <button onclick="location.reload()" class="mt-4 px-6 py-3 bg-b-primary hover:bg-b-hl-light text-white rounded-lg transition-colors font-semibold">
                             إعادة المحاولة
                         </button>
                     </div>`;

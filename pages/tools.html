@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوصلة | دليلك لتعلم Digital IC Design</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/global.css">
+  
+ <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'b-bg': '#000000',
+                        'b-text': '#F6F6F6',
+                        'b-primary': '#006A67',
+                        'b-hl-light': '#22C45D',
+                        'b-hl-medium': '#22C45D',
+                        'b-hl-green': '#E6FF94',
+                        'b-hl-yellow': '#FFF4B7',
+                        'b-surface': '#111111',
+                        'b-border': '#222222',
+                    },
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+        
+</head>
+<body class="bg-b-bg text-b-text font-cairo">
+    <header class="bg-b-surface shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+
+  <nav class="container z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-3xl font-bold text-b-primary hover:text-b-hl-light transition-all duration-300 hover:scale-105 flex items-center gap-3">
+                        <i>🧭</i>
+                        <span class="gradient-text">بوصلة</span>
+                    </a>
+                </div>
+
+                <div class="hidden lg:flex lg:items-center lg:space-x-1 lg:space-x-reverse">
+                    <a href="index.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الرئيسية</a>
+                    <a href="roadmap.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface" >خريطة الطريق</a>
+                    <a href="resources.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">المصادر</a>
+                    <a href="tools.html" class="text-white font-semibold bg-b-surface px-4 py-2 rounded-lg border-b-2 border-b-primary "aria-current="page">الأدوات</a>
+
+                    <a href="experts.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">نصائح الخبراء</a>
+                    <a href="about.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">عن الموقع</a>
+                </div>
+
+                <div class="flex items-center lg:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-b-surface focus:outline-none focus:ring-2 focus:ring-inset focus:ring-b-primary transition-all" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">فتح القائمة الرئيسية</span>
+                        <i data-feather="menu" class="block h-6 w-6" id="icon-open"></i>
+                        <i data-feather="x" class="hidden h-6 w-6" id="icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="lg:hidden hidden bg-b-surface border-t border-b-border" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الرئيسية</a>
+
+                <a href="roadmap.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all" >خريطة الطريق </a>
+                <a href="resources.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">المصادر</a>
+                <a href="tools.html" class="bg-b-surface text-white block px-3 py-3 rounded-md text-base font-medium border-r-4 border-b-primary" aria-current="page">الأدوات </a>
+                <a href="experts.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">نصائح الخبراء</a>
+                <a href="about.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">عن الموقع</a>
+            </div>
+        </div>
+    </header>   
+               <!-- Footer -->
+    <footer class="bg-b-surface border-t border-b-border mt-32" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-2 mb-4">
+                    <i data-feather="heart" class="w-5 h-5 text-red-500"></i>
+                    <p class="text-gray-400">صُنع بكل حب لمساعدة الطلاب</p>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="current-year"></span> منصة بوصلة | تم إنشاؤه بواسطة 
+                    <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-hl-light transition-all font-semibold">
+                        Ahmed M. Attia
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+                document.getElementById('current-year').textContent = new Date().getFullYear();
+        feather.replace();
+            // دالة لتهيئة القائمة المحمولة
+    function initMobileMenu() {
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+
+        if (menuButton && mobileMenu && iconOpen && iconClose) {
+            menuButton.addEventListener('click', () => {
+                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+                menuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+            });
+        }
+    }
+        document.addEventListener('DOMContentLoaded', function () {
+            initMobileMenu();
+        });
+    </script>
+    </body>
+    </html>
+        
