@@ -3,372 +3,697 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدليل الشامل لتعلم Digital IC Design</title>
+    <title>بوصلة | دليلك لتعلم Digital IC Design</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            animation: fadeIn 0.8s ease-out;
+            overflow-x: hidden; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #advice-overlay {
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        #advice-overlay.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        #advice-overlay-content {
+            max-height: 80vh;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(162, 213, 198, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(162, 213, 198, 0.6);
+            }
+        }
+
+        .animate-slide-in-up {
+            animation: slideInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-float {
+            animation: floatAnimation 3s ease-in-out infinite;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #A2D5C6 0%, #006A67 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(162, 213, 198, 0.2) 50%,
+                transparent 100%
+            );
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        .glow-on-hover:hover {
+            box-shadow: 0 0 30px rgba(162, 213, 198, 0.4),
+                        0 0 60px rgba(0, 106, 103, 0.2);
+            animation: pulse-glow 2s infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111111;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #006A67;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A2D5C6;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+
+        .card-hover-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .card-hover-effect:hover::before {
+            opacity: 1;
+        }
+    </style>    
     <script>
         tailwind.config = {
-            darkMode: 'class',
+            darkMode: 'class', 
             theme: {
                 extend: {
                     colors: {
-                        dark: {
-                            bg: '#000000',
-                            secondary: '#0a0a0a',
-                            tertiary: '#121212',
-                        },
-                        accent: {
-                            primary: '#CFFFE2',
-                            secondary: '#A2D5C6',
-                            tertiary: '#006A67',
-                        },
-                        light: {
-                            primary: '#F6F6F6',
-                            warning: '#FFF4B7',
-                            success: '#E6FF94',
-                        }
+                        'b-bg': '#000000',
+                        'b-text': '#F6F6F6',
+                        'b-primary': '#006A67',
+                        'b-hl-light': '#22C45D',
+                        'b-hl-medium': '#22C45D',
+                        'b-hl-green': '#E6FF94',
+                        'b-hl-yellow': '#FFF4B7',
+                        'b-surface': '#111111',
+                        'b-border': '#222222',
                     },
                     fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
+                        'cairo': ['Cairo', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #CFFFE2, #A2D5C6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #006A67, #A2D5C6);
-        }
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 1; box-shadow: 0 0 20px #CFFFE2; }
-            50% { opacity: 0.5; box-shadow: 0 0 10px #CFFFE2; }
-        }
-        .pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-    </style>
 </head>
-<body class="bg-dark-bg text-light-primary">
+<body class="bg-b-bg text-b-text font-cairo">
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 bg-dark-bg/95 backdrop-blur-lg border-b border-accent-primary/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center gap-3">
-                    <span class="text-3xl">🎯</span>
-                    <span class="text-xl font-bold gradient-text">Digital IC Learning</span>
+    <nav class="bg-b-bg sticky top-0 z-40 border-b border-b-border shadow-xl">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-3xl font-bold text-b-hl-medium hover:text-b-primary transition-all duration-300 hover:scale-105">
+                        🧭 بوصلة
+                    </a>
                 </div>
 
-                <!-- Desktop Menu -->
-                <ul class="hidden md:flex items-center gap-6">
-                    <li><a href="index.html" class="px-3 py-2 rounded-lg bg-accent-primary/10 text-accent-primary font-semibold transition hover:bg-accent-primary/20">الرئيسية</a></li>
-                    <li><a href="roadmap.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">خريطة الطريق</a></li>
-                    <li><a href="resources.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">المصادر</a></li>
-                    <li><a href="tools.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">الأدوات</a></li>
-                    <li><a href="experts.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">نصائح الخبراء</a></li>
-                    <li><a href="about.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">عن الموقع</a></li>
-                    <li><a href="contact.html" class="px-3 py-2 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">تواصل معنا</a></li>
-                </ul>
+                <div class="hidden md:flex md:items-center md:space-x-8 md:mr-auto">
+                    <a href="index.html" class="text-b-text font-semibold hover:text-b-primary transition-all duration-300 hover:scale-105" aria-current="page">الرئيسية</a>
+                    <a href="roadmap.html" class="text-gray-300 hover:text-b-primary transition-all duration-300 hover:scale-105">خريطة الطريق</a>
+                    <a href="resources.html" class="text-gray-300 hover:text-b-primary transition-all duration-300 hover:scale-105">المصادر</a>
+                    <a href="tools.html" class="text-gray-300 hover:text-b-primary transition-all duration-300 hover:scale-105">الأدوات</a>
+                    <a href="experts.html" class="text-gray-300 hover:text-b-primary transition-all duration-300 hover:scale-105">نصائح الخبراء</a>
+                    <a href="about.html" class="text-gray-300 hover:text-b-primary transition-all duration-300 hover:scale-105">عن الموقع</a>
+                    <a href="contact.html" class="text-gray-300 hover:text-b-primary transition-all duration-300 hover:scale-105">تواصل معنا</a>
+                </div>
 
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-accent-primary/10 transition">
-                    <svg class="w-6 h-6 text-accent-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">فتح القائمة الرئيسية</span>
+                        <svg class="block h-6 w-6" id="icon-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" id="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
             </div>
+        </div>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden pb-4">
-                <ul class="flex flex-col gap-2">
-                    <li><a href="index.html" class="block px-4 py-3 rounded-lg bg-accent-primary/10 text-accent-primary font-semibold">الرئيسية</a></li>
-                    <li><a href="roadmap.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">خريطة الطريق</a></li>
-                    <li><a href="resources.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">المصادر</a></li>
-                    <li><a href="tools.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">الأدوات</a></li>
-                    <li><a href="experts.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">نصائح الخبراء</a></li>
-                    <li><a href="about.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">عن الموقع</a></li>
-                    <li><a href="contact.html" class="block px-4 py-3 rounded-lg text-accent-secondary hover:bg-accent-primary/10 transition">تواصل معنا</a></li>
-                </ul>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">الرئيسية</a>
+                <a href="roadmap.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">خريطة الطريق</a>
+                <a href="resources.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">المصادر</a>
+                <a href="tools.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">الأدوات</a>
+                <a href="experts.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">نصائح الخبراء</a>
+                <a href="about.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">عن الموقع</a>
+                <a href="contact.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">تواصل معنا</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center relative overflow-hidden">
-        <!-- Background Gradients -->
-        <div class="absolute inset-0 bg-gradient-to-br from-accent-tertiary/10 via-transparent to-accent-primary/5"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Hero Content -->
-                <div class="space-y-6 animate-fade-in">
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-                        <span class="gradient-text">الدليل الشامل</span>
-                        <br>لتعلم Digital IC Design
-                    </h1>
-                    <p class="text-xl text-accent-secondary leading-relaxed">
-                        طريقك المنظم والواضح من الصفر إلى الاحتراف في تصميم الدوائر المتكاملة الرقمية
+    <main>
+        <!-- قسم المقدمة (Hero) -->
+        <div class="relative pt-24 pb-32">
+            <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-b-bg" aria-hidden="true"></div>
+            </div>
+            
+            <div class="relative container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-b-text sm:text-5xl md:text-6xl animate-slide-in-up">
+                    <span class="block xl:inline">أهلاً بك في</span>
+                    <span class="block gradient-text xl:inline"> "بوصلة"</span>
+                </h1>
+                <p class="mt-6 max-w-md mx-auto text-lg text-gray-300 sm:text-xl md:mt-8 md:max-w-3xl animate-slide-in-up stagger-1">
+                    المصدر الأول والأكثر تنظيمًا لتعلم مسار <span class="font-semibold text-b-hl-medium">Digital IC Design</span>.
+                    مجال مطلوب عالميًا، برواتب مجزية، وتطور مستمر. مهمتنا هي توجيهك خطوة بخطوة، من الصفر حتى الاحتراف، ومنع التشتت.
+                </p>
+                <div class="mt-10 max-w-sm mx-auto sm:max-w-none sm:flex sm:justify-center animate-slide-in-up stagger-2">
+                    <div class="space-y-4 sm:space-y-0 sm:mx-auto">
+                        <a href="roadmap.html" class="flex items-center justify-center w-full sm:w-auto px-8 py-3 border border-transparent text-lg font-bold rounded-md text-black bg-b-hl-medium shadow-lg 
+                                transition-all duration-300 ease-in-out 
+                                hover:bg-b-hl-light hover:shadow-2xl hover:-translate-y-1 hover:scale-105 glow-on-hover
+                                md:py-4 md:text-xl md:px-10">
+                            ابدأ رحلتك من هنا
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم المميزات -->
+        <div class="bg-b-surface py-24 sm:py-32">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-slide-in-up">
+                    <h2 class="text-base font-semibold leading-7 text-b-primary">لماذا بوصلة؟</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-b-text sm:text-4xl">
+                        كل ما تحتاجه في مكان واحد
                     </p>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <a href="roadmap.html" class="inline-flex items-center gap-2 px-8 py-4 gradient-bg text-dark-bg font-bold rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
-                            <span>ابدأ رحلتك الآن</span>
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">
+                        لقد قمنا بتنظيم المصادر والأدوات والنصائح في مسار واضح لتوفير وقتك وجهدك.
+                    </p>
+                </div>
+                
+                <div id="features-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- سيتم تعبئة البطاقات ديناميكياً عبر JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم لمحة عن خطة التعلم (Timeline) -->
+        <div class="bg-b-bg py-24 sm:py-32">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 animate-slide-in-up">
+                    <h2 class="text-base font-semibold leading-7 text-b-primary">رحلة التعلم</h2>
+                    <p class="mt-2 text-3xl font-bold tracking-tight text-b-text sm:text-4xl">
+                        لمحة عن خطة التعلم المقترحة
+                    </p>
+                     <p class="mt-6 text-lg leading-8 text-gray-300">
+                        مسار تدريجي يأخذ بيدك من البدايات وصولاً للاحتراف.
+                    </p>
+                </div>
+                
+                <div id="timeline-container" class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <!-- سيتم تعبئة المراحل ديناميكياً عبر JavaScript -->
+                </div>
+                <div class="text-center mt-12 animate-slide-in-up stagger-3">
+                     <a href="roadmap.html" class="text-b-primary hover:text-b-hl-medium font-semibold text-lg transition-colors duration-200">
+                        اكتشف الخريطة التفصيلية &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم أحدث الإضافات (نصائح جديدة) -->
+        <div class="bg-b-surface py-24 sm:py-32">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl mx-auto lg:mx-0 text-center lg:text-right animate-slide-in-up">
+                    <h2 class="text-3xl font-bold tracking-tight text-b-text sm:text-4xl">أحدث النصائح والإضافات</h2>
+                    <p class="mt-6 text-lg leading-8 text-gray-300">
+                        مقتطفات سريعة ومفيدة من الخبراء والمهندسين في المجال. اضغط على "اقرأ المزيد" لعرض النصيحة كاملة.
+                    </p>
+                </div>
+                <div id="advice-container" class="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- سيتم تعبئة النصائح ديناميكياً عبر JavaScript -->
+                </div>
+                 <div class="text-center mt-12 animate-slide-in-up stagger-6">
+                     <a href="experts.html" class="text-b-primary hover:text-b-hl-medium font-semibold text-lg transition-colors duration-200">
+                        عرض كل النصائح &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- تذييل الصفحة (Footer) -->
+    <footer class="bg-b-surface border-t border-b-border" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                
+                <div>
+                    <h3 class="text-sm font-semibold leading-6 text-b-text">أقسام الموقع</h3>
+                    <ul role="list" class="mt-6 space-y-4">
+                        <li><a href="roadmap.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">خريطة الطريق</a></li>
+                        <li><a href="resources.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">المصادر</a></li>
+                        <li><a href="tools.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">الأدوات</a></li>
+                        <li><a href="experts.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">نصائح الخبراء</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-semibold leading-6 text-b-text">تواصل معنا</h3>
+                    <ul role="list" class="mt-6 space-y-4">
+                        <li><a href="about.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">عن الموقع</a></li>
+                        <li><a href="contact.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">أرسل ملاحظاتك</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-2 md:col-span-2">
+                    <h3 class="text-base font-semibold leading-6 text-b-text">
+                        عن صاحب الفكرة
+                    </h3>
+                    
+                    <p class="mt-4 text-sm leading-7 text-gray-300">
+                        أحمد محمد عطية، طالب هندسة إلكترونيات واتصالات بجامعة الزقازيق.
+                        الهدف من "بوصلة" هو مساعدة الطالب في بناء طريق واضح ومُنظم لتعلُّم مجال الـ Digital Design خطوة بخطوة.
+                    </p>
+                    
+                    <div class="flex space-x-6 space-x-reverse mt-5">
+                        <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-b-primary transition-all duration-200 hover:scale-110">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
                             </svg>
                         </a>
-                        <a href="#features" class="inline-flex items-center gap-2 px-8 py-4 border-2 border-accent-primary text-accent-primary font-bold rounded-xl hover:bg-accent-primary/10 transition-all duration-300">
-                            <span>اكتشف المزيد</span>
+                        
+                        <a href="https://github.com/Ahm3d0x" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-b-primary transition-all duration-200 hover:scale-110">
+                            <span class="sr-only">GitHub</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                            </svg>
                         </a>
                     </div>
                 </div>
 
-                <!-- Hero Visual - Circuit Animation -->
-                <div class="relative h-96 flex items-center justify-center">
-                    <div class="relative w-80 h-80">
-                        <!-- Nodes -->
-                        <div class="absolute top-16 right-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow"></div>
-                        <div class="absolute top-16 left-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow" style="animation-delay: 0.5s"></div>
-                        <div class="absolute bottom-16 right-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow" style="animation-delay: 1s"></div>
-                        <div class="absolute bottom-16 left-16 w-5 h-5 bg-accent-primary rounded-full pulse-glow" style="animation-delay: 1.5s"></div>
-                        
-                        <!-- Lines -->
-                        <div class="absolute top-16 right-16 left-16 h-0.5 bg-gradient-to-l from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
-                        <div class="absolute bottom-16 right-16 left-16 h-0.5 bg-gradient-to-l from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
-                        <div class="absolute top-16 bottom-16 right-16 w-0.5 bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
-                        <div class="absolute top-16 bottom-16 left-16 w-0.5 bg-gradient-to-b from-accent-primary via-accent-secondary to-accent-primary opacity-50"></div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-dark-secondary">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold gradient-text mb-4">لماذا هذا الموقع؟</h2>
-                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                    رحلة تعليمية منظمة ومُبسّطة، مبنية على تجارب حقيقية وخبرات من الميدان
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div class="text-5xl mb-4">🗺️</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mb-3">خريطة طريق واضحة</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        مسار تعليمي مُنظم خطوة بخطوة، من الأساسيات إلى الاحتراف، بدون تشتت أو ضياع وقت
-                    </p>
+            
+            <div class="mt-12 border-t border-b-border pt-8">
+                <div class="text-center text-green-500">
+                    <script>
+                        document.write(` بوصلة - جميع الحقوق محفوظة. تم إنشاؤه بهدف تعليمي بحت.&copy; ${new Date().getFullYear()} `);
+                    </script>
                 </div>
-
-                <!-- Feature 2 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div class="text-5xl mb-4">📚</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mb-3">مصادر مُرتبة ومُنظمة</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        كل مصدر في مكانه الصحيح، مع توضيح المرحلة التعليمية المناسبة له
-                    </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div class="text-5xl mb-4">🛠️</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mb-3">أدوات عملية</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        دليل شامل للأدوات البرمجية وطريقة استخدامها، مع مشاريع تطبيقية
-                    </p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div class="text-5xl mb-4">💡</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mb-3">نصائح من الخبراء</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        تجارب حقيقية ونصائح عملية من مهندسين ومتخصصين في المجال
-                    </p>
-                </div>
-
-                <!-- Feature 5 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div class="text-5xl mb-4">🤖</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mb-3">مساعد ذكي</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        أدوات AI لمساعدتك في الفهم والتطبيق والإجابة على استفساراتك
-                    </p>
-                </div>
-
-                <!-- Feature 6 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-8 hover:border-accent-secondary hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <div class="text-5xl mb-4">🎯</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mb-3">تركيز وعدم تشتت</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        كل شيء في مكانه، بدون معلومات زائدة أو روابط ميتة
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quick Start Section -->
-    <section class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold gradient-text text-center mb-16">ابدأ من هنا</h2>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="relative bg-dark-tertiary border-2 border-accent-primary/10 rounded-2xl p-8 hover:border-accent-primary hover:-translate-y-2 transition-all duration-300">
-                    <div class="absolute -top-6 right-8 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-dark-bg font-bold text-xl shadow-lg">1</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mt-4 mb-3">تعرّف على المجال</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        افهم ما هو Digital IC Design وما المسارات الوظيفية المتاحة
-                    </p>
-                    <a href="about.html" class="inline-flex items-center text-accent-secondary font-semibold hover:text-accent-primary transition">
-                        اقرأ المزيد ←
-                    </a>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="relative bg-dark-tertiary border-2 border-accent-primary/10 rounded-2xl p-8 hover:border-accent-primary hover:-translate-y-2 transition-all duration-300">
-                    <div class="absolute -top-6 right-8 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-dark-bg font-bold text-xl shadow-lg">2</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mt-4 mb-3">اطّلع على خريطة الطريق</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        تعرف على المراحل التعليمية والمهارات المطلوبة في كل مرحلة
-                    </p>
-                    <a href="roadmap.html" class="inline-flex items-center text-accent-secondary font-semibold hover:text-accent-primary transition">
-                        شاهد الخريطة ←
-                    </a>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="relative bg-dark-tertiary border-2 border-accent-primary/10 rounded-2xl p-8 hover:border-accent-primary hover:-translate-y-2 transition-all duration-300">
-                    <div class="absolute -top-6 right-8 w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-dark-bg font-bold text-xl shadow-lg">3</div>
-                    <h3 class="text-2xl font-bold text-accent-primary mt-4 mb-3">ابدأ بالمصادر الأساسية</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        اختر الكورسات والكتب المناسبة لمستواك وابدأ التعلم
-                    </p>
-                    <a href="resources.html" class="inline-flex items-center text-accent-secondary font-semibold hover:text-accent-primary transition">
-                        تصفح المصادر ←
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Updates Section -->
-    <section class="py-20 bg-dark-secondary">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl font-bold gradient-text text-center mb-16">آخر التحديثات</h2>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Update 1 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-6 hover:border-accent-secondary hover:shadow-xl transition-all duration-300">
-                    <span class="inline-block px-3 py-1 gradient-bg text-dark-bg text-xs font-bold rounded-full mb-4">جديد</span>
-                    <h3 class="text-xl font-bold text-accent-primary mb-2">إضافة قسم UVM المتقدم</h3>
-                    <p class="text-gray-400 mb-4">تم إضافة مصادر جديدة لتعلم Universal Verification Methodology</p>
-                    <span class="text-sm text-gray-500 italic">منذ يومين</span>
-                </div>
-
-                <!-- Update 2 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-6 hover:border-accent-secondary hover:shadow-xl transition-all duration-300">
-                    <span class="inline-block px-3 py-1 bg-accent-secondary/20 text-accent-secondary text-xs font-bold rounded-full mb-4">تحديث</span>
-                    <h3 class="text-xl font-bold text-accent-primary mb-2">تحديث روابط الكورسات</h3>
-                    <p class="text-gray-400 mb-4">تم مراجعة وتحديث جميع روابط المصادر التعليمية</p>
-                    <span class="text-sm text-gray-500 italic">منذ أسبوع</span>
-                </div>
-
-                <!-- Update 3 -->
-                <div class="bg-dark-tertiary border border-accent-primary/10 rounded-2xl p-6 hover:border-accent-secondary hover:shadow-xl transition-all duration-300">
-                    <span class="inline-block px-3 py-1 gradient-bg text-dark-bg text-xs font-bold rounded-full mb-4">جديد</span>
-                    <h3 class="text-xl font-bold text-accent-primary mb-2">نصائح جديدة للمقابلات</h3>
-                    <p class="text-gray-400 mb-4">أضفنا دليل شامل للتحضير لمقابلات العمل في المجال</p>
-                    <span class="text-sm text-gray-500 italic">منذ أسبوعين</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 relative overflow-hidden">
-        <div class="absolute inset-0 gradient-bg opacity-10"></div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h2 class="text-4xl font-bold mb-6">هل أنت جاهز لبدء رحلتك؟</h2>
-            <p class="text-xl text-accent-secondary mb-8">
-                انضم لمئات الطلاب الذين بدأوا رحلتهم في مجال Digital IC Design
-            </p>
-            <a href="roadmap.html" class="inline-flex items-center gap-3 px-10 py-5 gradient-bg text-dark-bg font-bold text-lg rounded-xl shadow-2xl hover:shadow-accent-primary/50 hover:-translate-y-1 transition-all duration-300">
-                <span>ابدأ الآن</span>
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-            </a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark-secondary border-t border-accent-primary/10 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-12 mb-8">
-                <!-- About -->
-                <div>
-                    <h3 class="text-xl font-bold text-accent-primary mb-4">Digital IC Learning</h3>
-                    <p class="text-gray-400 leading-relaxed">
-                        دليلك الشامل لتعلم تصميم الدوائر المتكاملة الرقمية من الصفر
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-bold text-accent-primary mb-4">روابط سريعة</h4>
-                    <ul class="space-y-2">
-                        <li><a href="roadmap.html" class="text-gray-400 hover:text-accent-primary transition">خريطة الطريق</a></li>
-                        <li><a href="resources.html" class="text-gray-400 hover:text-accent-primary transition">المصادر</a></li>
-                        <li><a href="tools.html" class="text-gray-400 hover:text-accent-primary transition">الأدوات</a></li>
-                        <li><a href="experts.html" class="text-gray-400 hover:text-accent-primary transition">نصائح الخبراء</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <h4 class="text-lg font-bold text-accent-primary mb-4">تواصل معنا</h4>
-                    <ul class="space-y-2">
-                        <li>
-                            <a href="https://github.com/Ahm3d0x" target="_blank" class="text-gray-400 hover:text-accent-primary transition">
-                                GitHub
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" class="text-gray-400 hover:text-accent-primary transition">
-                                LinkedIn
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:ahm3d.m.attia@gmail.com" class="text-gray-400 hover:text-accent-primary transition">
-                                Email
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-accent-primary/10 pt-8 text-center">
-                <p class="text-gray-500">
-                    &copy; 2025 Digital IC Learning. صُمم بـ ❤️ بواسطة Ahmed Mohamed Attia
-                </p>
             </div>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Advice Overlay -->
+    <div id="advice-overlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div id="advice-overlay-content" class="bg-b-surface p-6 rounded-2xl border border-b-border shadow-2xl w-full max-w-2xl overflow-y-auto transform scale-100 opacity-100">
+            <div class="flex justify-between items-center mb-4 border-b border-b-border pb-3">
+                 <h3 id="overlay-title" class="text-xl font-bold text-b-hl-medium"></h3>
+                 <button id="overlay-close-btn" class="text-gray-400 hover:text-white text-3xl">&times;</button>
+            </div>
+            <div id="overlay-full-text" class="text-md leading-7 text-gray-300 space-y-3 mb-4">
+            </div>
+             <p id="overlay-source" class="text-sm font-semibold text-b-primary pt-3 border-t border-b-border"></p>
+        </div>
+    </div>
+
+    <script>
+        // البيانات الديناميكية
+
+        // بيانات المميزات
+        const featuresData = [
+            {
+                icon: 'fa-layer-group',
+                title: 'خريطة طريق تفاعلية',
+                description: 'مسار مرئي يبدأ معك من أساسيات الإلكترونيات و Logic Design، مرورًا بـ Verilog/VHDL، وصولاً إلى مفاهيم STA, DFT, PnR و ASIC Flow.'
+            },
+            {
+                icon: 'fa-book-open',
+                title: 'مصادر مُنظمة وفعّالة',
+                description: 'أفضل الكورسات (مثل كورسات د. هشام عمران، د. أيمن وهبة)، الكتب والمقالات مرتبة حسب كل مرحلة، مع روابط تعمل 100%.'
+            },
+            {
+                icon: 'fa-tools',
+                title: 'الأدوات العملية ودعم AI',
+                description: 'روابط ونصائح لإعداد الأدوات الأساسية (ModelSim, Vivado)، بالإضافة إلى أدوات AI مساعدة لشرح المفاهيم واقتراح المشاريع.'
+            },
+            {
+                icon: 'fa-lightbulb',
+                title: 'خلاصة تجارب الخبراء',
+                description: 'نصائح قيمة من مهندسين (مثل يوسف شريف وكريم وسيم) حول المذاكرة، مشاريع التخرج، بناء الـ Network، والاستعداد لسوق العمل.'
+            }
+        ];
+
+        // بيانات المراحل التعليمية
+        const timelineData = [
+            {
+                icon: 'fa-layer-group',
+                title: 'المرحلة الأولى: الأساسيات',
+                duration: '(3-6 أشهر)',
+                description: 'إتقان Logic Design، تعلم Verilog/VHDL، فهم Computer Architecture، وتطبيق مشاريع بسيطة على FPGA و ModelSim.'
+            },
+            {
+                icon: 'fa-code-branch',
+                title: 'المرحلة الثانية: التخصص',
+                duration: '(3-6 أشهر)',
+                description: 'اختيار مسار (Design, Verification, PnR) والتعمق فيه. تعلم STA, Low Power, DFT للتصميم، أو SystemVerilog/UVM للتحقق، أو Synthesis/PnR للتصميم المادي.'
+            },
+            {
+                icon: 'fa-graduation-cap',
+                title: 'المرحلة الثالثة: الاحتراف',
+                duration: '(مستمر)',
+                description: 'تطبيق المعرفة في مشروع تخرج مع شركة، الحصول على تدريب (Internship)، بناء Portfolio، والتواصل المستمر (Networking). يمكن الانضمام لبرنامج ITI لتسريع العملية.'
+            }
+        ];
+
+        // بيانات النصائح
+        const adviceData = [
+            {
+                title: 'احفظ الـ Flow جيدًا!',
+                summary: '"محتاج بردو تتعلم الـ Flow علشان تبقي فاهم ايه اللي بيحصل من اول ما الـ Client بيتكلم مع الـ System Designer لحد ما نبعت ملف الـ GDS II للمصنع... خلي بالك لازم تحفظ الـ Flow كويس قبل اي Interview لانه دايمًا بتتسأل فيه."',
+                fullText: `<p>"محتاج بردو تتعلم الـ Flow علشان تبقي فاهم ايه اللي بيحصل من اول ما الـ Client بيتكلم مع الـ System Designer لحد ما نبعت ملف الـ GDS II للمصنع... خلي بالك لازم تحفظ الـ Flow كويس قبل اي Interview لانه دايمًا بتتسأل فيه."</p>
+                <p class='font-semibold text-b-hl-light mt-4 mb-2'>الفائدة:</p>
+                <ul class='list-disc list-inside text-gray-400 text-sm space-y-1'>
+                    <li>فهم الصورة الكبيرة لعملية تصميم الـ IC.</li>
+                    <li>الاستعداد لسؤال أساسي في مقابلات العمل.</li>
+                    <li>معرفة دور كل مرحلة وعلاقتها بالمراحل الأخرى.</li>
+                </ul>`,
+                source: '- من دليل المبتدئين'
+            },
+            {
+                title: 'وسّع معرفتك: تعلم Design و Verification و PnR',
+                summary: '"وانت لسه طالب اتعلم في مجالات مختلفة في الـ Flow زي Design, Verification, ASIC Physical Implementation, FPGA, Testing, Fabrication وغيرهم. ده بيخليك تقدر تقدم في اي وظيفة بعد التخرج في اي مجال منهم... ده هيخلي التواصل بينك وبين باقي التيمات سهل..."',
+                fullText: `<p>"وانت لسه طالب اتعلم في مجالات مختلفة في الـ Flow زي Design, Verification, ASIC Physical Implementation, FPGA, Testing, Fabrication وغيرهم. ده بيخليك تقدر تقدم في اي وظيفة بعد التخرج في اي مجال منهم (بيعتمد طبعا على مدي معرفتك بالمجال) وبيخليك لو اشتغلت مهندس Design مثلا تبقي فاهم باقي التيمات بتعمل ايه. ده هيخلي التواصل بينك وبين باقي التيمات سهل وهيخليك تاخد بالك وانت بتعمل الـ RTL انك تكتبه بطريقة معينه مثلا متعملش مشاكل قدام في الـ Verification او الـ PnR وهكذا."</p>
+                <p class='font-semibold text-b-hl-light mt-4 mb-2'>الفائدة:</p>
+                <ul class='list-disc list-inside text-gray-400 text-sm space-y-1'>
+                    <li>زيادة فرص العمل في مسارات وظيفية متعددة.</li>
+                    <li>فهم أعمق لعملية التصميم وتحديات الفرق الأخرى.</li>
+                    <li>كتابة RTL أفضل وتجنب المشاكل المستقبلية.</li>
+                    <li>زيادة الثقافة العامة في المجال.</li>
+                </ul>`,
+                source: '- نصيحة من يوسف شريف'
+            },
+            {
+                title: 'كن دقيقًا في مصطلحاتك الفنية',
+                summary: '"خليك دقيق في الكلام اللي بتقوله مثلا الـ Mentor بتاعك سألك في مشروع التخرج هي الـ data بتتبعت serial ولا parallel... لو انت متأكد انها serial قول انها serial... لو مش متأكد وشاكك... ممكن تقول (تقريبا serial بس هرجع للـ standard وهجاوب حضرتك بشكل اكيد)..."',
+                fullText: `<p>"خليك دقيق في الكلام اللي بتقوله مثلا الـ Mentor بتاعك سألك في مشروع التخرج هي الـ data بتتبعت serial ولا parallel. لو انت متأكد انها serial قول انها serial. لو مش متأكد وشاكك انها Serial ممكن تقول (تقريبا serial بس هرجع للـ standard وهجاوب حضرتك بشكل اكيد). مينفعش ابدأ تكون مش متأكد من المعلومة وتكون صيغة كلامك انك متأكد من المعلومة. ولو انت روحت الـ standard وملقيتش فيه حاجه بتقول هي الـ data بتتبعت serial ولا parallel يبقي تقول للـ Mentor انك دورت وعلي حد علمكملقيتش معلومة. ومتقولش (الـ standard مش قايل خالص المعلومة دي) خصوصا لو الـ standard يبقي 600 صفحة مثلا, لان ممكن تكون المعلومة موجودة فعلا في الـ standard وانت مدورتش كويس."</p>
+                <p class='font-semibold text-b-hl-light mt-4 mb-2'>الفائدة:</p>
+                <ul class='list-disc list-inside text-gray-400 text-sm space-y-1'>
+                    <li>بناء الثقة والمصداقية مع الـ Mentors والزملاء.</li>
+                    <li>تجنب نشر معلومات خاطئة قد تؤثر على المشروع.</li>
+                    <li>إظهار الاحترافية والجدية في التعامل مع المعلومات التقنية.</li>
+                </ul>`,
+                source: '- نصيحة من يوسف شريف (عن مرشدي Si-Vision)'
+            },
+            {
+                title: 'MATLAB كمرجع ذهبي (Golden Reference)',
+                summary: '"اوقات في مشاريع التخرج بيكون فيه جزء MATLAB في الاول انا عن نفسي كنت مستغرب في البداية وكنت عايز ادخل في الـ RTL علطول بس ده غلط وفعلا MATLAB مهم جدا جدا... انت في بداية المشروع بتاخد الـ Standard بتاع المشروع وتقرأه وتحدد الـ high level architecture كـ blocks بتسلم بعضها... ثم انت بتعمل MATLAB Modelling للبلوكات دي علشان تتأكد ان الـ System شغال صح علشان لما تبدأ في الـ RTL يبقى معاك Golden Reference تقدر تستعمله في الـ Verification بتاع المشروع..."',
+                fullText: `<p>"اوقات في مشاريع التخرج بيكون فيه جزء MATLAB في الاول انا عن نفسي كنت مستغرب في البداية وكنت عايز ادخل في الـ RTL علطول بس ده غلط وفعلا MATLAB مهم جدا جدا. انت في بداية المشروع بتاخد الـ Standard بتاع المشروع وتقرأه وتحدد الـ high level architecture كـ blocks بتسلم بعضها. ثم انت بتعمل MATLAB Modelling للبلوكات دي علشان تتأكد ان الـ System شغال صح علشان لما تبدأ في الـ RTL يبقى معاك Golden Reference تقدر تستعمله في الـ Verification بتاع المشروع. لما تبدأوا الـ RTL هتقسموا البلوكات عليكوا والمفروض كل واحد يتأكد ان البلوك بتاعه شغال صح عن طريق انه يقارن الـ Output اللي خارج من MATLAB بالـ Output من الـ RTL."</p>
+                <p class='font-semibold text-b-hl-light mt-4 mb-2'>الفائدة:</p>
+                <ul class='list-disc list-inside text-gray-400 text-sm space-y-1'>
+                    <li>التأكد من صحة فهمك للـ Standard وتصميمك قبل كتابة RTL.</li>
+                    <li>توفير مرجع دقيق لمقارنة نتائج RTL أثناء الـ Verification.</li>
+                    <li>تسهيل عملية الـ Debugging وتحديد مصدر الأخطاء.</li>
+                </ul>`,
+                source: '- نصيحة من يوسف شريف (تعلمها من فاطمة علي)'
+            },
+            {
+                title: 'طور مهارات العرض لديك',
+                summary: '"اتعلم Presentation Skills قدر الإمكان قبل ما تتخرج من الكلية... لان في مشروع التخرج وفي الشغل هتعمل Presentations كتير علشان تعرض فكرتك وتقنع الناس بالـ Design بتاعك... حاول اتعلم ازاي تعمل PowerPoint والـ Design بتاعها حلو والالوان متناسقة صدقني مهارة عرض المعلومة... هتخليك مميز."',
+                fullText: `<p>"اتعلم Presentation Skills قدر الإمكان قبل ما تتخرج من الكلية... لان في مشروع التخرج وفي الشغل هتعمل Presentations كتير علشان تعرض فكرتك وتقنع الناس بالـ Design بتاعك. وحاول اتعلم ازاي تعمل PowerPoint والـ Design بتاعها حلو والالوان متناسقة صدقني مهارة عرض المعلومة من خلال طريقتك في الكلام وانت واثق من نفسك ومش متوتر ومع PowerPoint جميلة هتخليك مميز."</p>
+                <p class='font-semibold text-b-hl-light mt-4 mb-2'>الفائدة:</p>
+                <ul class='list-disc list-inside text-gray-400 text-sm space-y-1'>
+                    <li>القدرة على توصيل الأفكار التقنية المعقدة بوضوح.</li>
+                    <li>إقناع الزملاء والمديرين بتصميمك وقراراتك.</li>
+                    <li>ترك انطباع احترافي وإيجابي في الاجتماعات والمناقشات.</li>
+                    <li>ضرورية للنجاح في عرض مشروع التخرج.</li>
+                </ul>`,
+                source: '- نصيحة من يوسف شريف'
+            },
+            {
+                title: 'كيف تتعامل مع المرشدين (Mentors)؟',
+                summary: '"مشروع التخرج ده بتاعك انت والتيم... افهمه كويس واشرحه للمهندسين في الشركة... هما بيكونوا عايزينك تتناقش معاهم انت ليه مستخدم مثلا الـ Technique ده ومش مستخدم حاجه تانيه... ولو هو قالك علي Technique تاني افضل... فهو في الغالب بنسبة كبيرة اوي عنده حق بسبب الخبرة بس افهم منه ليه وتناقش معاه ده مشروعك."',
+                fullText: `<p>"مشروع التخرج ده بتاعك انت والتيم. افهمه كويس واشرحه للمهندسين في الشركة. هما بيكونوا عايزينك تتناقش معاهم انت ليه مستخدم مثلا الـ Technique ده ومش مستخدم حاجه تانيه. ولو هو قالك علي Technique تاني افضل من الـ Technique اللي انت مستخدمه فهو في الغالب بنسبة كبيرة اوي عنده حق بسبب الخبرة بس افهم منه ليه وتناقش معاه ده مشروعك."</p>
+                <p class='font-semibold text-b-hl-light mt-4 mb-2'>الفائدة:</p>
+                <ul class='list-disc list-inside text-gray-400 text-sm space-y-1'>
+                    <li>الاستفادة القصوى من خبرة المرشدين وتوجيهاتهم.</li>
+                    <li>تطوير فهم أعمق للمشروع وتحدياته.</li>
+                    <li>تعلم كيفية النقاش التقني البنّاء والدفاع عن قرارات التصميم.</li>
+                    <li>بناء علاقة مهنية قوية مع المرشدين.</li>
+                </ul>`,
+                source: '- نصيحة من يوسف شريف'
+            }
+        ];
+
+        // دالة لإنشاء بطاقات المميزات
+        function renderFeatures() {
+            const container = document.getElementById('features-container');
+            featuresData.forEach((feature, index) => {
+                const card = document.createElement('div');
+                card.className = `flex flex-col bg-b-bg p-8 rounded-2xl border border-b-border shadow-xl card-hover-effect
+                                transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:border-b-primary glow-on-hover
+                                animate-slide-in-up stagger-${index + 1}`;
+                card.innerHTML = `
+                    <h3 class="text-2xl font-bold text-b-hl-medium mb-3">${feature.title}</h3>
+                    <p class="text-gray-300 flex-grow">
+                        ${feature.description}
+                    </p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // دالة لإنشاء بطاقات المراحل
+        function renderTimeline() {
+            const container = document.getElementById('timeline-container');
+            timelineData.forEach((phase, index) => {
+                const card = document.createElement('div');
+                card.className = `flex flex-col items-center bg-b-surface p-8 rounded-2xl border border-b-border shadow-lg card-hover-effect
+                                transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-xl hover:border-b-primary
+                                animate-slide-in-up stagger-${index + 1}`;
+                card.innerHTML = `
+                    <div class="bg-b-primary text-b-text rounded-full p-4 mb-4 animate-float">
+                        <i class="fas ${phase.icon} fa-2x"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-b-hl-medium mb-2">${phase.title}</h3>
+                    <p class="text-gray-300 text-sm mb-1">${phase.duration}</p>
+                    <p class="text-gray-400 text-md">
+                        ${phase.description}
+                    </p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // دالة لإنشاء بطاقات النصائح
+        function renderAdvice() {
+            const container = document.getElementById('advice-container');
+            adviceData.forEach((advice, index) => {
+                const card = document.createElement('article');
+                card.className = `advice-card group flex flex-col items-start justify-between bg-b-bg p-6 rounded-2xl border border-b-border shadow-lg card-hover-effect
+                                transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:border-b-primary glow-on-hover
+                                animate-slide-in-up stagger-${index + 1}`;
+                card.dataset.title = advice.title;
+                card.dataset.fullText = advice.fullText;
+                card.dataset.source = advice.source;
+                
+                card.innerHTML = `
+                    <div class="relative w-full">
+                        <h3 class="mt-3 text-xl font-semibold leading-6 text-b-hl-medium group-hover:text-b-primary transition-colors duration-200">
+                            ${advice.title}
+                        </h3>
+                        <p class="advice-summary mt-5 line-clamp-4 text-md leading-7 text-gray-300">
+                            ${advice.summary}
+                        </p>
+                    </div>
+                    <div class="mt-6 w-full flex justify-between items-center">
+                        <p class="text-sm font-semibold text-b-primary">
+                            ${advice.source}
+                        </p>
+                        <button type="button" class="toggle-advice-btn text-sm text-b-hl-medium hover:text-black bg-b-primary rounded-full px-4 py-2 w-28 transition-colors duration-200 cursor-pointer">اقرأ المزيد</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // دالة Intersection Observer للأنيميشن عند الظهور
+        function observeElements() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.animate-slide-in-up').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Advice Overlay Logic - نعرف الدوال أولاً
+            const adviceOverlay = document.getElementById('advice-overlay');
+            const overlayTitle = document.getElementById('overlay-title');
+            const overlayFullText = document.getElementById('overlay-full-text');
+            const overlaySource = document.getElementById('overlay-source');
+            const overlayCloseBtn = document.getElementById('overlay-close-btn');
+
+            window.showOverlay = function(title, fullText, source) {
+                overlayTitle.textContent = title;
+                overlayFullText.innerHTML = fullText;
+                overlaySource.textContent = source;
+                adviceOverlay.classList.remove('hidden');
+                void adviceOverlay.offsetWidth;
+                adviceOverlay.style.opacity = '1';
+                adviceOverlay.style.transform = 'scale(1)';
+                document.body.style.overflow = 'hidden';
+            }
+
+            window.hideOverlay = function() {
+                adviceOverlay.style.opacity = '0';
+                adviceOverlay.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    adviceOverlay.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }, 300);
+            }
+
+            // رندر كل الأقسام الديناميكية
+            renderFeatures();
+            renderTimeline();
+            renderAdvice();
+
+            // تفعيل الأنيميشنات
+            setTimeout(() => {
+                observeElements();
+            }, 100);
+
+            // Mobile Menu Toggle
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+
+            menuButton.addEventListener('click', () => {
+                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+                menuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+            });
+
+            // Event delegation للنصائح - نستخدم document.body للتأكد
+            document.body.addEventListener('click', (event) => {
+                const btn = event.target.closest('.toggle-advice-btn');
+                if (btn) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const card = btn.closest('.advice-card');
+                    if (card) {
+                        const title = card.dataset.title;
+                        const fullText = card.dataset.fullText;
+                        const source = card.dataset.source;
+                        console.log('Opening overlay:', title); // للتأكد
+                        window.showOverlay(title, fullText, source);
+                    }
+                }
+            });
+
+            if (overlayCloseBtn) {
+                overlayCloseBtn.addEventListener('click', window.hideOverlay);
+            }
+
+            if (adviceOverlay) {
+                adviceOverlay.addEventListener('click', (event) => {
+                    if (event.target === adviceOverlay) {
+                        window.hideOverlay();
+                    }
+                });
+            }
+
+            // إضافة keyboard support للإغلاق بـ ESC
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !adviceOverlay.classList.contains('hidden')) {
+                    window.hideOverlay();
+                }
+            });
+
+            // إضافة shimmer effect للعنوان الرئيسي
+            const heroTitle = document.querySelector('h1');
+            if (heroTitle) {
+                heroTitle.classList.add('shimmer');
+            }
+        });
+    </script>
 </body>
 </html>
