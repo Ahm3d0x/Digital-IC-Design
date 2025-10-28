@@ -3,757 +3,564 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>خريطة الطريق - Digital IC Design</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <title>خريطة الطريق - بوصلة Digital IC Design</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'b-bg': '#0a0a0a',
+                        'b-text': '#F6F6F6',
+                        'b-primary': '#00d9ff',
+                        'b-primary-dark': '#0099cc',
+                        'b-surface': '#1a1a1a',
+                        'b-border': '#2a2a2a',
+                        'panel': '#141414',
+                    },
+                    fontFamily: {
+                        'cairo': ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-bg: #000000;
-            --secondary-bg: #1a1a1a;
-            --card-bg: #0a0a0a;
-            --accent-mint: #CFFFE2;
-            --accent-sage: #A2D5C6;
-            --accent-teal: #006A67;
-            --highlight-gold: #FFF4B7;
-            --highlight-lime: #E6FF94;
-            --text-primary: #F6F6F6;
-            --text-secondary: #A2D5C6;
-            --border-color: #333333;
-        }
-
         body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
             font-family: 'Cairo', sans-serif;
-            background: var(--primary-bg);
-            color: var(--text-primary);
-            line-height: 1.8;
         }
 
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            padding: 1rem 0;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--accent-mint), var(--accent-sage));
+        .gradient-text {
+            background: linear-gradient(135deg, #00d9ff 0%, #a78bfa 50%, #f472b6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-mint);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 8rem 2rem 4rem;
-            text-align: center;
-            background: linear-gradient(180deg, var(--primary-bg) 0%, var(--secondary-bg) 100%);
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--accent-mint), var(--highlight-lime));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        /* Progress Bar */
-        .progress-container {
-            max-width: 800px;
-            margin: 3rem auto;
-            padding: 0 2rem;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: var(--border-color);
-            border-radius: 10px;
+        .accordion-content {
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        padding 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 0;
             overflow: hidden;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        
+        .accordion-content.open {
+            max-height: 15000px;
+            opacity: 1;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        
+        .accordion-icon svg {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .accordion-button.open .accordion-icon svg {
+            transform: rotate(180deg);
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-teal), var(--accent-mint));
-            width: 0%;
-            transition: width 1s ease;
-            border-radius: 10px;
-        }
-
-        .progress-text {
-            text-align: center;
-            margin-top: 1rem;
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Roadmap Container */
-        .roadmap-wrapper {
-            max-width: 1400px;
-            margin: 4rem auto;
-            padding: 0 2rem 4rem;
+        .resource-link {
             position: relative;
+            transition: all 0.3s ease;
         }
 
-        /* The Road Path */
-        .road-path {
+        .resource-link::before {
+            content: '';
             position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, var(--accent-teal), var(--accent-mint), var(--highlight-lime));
-            transform: translateX(-50%);
-            opacity: 0.3;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3px;
+            height: 0;
+            background: linear-gradient(to bottom, #00d9ff, #a78bfa);
+            transition: height 0.3s ease;
+            border-radius: 2px;
         }
 
-        /* Phase Container */
-        .phase-section {
-            margin-bottom: 6rem;
-            position: relative;
+        .resource-link:hover::before {
+            height: 70%;
         }
 
-        .phase-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            position: relative;
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .phase-number {
-            display: inline-block;
-            width: 80px;
-            height: 80px;
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .stagger-1 { animation-delay: 0.1s; opacity: 0; }
+        .stagger-2 { animation-delay: 0.2s; opacity: 0; }
+        .stagger-3 { animation-delay: 0.3s; opacity: 0; }
+        .stagger-4 { animation-delay: 0.4s; opacity: 0; }
+
+        .spinner {
+            border: 3px solid rgba(0, 217, 255, 0.1);
+            border-top: 3px solid #00d9ff;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-sage));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            margin: 0 auto 1rem;
-            box-shadow: 0 10px 30px rgba(207,255,226,0.3);
-            position: relative;
-            z-index: 2;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
         }
 
-        .phase-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--accent-mint);
-            margin-bottom: 0.5rem;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .phase-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-        }
-
-        /* Tracks Grid */
-        .tracks-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 3rem;
-        }
-
-        /* Track Card */
-        .track-card {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .track-card:hover {
-            border-color: var(--accent-mint);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(207,255,226,0.2);
-        }
-
-        .track-badge {
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-mint));
-            color: var(--primary-bg);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .track-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--highlight-gold);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .track-note {
-            background: rgba(207,255,226,0.05);
-            border-right: 3px solid var(--accent-mint);
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 8px;
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Course List */
-        .courses-list {
-            list-style: none;
-        }
-
-        .course-item {
-            background: rgba(255,255,255,0.02);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .course-item:hover {
-            background: rgba(207,255,226,0.05);
-            border-color: var(--accent-sage);
-            transform: translateX(-5px);
-        }
-
-        .course-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 0.5rem;
-        }
-
-        .course-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--accent-mint);
-            margin-bottom: 0.5rem;
-        }
-
-        .course-rating {
-            display: flex;
-            gap: 0.2rem;
-            font-size: 1.2rem;
-        }
-
-        .star-filled {
-            color: var(--highlight-gold);
-        }
-
-        .star-empty {
-            color: var(--border-color);
-        }
-
-        .course-instructor {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .course-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .course-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(0,106,103,0.2);
-            color: var(--accent-sage);
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            transition: all 0.3s;
-        }
-
-        .course-link:hover {
-            background: var(--accent-teal);
-            color: var(--text-primary);
-        }
-
-        .optional-badge {
-            background: rgba(230,255,148,0.2);
-            color: var(--highlight-lime);
-            padding: 0.3rem 0.8rem;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        /* Action Buttons */
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-sage));
-            color: var(--primary-bg);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(207,255,226,0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent-mint);
-            border: 2px solid var(--accent-mint);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent-mint);
-            color: var(--primary-bg);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--secondary-bg);
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-text {
-            color: var(--text-secondary);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .tracks-container {
-                grid-template-columns: 1fr;
-            }
-
-            .course-header {
-                flex-direction: column;
-            }
-
-            .course-links {
-                flex-direction: column;
-            }
+        .phase-badge {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.3);
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="logo">🔌 Digital IC Design</a>
-            <ul class="nav-links">
-                <li><a href="../index.html">الرئيسية</a></li>
-                <li><a href="roadmap.html">خريطة الطريق</a></li>
-                <li><a href="resources.html">المصادر</a></li>
-                <li><a href="tools.html">الأدوات</a></li>
-                <li><a href="ai-tools.html">مساعد AI</a></li>
-                <li><a href="tips.html">نصائح الخبراء</a></li>
-                <li><a href="about.html">عن الموقع</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1 class="hero-title">🗺️ خريطة الطريق الكاملة</h1>
-        <p class="hero-subtitle">من الصفر إلى الاحتراف - مسار تعليمي مُنظّم ومُفصّل</p>
+<body class="antialiased bg-b-bg text-b-text">
+
+    <!-- Header -->
+    <header class="bg-panel shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-3xl font-bold text-b-primary hover:text-b-primary-dark transition-all duration-300 hover:scale-105 flex items-center gap-3">
+                        <i data-feather="compass" class="w-9 h-9"></i>
+                        <span class="gradient-text">بوصلة</span>
+                    </a>
+                </div>
+
+                <div class="hidden md:flex md:items-center md:space-x-1 md:space-x-reverse">
+                    <a href="index.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الرئيسية</a>
+                    <a href="roadmap.html" class="text-white font-semibold bg-b-surface px-4 py-2 rounded-lg border-b-2 border-b-primary" aria-current="page">خريطة الطريق</a>
+                    <a href="resources.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">المصادر</a>
+                    <a href="tools.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الأدوات</a>
+                    <a href="experts.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">نصائح الخبراء</a>
+                    <a href="about.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">عن الموقع</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-b-primary transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">تواصل معنا</a>
+                </div>
+
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-b-surface focus:outline-none focus:ring-2 focus:ring-inset focus:ring-b-primary transition-all" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">فتح القائمة الرئيسية</span>
+                        <i data-feather="menu" class="block h-6 w-6" id="icon-open"></i>
+                        <i data-feather="x" class="hidden h-6 w-6" id="icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="md:hidden hidden bg-panel border-t border-b-border" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الرئيسية</a>
+                <a href="roadmap.html" class="bg-b-surface text-white block px-3 py-3 rounded-md text-base font-medium border-r-4 border-b-primary" aria-current="page">خريطة الطريق</a>
+                <a href="resources.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">المصادر</a>
+                <a href="tools.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الأدوات</a>
+                <a href="experts.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">نصائح الخبراء</a>
+                <a href="about.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">عن الموقع</a>
+                <a href="contact.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">تواصل معنا</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         
-        <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+        <!-- Hero Section -->
+        <div class="text-center mb-20 animate-fade-in-up">
+            <div class="inline-block mb-6">
+                <i data-feather="map" class="w-20 h-20 text-b-primary mx-auto"></i>
             </div>
-            <p class="progress-text">ابدأ رحلتك الآن وتابع تقدمك خطوة بخطوة</p>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 gradient-text leading-tight">
+                خريطة الطريق الكاملة
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-400 max-w-4xl mx-auto leading-relaxed mb-8">
+                مسار تفاعلي مُنظّم يبدأ معك من الصفر وصولاً لبناء نظام متكامل (ASIC)
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center text-sm text-gray-500">
+                <div class="flex items-center gap-3">
+                    <i data-feather="check-circle" class="w-5 h-5 text-b-primary"></i>
+                    <span>مصادر موثوقة ومجربة</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i data-feather="clock" class="w-5 h-5 text-b-primary"></i>
+                    <span>مدة متوقعة لكل مرحلة</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <i data-feather="target" class="w-5 h-5 text-b-primary"></i>
+                    <span>إرشادات عملية</span>
+                </div>
+            </div>
         </div>
-    </section>
 
-    <!-- Roadmap -->
-    <div class="roadmap-wrapper">
-        <div class="road-path"></div>
-
-        <!-- PHASE 1: الأساسيات -->
-        <section class="phase-section">
-            <div class="phase-header">
-                <div class="phase-number">1️⃣</div>
-                <h2 class="phase-title">المرحلة الأولى: الأساسيات</h2>
-                <p class="phase-subtitle">بناء القاعدة الصلبة - المبادئ والأساسيات</p>
+        <!-- Roadmap Container -->
+        <div id="roadmap-container" class="space-y-8">
+            <div id="loading-indicator" class="text-center py-20">
+                <div class="spinner mb-6"></div>
+                <p class="text-lg text-gray-400 animate-pulse">جاري تحميل خريطة الطريق...</p>
             </div>
-
-            <div class="tracks-container">
-                <!-- Track 1 -->
-                <div class="track-card">
-                    <span class="track-badge">المسار الأول - First Track</span>
-                    <h3 class="track-title">📘 المواد الأساسية (الأولويات)</h3>
-                    <div class="track-note">
-                        💡 <strong>ملاحظة:</strong> ابدأ بهذا المسار أولاً - هذه هي الأساسيات التي لا غنى عنها
-                    </div>
-
-                    <ul class="courses-list">
-                        <!-- Logic Design -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Logic Design</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. أيمن وهبة</div>
-                            <div class="course-links">
-                                <a href="https://youtube.com/playlist?list=PLBt5ZQGn4YKTD2mVI1eBwAVR1gsqpWkwg" target="_blank" class="course-link">
-                                    🎥 شاهد الكورس
-                                </a>
-                                <a href="https://jolink.notion.site/Logic-Design-be435324aa854fe2bbfc0cab435e44d3" target="_blank" class="course-link">
-                                    📝 ملاحظات
-                                </a>
-                            </div>
-                        </li>
-
-                        <!-- Digital Electronics -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Digital Electronics</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 م. وليد عيسى | Neso Academy</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 وليد عيسى</a>
-                                <a href="#" class="course-link">🎥 Neso Academy</a>
-                            </div>
-                        </li>
-
-                        <!-- Computer Organization -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Computer Organization</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. واثق</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-
-                        <!-- VLSI Design -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">VLSI Design</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. ضياء الدين خليل | د. بسام جميل</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 د. ضياء</a>
-                                <a href="#" class="course-link">🎥 د. بسام</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Track 2 -->
-                <div class="track-card">
-                    <span class="track-badge">المسار الثاني - Second Track</span>
-                    <h3 class="track-title">⚡ الدوائر الكهربائية</h3>
-                    <div class="track-note">
-                        💡 <strong>ملاحظة:</strong> ادرس هذا المسار بالتوازي مع المسار الأول
-                    </div>
-
-                    <ul class="courses-list">
-                        <!-- Electrical Circuits -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Electrical Circuits</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★</span>
-                                        <span class="star-empty">★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 Dr. Razavi</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-
-                        <!-- Introduction to Electronics -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Introduction to Electronics</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★</span>
-                                        <span class="star-empty">★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. هشام | Dr. Razavi</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 د. هشام (نظري)</a>
-                                <a href="#" class="course-link">🎥 د. هشام (عملي)</a>
-                                <a href="#" class="course-link">🎥 Razavi</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- PHASE 2: التخصص المتقدم -->
-        <section class="phase-section">
-            <div class="phase-header">
-                <div class="phase-number">2️⃣</div>
-                <h2 class="phase-title">المرحلة الثانية: التخصص المتقدم</h2>
-                <p class="phase-subtitle">الدخول في صميم مجال Digital IC Design</p>
-            </div>
-
-            <div class="tracks-container">
-                <!-- Track 3 -->
-                <div class="track-card">
-                    <span class="track-badge">المسار الثالث - Third Track</span>
-                    <h3 class="track-title">🔬 تصميم الدوائر المتكاملة</h3>
-
-                    <ul class="courses-list">
-                        <!-- Analog IC Design 1 -->
-                        <li class="course-item">
-                            <div class="course-name">Analog IC Design 1 (جزء CMOS فقط)</div>
-                            <div class="course-instructor">👨‍🏫 د. هشام عمران</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-
-                        <!-- Digital Integrated Circuits -->
-                        <li class="course-item">
-                            <div class="course-name">Digital Integrated Circuits</div>
-                            <div class="course-instructor">👨‍🏫 د. كريم أسامة</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-
-                        <!-- Digital IC Design 1, 2, 3 -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Digital IC Design 1, 2, 3</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. هشام عمران</div>
-                            <div class="track-note" style="margin-top: 1rem;">
-                                ⚠️ <strong>أساسية جداً للمجال!</strong>
-                            </div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 Part 1</a>
-                                <a href="#" class="course-link">🎥 Part 2</a>
-                                <a href="#" class="course-link">🎥 Part 3</a>
-                            </div>
-                        </li>
-
-                        <!-- Digital Signal Processing -->
-                        <li class="course-item">
-                            <div class="course-name">Digital Signal Processing</div>
-                            <div class="course-instructor">👨‍🏫 Michael Ibrahim</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Track 4 -->
-                <div class="track-card">
-                    <span class="track-badge">المسار الرابع - Fourth Track</span>
-                    <h3 class="track-title">💻 معماريات الحاسب</h3>
-                    <div class="track-note">
-                        💡 <strong>ملاحظة:</strong> ادرس هذا المسار بالتوازي مع المسار الثالث
-                    </div>
-
-                    <ul class="courses-list">
-                        <!-- Computer Architecture -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Computer Architecture</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. إبراهيم قمر | د. خطاب ود. حسام فهمي</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 د. إبراهيم</a>
-                                <a href="#" class="course-link">🎥 د. خطاب</a>
-                                <a href="#" class="course-link">📝 Materials</a>
-                            </div>
-                        </li>
-
-                        <!-- Advanced Computer Architecture -->
-                        <li class="course-item">
-                            <div class="course-header">
-                                <div>
-                                    <div class="course-name">Advanced Computer Architecture</div>
-                                    <div class="course-rating">
-                                        <span class="star-filled">★★★★</span>
-                                        <span class="star-empty">★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-instructor">👨‍🏫 د. حسام فهمي</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-
-                        <!-- Digital Design & Computer Architecture -->
-                        <li class="course-item">
-                            <div class="course-name">Digital Design & Computer Architecture</div>
-                            <div class="course-instructor">👨‍🏫 ETH Zürich</div>
-                            <div class="course-links">
-                                <a href="#" class="course-link">🎥 شاهد الكورس</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Action Buttons -->
-        <div class="action-buttons">
-            <a href="resources.html" class="btn btn-primary">
-                📚 عرض جميع المصادر التفصيلية
-            </a>
-            <a href="ai-tools.html" class="btn btn-secondary">
-                🤖 استخدم مساعد AI
-            </a>
         </div>
-    </div>
+
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <p class="footer-text">© 2025 Ahmed Mohamed Attia - جميع الحقوق محفوظة</p>
+    <footer class="bg-panel border-t border-b-border mt-32" aria-labelledby="footer-heading">
+        <h2 id="footer-heading" class="sr-only">Footer</h2>
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <div class="flex justify-center items-center gap-2 mb-4">
+                    <i data-feather="heart" class="w-5 h-5 text-red-500"></i>
+                    <p class="text-gray-400">صُنع بكل حب لمساعدة الطلاب</p>
+                </div>
+                <p class="text-gray-500 text-sm">
+                    &copy; <span id="current-year"></span> منصة بوصلة | تم إنشاؤه بواسطة 
+                    <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-primary-dark transition-all font-semibold">
+                        Ahmed M. Attia
+                    </a>
+                </p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Progress bar animation
-        window.addEventListener('load', () => {
-            const progressFill = document.getElementById('progressFill');
-            setTimeout(() => {
-                progressFill.style.width = '10%';
-            }, 500);
-        });
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // Update progress on scroll
-        window.addEventListener('scroll', () => {
-            const progressFill = document.getElementById('progressFill');
-            const roadmapWrapper = document.querySelector('.roadmap-wrapper');
-            const rect = roadmapWrapper.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            
-            if (rect.top < viewportHeight && rect.bottom > 0) {
-                const scrolled = Math.min(
-                    Math.max(((viewportHeight - rect.top) / (rect.height + viewportHeight)) * 100, 0),
-                    100
-                );
-                progressFill.style.width = scrolled + '%';
+        // Helper Functions
+        function createResourceLink(resource) {
+            const baseClasses = "resource-link block p-5 rounded-xl transition-all duration-300 ease-out";
+            const iconMap = {
+                'video': 'play-circle',
+                'website': 'globe',
+                'book': 'book-open',
+                'paper': 'file-text',
+                'tool': 'tool',
+                'notes': 'edit-3',
+                'file': 'file',
+                'diploma': 'award',
+                'internship': 'briefcase',
+                'advice': 'message-circle',
+                'default': 'external-link'
+            };
+            const iconName = iconMap[resource.type] || iconMap['default'];
+            const authorLinkHTML = resource.authorLink 
+                ? `<a href="${resource.authorLink}" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-primary-dark font-bold transition-colors">${resource.author}</a>`
+                : `<strong class="text-white font-bold">${resource.author}</strong>`;
+
+            if (resource.link) {
+                return `
+                    <a href="${resource.link}" target="_blank" rel="noopener noreferrer" class="${baseClasses} bg-gradient-to-br from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 hover:border-b-primary hover:shadow-xl group">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-b-primary bg-opacity-10 rounded-lg flex items-center justify-center group-hover:bg-opacity-20 transition-all">
+                                <i data-feather="${iconName}" class="w-6 h-6 text-b-primary"></i>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <div class="mb-2">${authorLinkHTML}</div>
+                                <p class="text-sm text-gray-400 leading-relaxed">${resource.note || ''}</p>
+                            </div>
+                            <span class="flex-shrink-0 text-b-primary text-xs opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1 mr-2">
+                                <i data-feather="external-link" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </a>`;
+            } else {
+                return `
+                    <div class="${baseClasses} bg-gray-900 opacity-70 cursor-not-allowed border border-gray-800">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                                <i data-feather="${iconName}" class="w-6 h-6 text-gray-600"></i>
+                            </div>
+                            <div class="flex-grow min-w-0">
+                                <div class="mb-2">${authorLinkHTML}</div>
+                                <p class="text-sm text-gray-500 leading-relaxed">${resource.note || ''}</p>
+                            </div>
+                            <span class="flex-shrink-0 text-yellow-500 text-xs flex items-center gap-1 mr-2">
+                                <i data-feather="search" class="w-4 h-4"></i>
+                            </span>
+                        </div>
+                    </div>`;
             }
-        });
+        }
 
-        // Course item click to expand (future feature)
-        document.querySelectorAll('.course-item').forEach(item => {
-            item.addEventListener('click', function(e) {
-                if (!e.target.classList.contains('course-link')) {
-                    this.classList.toggle('expanded');
-                }
+        function createGuidanceNotes(guidance, title = "💡 نصيحة البوصلة", iconName = "lightbulb", borderColor = "border-blue-500") {
+            if (!guidance || guidance.length === 0) return '';
+            const guidanceArray = Array.isArray(guidance) ? guidance : [guidance];
+
+            let guidanceHTML = `
+                <div class="my-8 p-6 bg-gradient-to-br from-blue-900 via-blue-950 to-gray-900 bg-opacity-30 rounded-xl border-r-4 ${borderColor} shadow-lg">
+                    <h4 class="text-lg font-bold text-blue-300 mb-5 flex items-center gap-3">
+                        <i data-feather="${iconName}" class="w-6 h-6"></i>
+                        <span>${title}</span>
+                    </h4>
+                    <ul class="space-y-4 text-gray-300">`;
+            
+            guidanceArray.forEach(note => {
+                const formattedNote = note.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white font-semibold">$1</strong>');
+                guidanceHTML += `
+                    <li class="flex items-start gap-3">
+                        <i data-feather="check-circle" class="w-5 h-5 text-b-primary mt-0.5 flex-shrink-0"></i>
+                        <span class="leading-relaxed">${formattedNote}</span>
+                    </li>`;
             });
+            guidanceHTML += '</ul></div>';
+            return guidanceHTML;
+        }
+
+        function createModules(modules) {
+            if (!modules || modules.length === 0) return '<p class="text-gray-500 mr-6">لا توجد وحدات محددة لهذا المسار بعد.</p>';
+            
+            let modulesHTML = '<div class="space-y-12">';
+            modules.forEach(module => {
+                modulesHTML += `
+                    <div class="border-b border-gray-800 pb-12 last:border-b-0 last:pb-0">
+                        <div class="flex items-start gap-4 mb-6">
+                            <div class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
+                                <i data-feather="book-open" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <h4 class="text-xl font-bold text-white mb-2">${module.title}</h4>
+                                ${module.time ? `
+                                <div class="flex items-center text-sm text-gray-400 gap-2">
+                                    <i data-feather="clock" class="w-4 h-4"></i>
+                                    <span>المدة التقريبية: ${module.time}</span>
+                                </div>` : ''}
+                            </div>
+                        </div>
+                        
+                        ${module.topics ? `
+                        <div class="mr-14 mb-6 p-4 bg-gray-900 bg-opacity-50 rounded-lg border border-gray-800">
+                            <strong class="text-gray-200 block mb-2 flex items-center gap-2">
+                                <i data-feather="list" class="w-4 h-4 text-b-primary"></i>
+                                المواضيع الرئيسية:
+                            </strong>
+                            <p class="text-gray-400 leading-relaxed">${module.topics}</p>
+                        </div>` : ''}
+                        
+                        ${createGuidanceNotes(module.guidance, "📍 إرشادات الوحدة", "navigation", "border-purple-500")}
+
+                        ${module.resources && module.resources.length > 0 ? `
+                        <div class="mr-14 mt-8">
+                            <h5 class="text-lg font-bold text-gray-200 mb-5 flex items-center gap-3">
+                                <i data-feather="link" class="w-5 h-5 text-b-primary"></i>
+                                <span>المصادر الموصى بها</span>
+                                <span class="text-xs font-normal text-gray-500 bg-gray-800 px-3 py-1 rounded-full">${module.resources.length} مصدر</span>
+                            </h5>
+                            <div class="space-y-4">
+                                ${module.resources.map(createResourceLink).join('')}
+                            </div>
+                        </div>` : ''}
+                    </div>
+                `;
+            });
+            modulesHTML += '</div>';
+            return modulesHTML;
+        }
+        
+        function createTracks(tracks) {
+            if (!tracks || tracks.length === 0) return '<p class="text-gray-500 text-center py-8">لا توجد مسارات محددة لهذه المرحلة بعد.</p>';
+            
+            let tracksHTML = '<div class="space-y-10">';
+            tracks.forEach((track, index) => {
+                const parallelText = track.parallelWith ? `<span class="text-sm text-gray-400 font-normal mr-3 bg-gray-800 px-3 py-1 rounded-full">بالتوازي مع ${track.parallelWith}</span>` : '';
+                
+                tracksHTML += `
+                    <div class="border border-gray-700 rounded-2xl p-8 bg-gradient-to-br from-gray-900 to-black shadow-2xl hover:shadow-b-primary/10 transition-all duration-300">
+                        <div class="flex flex-wrap items-center gap-3 mb-8 pb-6 border-b border-gray-800">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gradient-to-br from-b-primary to-purple-600 rounded-lg flex items-center justify-center">
+                                    <i data-feather="git-branch" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">${track.title}</h3>
+                            </div>
+                            ${parallelText}
+                        </div>
+                        ${createModules(track.modules)}
+                    </div>
+                `;
+            });
+            tracksHTML += '</div>';
+            return tracksHTML;
+        }
+
+        async function renderRoadmap() {
+            const container = document.getElementById('roadmap-container');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            if (!container || !loadingIndicator) return;
+
+            try {
+                const response = await fetch('../data/roadmap-data.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const roadmapData = await response.json();
+
+                loadingIndicator.remove();
+
+                roadmapData.forEach((phase, index) => {
+                    const staggerClass = `stagger-${Math.min(index + 1, 4)}`;
+                    const phaseColors = [
+                        { bg: 'from-blue-900/20 to-cyan-900/20', border: 'border-blue-500', badge: 'bg-blue-500' },
+                        { bg: 'from-purple-900/20 to-pink-900/20', border: 'border-purple-500', badge: 'bg-purple-500' },
+                        { bg: 'from-green-900/20 to-emerald-900/20', border: 'border-green-500', badge: 'bg-green-500' },
+                        { bg: 'from-orange-900/20 to-red-900/20', border: 'border-orange-500', badge: 'bg-orange-500' }
+                    ];
+                    const colors = phaseColors[index % phaseColors.length];
+                    
+                    const phaseHTML = `
+                        <div class="bg-panel border border-b-border rounded-2xl shadow-2xl overflow-hidden animate-fade-in-up ${staggerClass} hover:shadow-b-primary/10 transition-all duration-300">
+                            <button class="accordion-button w-full flex justify-between items-center p-8 text-right cursor-pointer hover:bg-gradient-to-r ${colors.bg} transition-all duration-300 group" data-target="#content-${phase.id}">
+                                <div class="flex items-start gap-5 flex-grow">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-14 h-14 ${colors.badge} rounded-xl flex items-center justify-center shadow-lg">
+                                            <span class="text-2xl font-bold text-white">${index + 1}</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right flex-grow">
+                                        <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-b-primary transition-colors">${phase.title}</h3>
+                                        <div class="flex items-center gap-2 text-sm">
+                                            <i data-feather="calendar" class="w-4 h-4 text-b-primary"></i>
+                                            <span class="text-b-primary font-semibold">${phase.duration}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="accordion-icon mr-4 text-gray-400 group-hover:text-b-primary transition-colors flex-shrink-0">
+                                    <i data-feather="chevron-down" class="w-7 h-7"></i>
+                                </span>
+                            </button>
+                            
+                            <div id="content-${phase.id}" class="accordion-content px-8 md:px-10">
+                                <div class="border-t border-gray-700 pt-8">
+                                    <div class="mb-8 p-6 bg-gradient-to-br ${colors.bg} rounded-xl border ${colors.border} border-opacity-30">
+                                        <div class="flex items-start gap-3">
+                                            <i data-feather="info" class="w-6 h-6 text-b-primary flex-shrink-0 mt-1"></i>
+                                            <p class="text-lg text-gray-300 leading-relaxed">${phase.description}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    ${createGuidanceNotes(phase.guidance, "🎯 إرشادات المرحلة", "target", colors.border)}
+                                    
+                                    <div class="mt-10">
+                                        ${createTracks(phase.tracks)}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    container.innerHTML += phaseHTML;
+                });
+
+                feather.replace();
+                initAccordion(roadmapData.length > 0 ? `content-${roadmapData[0].id}` : null);
+
+            } catch (error) {
+                console.error("Failed to load or render roadmap data:", error);
+                if (loadingIndicator) loadingIndicator.remove();
+                container.innerHTML = `
+                    <div class="text-center py-20 px-4">
+                        <div class="inline-block mb-6">
+                            <i data-feather="alert-circle" class="w-20 h-20 text-red-400 mx-auto"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-red-400 mb-4">⛔ حدث خطأ أثناء تحميل خريطة الطريق</h3>
+                        <p class="text-gray-500 mb-4">الرجاء التأكد من وجود ملف <code class="bg-gray-700 px-2 py-1 rounded text-sm text-b-primary">roadmap-data.json</code> في المسار الصحيح.</p>
+                        <button onclick="location.reload()" class="mt-4 px-6 py-3 bg-b-primary hover:bg-b-primary-dark text-white rounded-lg transition-colors font-semibold">
+                            إعادة المحاولة
+                        </button>
+                    </div>`;
+                feather.replace();
+            }
+        }
+
+        function initAccordion(firstContentId = null) {
+            const buttons = document.querySelectorAll('.accordion-button');
+            buttons.forEach(button => {
+                const targetID = button.getAttribute('data-target');
+                const content = document.querySelector(targetID);
+
+                if (!content) return;
+
+                button.addEventListener('click', () => {
+                    const isOpen = content.classList.contains('open');
+                    
+                    // Close all other accordions
+                    document.querySelectorAll('.accordion-content.open').forEach(openContent => {
+                        if (`#${openContent.id}` !== targetID) {
+                            openContent.classList.remove('open');
+                            const correspondingButton = document.querySelector(`[data-target="#${openContent.id}"]`);
+                            if (correspondingButton) {
+                                correspondingButton.classList.remove('open');
+                            }
+                        }
+                    });
+
+                    // Toggle current accordion
+                    button.classList.toggle('open', !isOpen);
+                    content.classList.toggle('open', !isOpen);
+                    
+                    // Smooth scroll to accordion if opening
+                    if (!isOpen) {
+                        setTimeout(() => {
+                            button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 100);
+                    }
+                });
+            });
+
+            // Open first accordion by default
+            if (firstContentId) {
+                const firstButton = document.querySelector(`[data-target="#${firstContentId}"]`);
+                const firstContent = document.getElementById(firstContentId);
+
+                if (firstButton && firstContent) {
+                    setTimeout(() => {
+                        if (!firstContent.classList.contains('open')) {
+                            firstButton.classList.add('open');
+                            firstContent.classList.add('open');
+                            feather.replace();
+                        }
+                    }, 300);
+                }
+            }
+        }
+
+        function initMobileMenu() {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('icon-open');
+            const iconClose = document.getElementById('icon-close');
+
+            if (menuButton && mobileMenu && iconOpen && iconClose) {
+                menuButton.addEventListener('click', () => {
+                    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+                    menuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileMenu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+            initMobileMenu();
+            renderRoadmap();
         });
     </script>
+
 </body>
 </html>

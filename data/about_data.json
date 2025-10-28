@@ -1,0 +1,144 @@
+{
+  "creator": [
+    {
+      "id": "ahmed_attia",
+      "name": "أحمد محمد عطية",
+      "title": "منشئ الموقع | طالب هندسة اتصالات",
+      "imageUrl": "https://placehold.co/400x400/006A67/F6F6F6?text=AMA",
+      "bio": "طالب في كلية الهندسة، قسم الاتصالات والإلكترونيات، جامعة الزقازيق. مهتم بشدة بمجال تصميم الدوائر المتكاملة (IC Design) والأنظمة الرقمية.",
+      "role": "صاحب فكرة ومطور موقع \"بوصلة\". الهدف كان تنظيم المعلومات المتناثرة في المجال وتقديمها في شكل خريطة طريق واضحة ومبسطة، لمساعدة كل طالب يبدأ رحلته في هذا المجال دون تشتت.",
+      "socials": [
+        {
+          "name": "LinkedIn",
+          "url": "https://www.linkedin.com/in/ahmed-m-attia-757aa6292/"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/Ahm3d0x"
+        },
+        {
+          "name": "Email",
+          "url": "mailto:ahm3d.m.attia@gmail.com"
+        }
+      ]
+    }
+  ],
+  "mainContributor": [
+    {
+      "id": "yousef_sherif",
+      "name": "يوسف شريف",
+      "title": "صاحب درايف المحتوى الرئيسي",
+      "imageUrl": "https://placehold.co/400x400/A2D5C6/000000?text=YS",
+      "bio": "Verification Engineer @ ICpedia (Synopsys Contractor) و TA سابق في AUC. يعتبر يوسف المصدر الرئيسي والأول للمحتوى العلمي الثري الذي بني عليه هذا الموقع.",
+      "role": "قام يوسف بجهد هائل في تجميع ومراجعة وتنظيم \"الدليل الشامل لمجال Digital IC Design\" والملفات المرفقة به. هذا الموقع هو بمثابة واجهة تفاعلية منظمة لهذا المحتوى القيم.",
+      "socials": [
+        {
+          "name": "LinkedIn",
+          "url": "https://www.linkedin.com/in/yousef-sherif-6343b219b/"
+        },
+        {
+          "name": "Facebook",
+          "url": "https://www.facebook.com/eng.yousef.sherif/"
+        },
+        {
+          "name": "Email",
+          "url": "mailto:shirefy49@gmail.com"
+        }
+      ]
+    }
+  ],
+  "contributors": [
+    {
+      "id": "yaseen_salah",
+      "name": "ياسين صلاح",
+      "title": "مساهم بالمحتوى",
+      "imageUrl": "https://placehold.co/400x400/E6FF94/000000?text=YS",
+      "bio": "مساهم فعال في تجميع المحتوى.",
+      "role": "قدم ملاحظات قيمة وساعد في توفير مصادر هامة لإثراء الدليل.",
+      "socials": []
+    },
+    {
+      "id": "fatma_ali",
+      "name": "فاطمة علي",
+      "title": "مساهمة بالمحتوى",
+      "imageUrl": "https://placehold.co/400x400/FFF4B7/000000?text=FA",
+      "bio": "مساهمة فعالة في تجميع المحتوى.",
+      "role": "قدمت نصائح قيمة ومصادر متخصصة في مجالي MATLAB والـ Verification.",
+      "socials": []
+    },
+    {
+      "id": "moumen_sameh",
+      "name": "مؤمن سامح",
+      "title": "مساهم بالمحتوى",
+      "imageUrl": "https://placehold.co/400x400/CFFFE2/000000?text=MS",
+      "bio": "مساهم فعال في تجميع المحتوى.",
+      "role": "شارك بتجربته القيمة في مشروع التخرج وقدم نصائح عملية للطلاب.",
+      "socials": []
+    }
+  ],
+  "experts": [
+    {
+      "id": "diaa_khalil",
+      "name": "د. ضياء الدين خليل",
+      "title": "أستاذ وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=DK",
+      "bio": "أستاذ متخصص في تصميم الدوائر المتكاملة.",
+      "role": "مصدر أساسي للمحاضرات القيمة في مجال VLSI.",
+      "socials": []
+    },
+    {
+      "id": "hisham_omran",
+      "name": "د. هشام عمران",
+      "title": "أستاذ وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=HO",
+      "bio": "أستاذ متخصص في تصميم الدوائر المتكاملة الرقمية.",
+      "role": "مصدر رئيسي لكورسات Digital IC Design المتقدمة.",
+      "socials": []
+    },
+    {
+      "id": "ayman_wahba",
+      "name": "د. أيمن وهبة",
+      "title": "أستاذ وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=AW",
+      "bio": "أستاذ متخصص في التصميم المنطقي والـ Verification.",
+      "role": "مصدر هام لكورسات Logic Design و Digital Verification.",
+      "socials": []
+    },
+    {
+      "id": "mohamed_khattab",
+      "name": "د. محمد خطاب",
+      "title": "أستاذ وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=MK",
+      "bio": "أستاذ متخصص في معمارية الحاسبات.",
+      "role": "مصدر لكورسات Computer Architecture.",
+      "socials": []
+    },
+    {
+      "id": "hossam_fahmy",
+      "name": "د. حسام فهمي",
+      "title": "أستاذ وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=HF",
+      "bio": "أستاذ متخصص في معمارية الحاسبات المتقدمة.",
+      "role": "مصدر لكورسات Advanced Computer Architecture.",
+      "socials": []
+    },
+    {
+      "id": "kareem_waseem",
+      "name": "م. كريم وسيم",
+      "title": "مهندس وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=KW",
+      "bio": "مهندس خبير في مجال التصميم الرقمي.",
+      "role": "قدم توجيهات وإرشادات هامة في المجال (Digital Design Guidance).",
+      "socials": []
+    },
+    {
+      "id": "hisham_elready",
+      "name": "م. هشام الراضي",
+      "title": "مهندس وخبير",
+      "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=HE",
+      "bio": "مهندس خبير ومرشد لمشاريع التخرج.",
+      "role": "قدم إرشاداً قيماً لمشاريع التخرج (GP Mentorship).",
+      "socials": []
+    }
+  ]
+}
