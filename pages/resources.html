@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوصلة | دليلك لتعلم Digital IC Design</title>
+    <title>مكتبة المصادر | بوصلة</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/feather-icons"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../css/global.css">
-  
- <script>
+    
+    <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
@@ -22,8 +19,8 @@
                         'b-bg': '#000000',
                         'b-text': '#F6F6F6',
                         'b-primary': '#006A67',
-                        'b-hl-light': '#22C45D',
-                        'b-hl-medium': '#22C45D',
+                        'b-hl-light': '#CFFFE2',
+                        'b-hl-medium': '#A2D5C6',
                         'b-hl-green': '#E6FF94',
                         'b-hl-yellow': '#FFF4B7',
                         'b-surface': '#111111',
@@ -36,15 +33,17 @@
             }
         }
     </script>
-        
+
+
 </head>
 <body class="bg-b-bg text-b-text font-cairo">
-    <header class="bg-b-surface shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
-
-  <nav class="container z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header -->
+    <header class="bg-b-surface shadow-2xl border-b border-b-border sticky top-0 z-40 backdrop-blur-sm bg-opacity-95">
+        <nav class="container z-50 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 
-                <div class="flex-shrink-0 flex items-center">
+                   <div class="flex-shrink-0 flex items-center">
                     <a href="index.html" class="text-3xl font-bold text-b-primary hover:text-b-hl-light transition-all duration-300 hover:scale-105 flex items-center gap-3">
                         <i>🧭</i>
                         <span class="gradient-text">بوصلة</span>
@@ -52,19 +51,19 @@
                 </div>
 
                 <div class="hidden lg:flex lg:items-center lg:space-x-1 lg:space-x-reverse">
-                    <a href="index.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الرئيسية</a>
-                    <a href="roadmap.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface" >خريطة الطريق</a>
-                    <a href="resources.html" class="text-white font-semibold bg-b-surface px-4 py-2 rounded-lg border-b-2 border-b-primary "aria-current="page">المصادر</a>
-                    <a href="tools.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">الأدوات</a>
-                    <a href="experts.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">نصائح الخبراء</a>
-                    <a href="about.html" class="text-gray-400 hover:text-b-hl-light transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-surface">عن الموقع</a>
+                    <a href="index.html" class="text-gray-400 hover:text-b-hl-medium transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-bg">الرئيسية</a>
+                    <a href="roadmap.html" class="text-gray-400 hover:text-b-hl-medium transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-bg">خريطة الطريق</a>
+                    <a href="resources.html" class="text-white font-semibold bg-b-bg px-4 py-2 rounded-lg border-b-2 border-b-primary" aria-current="page">المصادر</a>
+                    <a href="tools.html" class="text-gray-400 hover:text-b-hl-medium transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-bg">الأدوات</a>
+                    <a href="experts.html" class="text-gray-400 hover:text-b-hl-medium transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-bg">نصائح الخبراء</a>
+                    <a href="about.html" class="text-gray-400 hover:text-b-hl-medium transition-all duration-300 px-4 py-2 rounded-lg hover:bg-b-bg">عن الموقع</a>
                 </div>
 
                 <div class="flex items-center lg:hidden">
-                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-b-surface focus:outline-none focus:ring-2 focus:ring-inset focus:ring-b-primary transition-all" aria-controls="mobile-menu" aria-expanded="false">
-                        <span class="sr-only">فتح القائمة الرئيسية</span>
-                        <i data-feather="menu" class="block h-6 w-6" id="icon-open"></i>
-                        <i data-feather="x" class="hidden h-6 w-6" id="icon-close"></i>
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-b-surface focus:outline-none focus:ring-2 focus:ring-inset focus:ring-b-primary transition-all">
+                        <span class="sr-only">فتح القائمة</span>
+                        <i class="fas fa-bars block h-6 w-6" id="icon-open"></i>
+                        <i class="fas fa-times hidden h-6 w-6" id="icon-close"></i>
                     </button>
                 </div>
             </div>
@@ -72,58 +71,316 @@
 
         <div class="lg:hidden hidden bg-b-surface border-t border-b-border" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="index.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الرئيسية</a>
-
-                <a href="roadmap.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all" >خريطة الطريق </a>
-                <a href="resources.html" class="bg-b-surface text-white block px-3 py-3 rounded-md text-base font-medium border-r-4 border-b-primary" aria-current="page">المصادر </a>
-                <a href="tools.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الأدوات</a>
-                <a href="experts.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">نصائح الخبراء</a>
-                <a href="about.html" class="text-gray-400 hover:bg-b-surface hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">عن الموقع</a>
+                <a href="index.html" class="text-gray-400 hover:bg-b-bg hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الرئيسية</a>
+                <a href="roadmap.html" class="text-gray-400 hover:bg-b-bg hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">خريطة الطريق</a>
+                <a href="resources.html" class="bg-b-bg text-white block px-3 py-3 rounded-md text-base font-medium border-r-4 border-b-primary" aria-current="page">المصادر</a>
+                <a href="tools.html" class="text-gray-400 hover:bg-b-bg hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">الأدوات</a>
+                <a href="experts.html" class="text-gray-400 hover:bg-b-bg hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">نصائح الخبراء</a>
+                <a href="about.html" class="text-gray-400 hover:bg-b-bg hover:text-white block px-3 py-3 rounded-md text-base font-medium transition-all">عن الموقع</a>
             </div>
         </div>
-    </header>   
-               <!-- Footer -->
-    <footer class="bg-b-surface border-t border-b-border mt-32" aria-labelledby="footer-heading">
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <div class="bg-b-surface pt-24 pb-20 text-center shadow-inner border-b border-b-border">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <h1 class="text-5xl font-bold tracking-tight text-b-text sm:text-5xl md:text-6xl animate-slide-in-up stagger-1">
+                    <span class="gradient-text">مكتبة المصادر</span>
+                </h1>
+                <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-300 sm:text-xl md:mt-8 animate-slide-in-up stagger-2">
+                    كورسات، كتب، ومشاريع مُرشحة بعناية. انقر على أي مصدر لرؤية التفاصيل الكاملة.
+                </p>
+                <div class="mt-8 animate-slide-in-up stagger-3">
+                    <p class="text-b-hl-medium text-lg font-semibold">
+                        <i class="fas fa-book-open ml-2"></i>
+                        <span id="total-resources">0</span> مصدر متاح
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contribution Section -->
+        <div class="bg-b-bg py-16">
+            <div class="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center bg-b-surface p-10 rounded-2xl border border-b-border animate-slide-in-up stagger-3">
+                <h2 class="text-3xl font-bold tracking-tight text-b-text sm:text-4xl mb-4">
+                    🚀 ساهم في إثراء المكتبة
+                </h2>
+                <p class="text-lg leading-8 text-gray-300 mb-8">
+                    هل لديك مصدر قيّم أفادك؟ شاركنا به ليتم مراجعته وإضافته. يتم تحديث المكتبة شهرياً بناءً على مساهماتكم.
+                </p>
+                <a href="https://forms.gle/x2ZREeb6mZ7Yr3VU7" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="inline-block px-8 py-3 border border-transparent text-lg font-bold rounded-md text-black bg-b-hl-medium shadow-lg 
+                          transition-all duration-300 ease-in-out 
+                          hover:bg-b-hl-light hover:shadow-2xl hover:-translate-y-1 hover:scale-105 glow-on-hover">
+                    <i class="fas fa-plus-circle ml-2"></i>
+                    شارك بمصدر جديد الآن
+                </a>
+            </div>
+        </div>
+
+        <!-- Filters & Resources Section -->
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+            
+            <!-- Filter System -->
+            <div class="mb-12 p-6 bg-b-surface rounded-2xl border border-b-border animate-slide-in-up stagger-4">
+                <h3 class="text-xl font-bold text-b-hl-medium mb-6 flex items-center">
+                    <i class="fas fa-filter ml-2"></i>
+                    فلترة المصادر
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    
+                    <div class="md:col-span-1">
+                        <label for="filter-search" class="block text-sm font-medium text-gray-300 mb-2">
+                            <i class="fas fa-search ml-1"></i>
+                            ابحث بالاسم أو الوسم:
+                        </label>
+                        <input type="text" 
+                               id="filter-search" 
+                               placeholder="اكتب للبحث..." 
+                               class="w-full bg-b-bg border border-b-border text-b-text rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-b-primary focus:border-transparent transition-all">
+                    </div>
+                    
+                    <div>
+                        <label for="filter-stage" class="block text-sm font-medium text-gray-300 mb-2">
+                            <i class="fas fa-layer-group ml-1"></i>
+                            المرحلة:
+                        </label>
+                        <select id="filter-stage" 
+                                class="w-full bg-b-bg border border-b-border text-b-text rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-b-primary transition-all">
+                            <option value="all">الكل</option>
+                            <option value="stage1">المرحلة 1: الأساسيات</option>
+                            <option value="stage2">المرحلة 2: التخصص</option>
+                            <option value="stage3">المرحلة 3: الاحتراف</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="filter-type" class="block text-sm font-medium text-gray-300 mb-2">
+                            <i class="fas fa-shapes ml-1"></i>
+                            نوع المصدر:
+                        </label>
+                        <select id="filter-type" 
+                                class="w-full bg-b-bg border border-b-border text-b-text rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-b-primary transition-all">
+                            <option value="all">الكل</option>
+                            <option value="video">كورس / فيديو</option>
+                            <option value="book">كتاب</option>
+                            <option value="article">مقال / ورقة بحثية</option>
+                            <option value="project">مشروع / تدريب</option>
+                            <option value="internship">فرصة تدريب</option>
+                            <option value="diploma">دبلومة</option>
+                            <option value="resource">مصدر إضافي</option>
+                            <option value="community">مجتمع</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="filter-track" class="block text-sm font-medium text-gray-300 mb-2">
+                            <i class="fas fa-route ml-1"></i>
+                            المسار:
+                        </label>
+                        <select id="filter-track" 
+                                class="w-full bg-b-bg border border-b-border text-b-text rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-b-primary transition-all">
+                            <option value="all">الكل</option>
+                            <option value="design">Design</option>
+                            <option value="verification">Verification</option>
+                            <option value="pnr">PnR</option>
+                            <option value="dft">DFT</option>
+                            <option value="fpga">FPGA</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="mt-4 text-center">
+                    <button id="reset-filters" 
+                            class="px-6 py-2 bg-b-bg text-b-hl-medium border border-b-border rounded-lg hover:bg-b-border transition-all">
+                        <i class="fas fa-redo ml-2"></i>
+                        إعادة تعيين الفلاتر
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Counter -->
+            <div class="mb-6 text-center">
+                <p class="text-gray-400 text-lg">
+                    عرض <span id="showing-count" class="text-b-hl-medium font-bold">0</span> من 
+                    <span id="total-count" class="text-b-hl-medium font-bold">0</span> مصدر
+                </p>
+            </div>
+
+            <!-- Resource Grid -->
+            <div id="resource-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="col-span-full text-center text-gray-400 text-lg py-16">
+                    <div class="animate-pulse">
+                        <i class="fas fa-spinner fa-spin text-4xl text-b-primary mb-4"></i>
+                        <p>جاري تحميل المصادر...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div id="no-results" class="hidden col-span-full text-center py-16 animate-slide-in-up">
+                <i class="fas fa-search text-6xl text-gray-600 mb-4"></i>
+                <p class="text-gray-400 text-xl">لا توجد مصادر تطابق معايير البحث الحالية.</p>
+                <button id="clear-search" 
+                        class="mt-6 px-6 py-2 bg-b-primary text-white rounded-lg hover:bg-b-hl-medium hover:text-black transition-all">
+                    مسح البحث
+                </button>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Resource Modal -->
+    <div id="resource-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modal-content" class="bg-b-surface p-8 rounded-2xl border-2 border-b-primary shadow-2xl w-full max-w-3xl overflow-y-auto">
+            
+            <div class="flex justify-between items-start mb-6 border-b border-b-border pb-4">
+                <h3 id="modal-title" class="text-3xl font-bold text-b-hl-medium flex-1"></h3>
+                <button id="modal-close-btn" 
+                        class="text-gray-400 hover:text-white text-4xl transition-colors flex-shrink-0 ml-4 leading-none">
+                    &times;
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-b-bg p-4 rounded-lg">
+                        <span class="font-semibold text-gray-400 block text-sm mb-1">
+                            <i class="fas fa-user ml-1"></i>
+                            المؤلف:
+                        </span>
+                        <span id="modal-author" class="text-b-text text-lg"></span>
+                    </div>
+                    <div class="bg-b-bg p-4 rounded-lg">
+                        <span class="font-semibold text-gray-400 block text-sm mb-1">
+                            <i class="fas fa-signal ml-1"></i>
+                            المستوى:
+                        </span>
+                        <span id="modal-level" class="text-b-text text-lg"></span>
+                    </div>
+                    <div class="bg-b-bg p-4 rounded-lg">
+                        <span class="font-semibold text-gray-400 block text-sm mb-1">
+                            <i class="fas fa-map-marked-alt ml-1"></i>
+                            المرحلة:
+                        </span>
+                        <span id="modal-roadmap-stage" class="text-b-text text-lg"></span>
+                    </div>
+                </div>
+
+                <div class="bg-b-bg p-6 rounded-lg">
+                    <h4 class="font-semibold text-b-hl-medium text-xl mb-3 flex items-center">
+                        <i class="fas fa-file-alt ml-2"></i>
+                        ملخص المصدر:
+                    </h4>
+                    <p id="modal-summary" class="text-gray-300 leading-8 text-lg"></p>
+                </div>
+
+                <div class="bg-b-bg p-6 rounded-lg">
+                    <h4 class="font-semibold text-b-hl-medium text-xl mb-4 flex items-center">
+                        <i class="fas fa-star ml-2"></i>
+                        لماذا هذا المصدر؟ (المميزات):
+                    </h4>
+                    <ul id="modal-features" class="space-y-3">
+                    </ul>
+                </div>
+
+                <div class="pt-4">
+                    <a id="modal-url" 
+                       href="#" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       class="inline-block w-full text-center px-8 py-4 border border-transparent text-xl font-bold rounded-lg text-black bg-b-hl-medium shadow-lg 
+                              transition-all duration-300 ease-in-out 
+                              hover:bg-b-hl-light hover:shadow-2xl hover:-translate-y-1 glow-on-hover">
+                        <i class="fas fa-external-link-alt ml-2"></i>
+                        اذهب إلى المصدر
+                    </a>
+                    <p id="modal-url-soon" 
+                       class="hidden text-center text-gray-400 mt-4 text-lg bg-b-bg p-4 rounded-lg">
+                        <i class="fas fa-hourglass-half ml-2"></i>
+                        قريباً - سيتم إضافة الرابط هنا
+                    </p>
+                </div>
+
+                <div class="pt-6 border-t border-b-border text-center bg-b-bg p-6 rounded-lg">
+                    <p class="text-sm text-gray-400 mb-2">تمت إضافة هذا المصدر بواسطة:</p>
+                    <p id="modal-contributor-name" class="font-semibold text-b-hl-medium text-xl mb-4"></p>
+                    <div id="modal-contributor-links" class="flex justify-center gap-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- تذييل الصفحة (Footer) -->
+    <footer class="bg-b-surface border-t border-b-border" aria-labelledby="footer-heading">
         <h2 id="footer-heading" class="sr-only">Footer</h2>
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-            <div class="text-center">
-                <div class="flex justify-center items-center gap-2 mb-4">
-                    <i data-feather="heart" class="w-5 h-5 text-red-500"></i>
-                    <p class="text-gray-400">صُنع بكل حب لمساعدة الطلاب</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                
+                <div>
+                    <h3 class="text-sm font-semibold leading-6 text-b-text">أقسام الموقع</h3>
+                    <ul role="list" class="mt-6 space-y-4">
+                        <li><a href="roadmap.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">خريطة الطريق</a></li>
+                        <li><a href="resources.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">المصادر</a></li>
+                        <li><a href="tools.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">الأدوات</a></li>
+                        <li><a href="experts.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">نصائح الخبراء</a></li>
+                    </ul>
                 </div>
-                <p class="text-gray-500 text-sm">
-                    &copy; <span id="current-year"></span> منصة بوصلة | تم إنشاؤه بواسطة 
-                    <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-b-primary hover:text-b-hl-light transition-all font-semibold">
-                        Ahmed M. Attia
-                    </a>
-                </p>
+
+                <div>
+                    <h3 class="text-sm font-semibold leading-6 text-b-text">تواصل معنا</h3>
+                    <ul role="list" class="mt-6 space-y-4">
+                        <li><a href="about.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">عن الموقع</a></li>
+                        <li><a href="contact.html" class="text-sm leading-6 text-gray-300 hover:text-b-primary transition-colors duration-200">أرسل ملاحظاتك</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-2 md:col-span-2">
+                    <h3 class="text-base font-semibold leading-6 text-b-text">
+                        عن صاحب الفكرة
+                    </h3>
+                    
+                    <p class="mt-4 text-sm leading-7 text-gray-300">
+                        أحمد محمد عطية، طالب هندسة إلكترونيات واتصالات بجامعة الزقازيق.
+                        الهدف من "بوصلة" هو مساعدة الطالب في بناء طريق واضح ومُنظم لتعلُّم مجال الـ Digital Design خطوة بخطوة.
+                    </p>
+                    
+                    <div class="flex space-x-6 space-x-reverse mt-5">
+                        <a href="https://www.linkedin.com/in/ahmed-m-attia-757aa6292/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-b-primary transition-all duration-200 hover:scale-110">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        
+                        <a href="https://github.com/Ahm3d0x" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-b-primary transition-all duration-200 hover:scale-110">
+                            <span class="sr-only">GitHub</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.397.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.578.688.48A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 border-t border-b-border pt-8">
+                <div class="text-center text-green-500">
+                    <script>
+                        document.write(` بوصلة - جميع الحقوق محفوظة. تم إنشاؤه بهدف تعليمي بحت.&copy; ${new Date().getFullYear()} `);
+                    </script>
+                </div>
             </div>
         </div>
     </footer>
-    <script>
-                document.getElementById('current-year').textContent = new Date().getFullYear();
-        feather.replace();
-            // دالة لتهيئة القائمة المحمولة
-    function initMobileMenu() {
-        const menuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('icon-open');
-        const iconClose = document.getElementById('icon-close');
 
-        if (menuButton && mobileMenu && iconOpen && iconClose) {
-            menuButton.addEventListener('click', () => {
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.classList.toggle('hidden');
-                iconOpen.classList.toggle('hidden');
-                iconClose.classList.toggle('hidden');
-            });
-        }
-    }
-        document.addEventListener('DOMContentLoaded', function () {
-            initMobileMenu();
-        });
-    </script>
-    </body>
-    </html>
-        
+    <script src="../js/resources.js"></script>
+</body>
+</html>
