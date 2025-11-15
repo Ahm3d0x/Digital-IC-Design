@@ -698,3 +698,255 @@ tr:hover {
 @media (min-width: 1536px) {
     .container { max-width: 1536px; }
 }
+
+
+/* إضافات لملف global.css الموجود */
+
+/* Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(135deg, #006A67 0%, #22C45D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Filter Buttons */
+.filter-btn {
+    background: transparent;
+    color: #9CA3AF;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    color: #22C45D;
+    background: rgba(34, 196, 93, 0.1);
+}
+
+.filter-btn.active {
+    color: #22C45D;
+    background: rgba(34, 196, 93, 0.2);
+    border-color: #22C45D;
+    font-weight: 600;
+}
+
+/* Badge Styles */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid;
+}
+
+.badge-primary {
+    background: rgba(0, 106, 103, 0.2);
+    color: #22C45D;
+    border-color: #006A67;
+}
+
+.badge-success {
+    background: rgba(34, 196, 93, 0.2);
+    color: #22C45D;
+    border-color: #22C45D;
+}
+
+.badge-warning {
+    background: rgba(251, 191, 36, 0.2);
+    color: #FCD34D;
+    border-color: #F59E0B;
+}
+
+.badge-info {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60A5FA;
+    border-color: #3B82F6;
+}
+
+/* Tool Card Hover Effect */
+.tool-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(34, 196, 93, 0.1), 
+                0 10px 10px -5px rgba(34, 196, 93, 0.04);
+}
+
+/* Line Clamp Utilities */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Button Styles */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 106, 103, 0.3);
+    color: #22C45D;
+    border: 1px solid #006A67;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background: rgba(0, 106, 103, 0.5);
+    border-color: #22C45D;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(34, 196, 93, 0.2);
+}
+
+/* Animations */
+@keyframes slide-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in-up {
+    animation: slide-in-up 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.stagger-1 {
+    animation-delay: 0.1s;
+}
+
+.stagger-2 {
+    animation-delay: 0.2s;
+}
+
+/* Modal Styles */
+#tool-modal {
+    animation: fadeIn 0.3s ease-out;
+}
+
+#tool-modal > div {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar Styling */
+#tool-modal > div::-webkit-scrollbar {
+    width: 8px;
+}
+
+#tool-modal > div::-webkit-scrollbar-track {
+    background: #111111;
+    border-radius: 4px;
+}
+
+#tool-modal > div::-webkit-scrollbar-thumb {
+    background: #006A67;
+    border-radius: 4px;
+}
+
+#tool-modal > div::-webkit-scrollbar-thumb:hover {
+    background: #22C45D;
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+    .tool-card {
+        padding: 1rem;
+    }
+    
+    #tool-modal > div {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+    
+    #modal-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Focus States for Accessibility */
+.filter-btn:focus,
+.btn-secondary:focus,
+button:focus {
+    outline: 2px solid #22C45D;
+    outline-offset: 2px;
+}
+
+/* Loading State (optional) */
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #22C45D;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
