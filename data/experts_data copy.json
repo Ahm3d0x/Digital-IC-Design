@@ -1,0 +1,223 @@
+{
+  "filterTags": [
+    { "tag": "All", "name": "الكل" },
+    { "tag": "#GP", "name": "مشروع التخرج (GP)" },
+    { "tag": "#General", "name": "نصائح عامة" },
+    { "tag": "#MATLAB", "name": "MATLAB" },
+    { "tag": "#Verification", "name": "Verification" },
+    { "tag": "#FPGA", "name": "FPGA" },
+    { "tag": "#Presentation", "name": "العرض والتقديم" },
+    { "tag": "#Career", "name": "المسار الوظيفي" },
+    { "tag": "#RTL", "name": "RTL & Design" }
+  ],
+  "featuredAdvice": [
+    {
+      "title": "كن دقيقًا في مصطلحاتك الفنية",
+      "summary": "لا تقل شيئًا أنت غير متأكد منه. لو سُئلت عن معلومة (مثل serial vs parallel) ولست متأكدًا، قل 'سأراجع الـ standard وأعود بإجابة مؤكدة'. الدقة تبني الثقة.",
+      "fullText": "<p>\"خليك دقيق في الكلام اللي بتقوله مثلا الـ Mentor بتاعك سألك في مشروع التخرج هي الـ data بتتبعت serial ولا parallel... لو انت متأكد انها serial قول انها serial... لو مش متأكد وشاكك... ممكن تقول (تقريبا serial بس هرجع للـ standard وهجاوب حضرتك بشكل اكيد)...\"</p><p>\"مينفعش ابدأ تكون مش متأكد من المعلومة وتكون صيغة كلامك انك متأكد من المعلومة... ولو انت روحت الـ standard وملقيتش فيه حاجه بتقول هي الـ data بتتبعت serial ولا parallel يبقي تقول للـ Mentor انك دورت وعلي حد علمك ملقيتش معلومة.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>لماذا؟</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>بناء الثقة والمصداقية مع الـ Mentors والزملاء.</li><li>تجنب نشر معلومات خاطئة قد تؤثر على المشروع.</li><li>إظهار الاحترافية والجدية في التعامل مع المعلومات التقنية.</li></ul>",
+      "source": "نصيحة من مرشدي Si-Vision (عبر يوسف شريف)",
+      "tags": ["#General", "#GP", "#Presentation"]
+    },
+    {
+      "title": "أهمية MATLAB كـ 'Golden Reference'",
+      "summary": "لا تبدأ في الـ RTL مباشرة. ابدأ بعمل MATLAB Modelling أولاً. هذا يؤكد أنك فهمت الـ Standard صح، ويعطيك 'مرجع ذهبي' (Golden Reference) لتقارن به نتائج الـ RTL أثناء الـ Verification.",
+      "fullText": "<p>\"اوقات في مشاريع التخرج بيكون فيه جزء MATLAB في الاول انا عن نفسي كنت مستغرب في البداية وكنت عايز ادخل في الـ RTL علطول بس ده غلط وفعلا MATLAB مهم جدا جدا.\"</p><p>\"انت في بداية المشروع بتاخد الـ Standard بتاع المشروع وتقرأه وتحدد الـ high level architecture كـ blocks بتسلم بعضها... ثم انت بتعمل MATLAB Modelling للبلوكات دي علشان تتأكد ان الـ System شغال صح علشان لما تبدأ في الـ RTL يبقى معاك Golden Reference تقدر تستعمله في الـ Verification بتاع المشروع.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>كيفية الاستخدام في الـ Verification:</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>أدخل Inputs إلى MATLAB واحفظ الـ Outputs في ملف.</li><li>أدخل نفس الـ Inputs (من ملف) إلى الـ Testbench الخاص بالـ RTL.</li><li>قارن (bit-by-bit) بين الـ Output من الـ RTL والـ Output من ملف MATLAB.</li><li>`if (RTL_output != MATLAB_output) $display(\"Error...\");`</li></ul>",
+      "source": "يوسف شريف (تعلمها من فاطمة علي)",
+      "tags": ["#GP", "#MATLAB", "#Verification", "#RTL"]
+    },
+    {
+      "title": "الـ Efficiency أهم من ساعات العمل الطويلة",
+      "summary": "المهندس الشاطر هو من ينجز Tasks كثيرة في وقت قليل (Efficiency عالية)، وليس من يعمل 24 ساعة بـ Output قليل. قِس وقتك وحاول تحسينه باستمرار.",
+      "fullText": "<p>\"احد الحاجات اللي تقيم بيها نفسك هي الـ Efficiency انت خلصت الـ Task المطلوبة منك في وقت قد ايه... واسأل نفسك (هل الوقت ده Justifiable له مبرر)؟\"</p><p>\"المهندس الشاطر هو اللي عنده Efficiency عالية وبيقدر يخلص Tasks كتير في وقت قليل... مش المهندس اللي بيقعد شغال 24 ساعة طول ال 7 ايام وفي الآخر بيكون الـ Output بتاعه قليل رغم انه اجتهد وبذل مجهود كبير.\"</p><p>\"الـ Efficiency بتاعتك وانت لسه طالب مبتدئ بتكون قليلة وده طبيعي مع المذاكرة والتطبيق العملي الكتير هتلاقي الـ Efficiency بتاعتك بتزيد مع الوقت.\"</p>",
+      "source": "نصيحة من مرشدي Si-Vision (عبر يوسف شريف)",
+      "tags": ["#General", "#Career"]
+    },
+    {
+      "title": "لا تهمل مهارات العرض (Presentation Skills)",
+      "summary": "مهارة عرض المعلومة وإقناع الناس بتصميمك لا تقل أهمية عن المهارة التقنية. ستستخدمها كثيرًا في مشروع التخرج وفي العمل. تعلم كيف تصمم PowerPoint احترافي.",
+      "fullText": "<p>\"اتعلم Presentation Skills قدر الإمكان قبل ما تتخرج من الكلية... لان في مشروع التخرج وفي الشغل هتعمل Presentations كتير علشان تعرض فكرتك وتقنع الناس بالـ Design بتاعك.\"</p><p>\"حاول اتعلم ازاي تعمل PowerPoint والـ Design بتاعها حلو والالوان متناسقة صدقني مهارة عرض المعلومة... هتخليك مميز.\"</p><p>\"المهندس الشاطر هو اللي بيعرف يشرح الحاجه للمهندسين اللي حواليه في اقل وقت وبعدد Slides قليل... بلاش تضيع وقت.\"</p>",
+      "source": "يوسف شريف",
+      "tags": ["#General", "#Presentation", "#Career", "#GP"]
+    },
+    {
+      "title": "قوة الـ Network والتدريب المبكر",
+      "summary": "اهتم ببناء Network قوية على LinkedIn. تواصل مع مهندسين، اسألهم، واعرض عليهم مشاريعك. التدريب في شركة هو أفضل وسيلة للحصول على مشروع تخرج (Sponsor) وفرصة توظيف.",
+      "fullText": "<p>\"اهتموا جدا انكوا تعملوا Network قوية وتتكلم مع بشمهندسين من شركات من خلال Linkedin وتعمل مشاريع تسألهم فيها وتوريلهم انك دورت ولقيت كذا وكذا.\"</p><p>\"الـ Network بتفيد انك تعرف تدخل تدريب او تشتغل او تدخل مشروع تخرج.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>التدريب ومشروع التخرج:</p><p>\"التدريب في شركات هي وسيلة كويسة جدا انك تعرف تاخد مشروع تخرج مع نفس الشركة... وبتحصل كتير ان الشركة هي اللي بتكلم الطلبة اللي معاها في التدريب انه تبقي Sponsor معاهم في مشروع التخرج... او انت اللي بتكلم الشركة لو انت Intern معاهم وبيكون ليك افضلية.\"</p>",
+      "source": "يوسف شريف",
+      "tags": ["#General", "#Career", "#Training", "#GP"]
+    },
+    {
+      "title": "احفظ الـ Flow جيدًا (سؤال مقابلة دائم)",
+      "summary": "يجب أن تحفظ وتفهم الـ ASIC Design Flow جيدًا. من أول مواصفات الـ System Designer حتى ملف الـ GDSII. هذا سؤال أساسي ودائم في أي مقابلة تقنية في المجال.",
+      "fullText": "<p>\"محتاج بردو تتعلم الـ Flow علشان تبقي فاهم ايه اللي بيحصل من اول ما الـ Client بيتكلم مع الـ System Designer لحد ما نبعت ملف الـ GDS II للمصنع.\"</p><p>\"...وخلي بالك لازم تحفظ الـ Flow كويس قبل اي Interview لانه دايماً بتتسأل فيه.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>المراحل الأساسية للـ Flow:</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>RTL Design (Verilog/VHDL)</li><li>RTL Verification (Simulation)</li><li>Synthesis (RTL -> Gate-level netlist)</li><li>DFT Insertion (Scan chains, etc.)</li><li>Place and Route (PnR)</li><li>Static Timing Analysis (STA)</li><li>Physical Verification (DRC, LVS)</li><li>Tapeout (GDSII)</li></ul>",
+      "source": "دليل المبتدئين (يوسف شريف)",
+      "tags": ["#General", "#Career", "#RTL", "#GP"]
+    }
+  ],
+  "allAdvice": [
+    {
+      "title": "كن دقيقًا في مصطلحاتك الفنية",
+      "summary": "لا تقل شيئًا أنت غير متأكد منه. لو سُئلت عن معلومة (مثل serial vs parallel) ولست متأكدًا، قل 'سأراجع الـ standard وأعود بإجابة مؤكدة'. الدقة تبني الثقة.",
+      "fullText": "<p>\"خليك دقيق في الكلام اللي بتقوله مثلا الـ Mentor بتاعك سألك في مشروع التخرج هي الـ data بتتبعت serial ولا parallel... لو انت متأكد انها serial قول انها serial... لو مش متأكد وشاكك... ممكن تقول (تقريبا serial بس هرجع للـ standard وهجاوب حضرتك بشكل اكيد)...\"</p><p>\"مينفعش ابدأ تكون مش متأكد من المعلومة وتكون صيغة كلامك انك متأكد من المعلومة... ولو انت روحت الـ standard وملقيتش فيه حاجه بتقول هي الـ data بتتبعت serial ولا parallel يبقي تقول للـ Mentor انك دورت وعلي حد علمك ملقيتش معلومة.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>لماذا؟</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>بناء الثقة والمصداقية مع الـ Mentors والزملاء.</li><li>تجنب نشر معلومات خاطئة قد تؤثر على المشروع.</li><li>إظهار الاحترافية والجدية في التعامل مع المعلومات التقنية.</li></ul>",
+      "source": "نصيحة من مرشدي Si-Vision (عبر يوسف شريف)",
+      "tags": ["#General", "#GP", "#Presentation"]
+    },
+    {
+      "title": "أهمية MATLAB كـ 'Golden Reference'",
+      "summary": "لا تبدأ في الـ RTL مباشرة. ابدأ بعمل MATLAB Modelling أولاً. هذا يؤكد أنك فهمت الـ Standard صح، ويعطيك 'مرجع ذهبي' (Golden Reference) لتقارن به نتائج الـ RTL أثناء الـ Verification.",
+      "fullText": "<p>\"اوقات في مشاريع التخرج بيكون فيه جزء MATLAB في الاول انا عن نفسي كنت مستغرب في البداية وكنت عايز ادخل في الـ RTL علطول بس ده غلط وفعلا MATLAB مهم جدا جدا.\"</p><p>\"انت في بداية المشروع بتاخد الـ Standard بتاع المشروع وتقرأه وتحدد الـ high level architecture كـ blocks بتسلم بعضها... ثم انت بتعمل MATLAB Modelling للبلوكات دي علشان تتأكد ان الـ System شغال صح علشان لما تبدأ في الـ RTL يبقى معاك Golden Reference تقدر تستعمله في الـ Verification بتاع المشروع.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>كيفية الاستخدام في الـ Verification:</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>أدخل Inputs إلى MATLAB واحفظ الـ Outputs في ملف.</li><li>أدخل نفس الـ Inputs (من ملف) إلى الـ Testbench الخاص بالـ RTL.</li><li>قارن (bit-by-bit) بين الـ Output من الـ RTL والـ Output من ملف MATLAB.</li><li>`if (RTL_output != MATLAB_output) $display(\"Error...\");`</li></ul>",
+      "source": "يوسف شريف (تعلمها من فاطمة علي)",
+      "tags": ["#GP", "#MATLAB", "#Verification", "#RTL"]
+    },
+    {
+      "title": "الـ Efficiency أهم من ساعات العمل الطويلة",
+      "summary": "المهندس الشاطر هو من ينجز Tasks كثيرة في وقت قليل (Efficiency عالية)، وليس من يعمل 24 ساعة بـ Output قليل. قِس وقتك وحاول تحسينه باستمرار.",
+      "fullText": "<p>\"احد الحاجات اللي تقيم بيها نفسك هي الـ Efficiency انت خلصت الـ Task المطلوبة منك في وقت قد ايه... واسأل نفسك (هل الوقت ده Justifiable له مبرر)؟\"</p><p>\"المهندس الشاطر هو اللي عنده Efficiency عالية وبيقدر يخلص Tasks كتير في وقت قليل... مش المهندس اللي بيقعد شغال 24 ساعة طول ال 7 ايام وفي الآخر بيكون الـ Output بتاعه قليل رغم انه اجتهد وبذل مجهود كبير.\"</p><p>\"الـ Efficiency بتاعتك وانت لسه طالب مبتدئ بتكون قليلة وده طبيعي مع المذاكرة والتطبيق العملي الكتير هتلاقي الـ Efficiency بتاعتك بتزيد مع الوقت.\"</p>",
+      "source": "نصيحة من مرشدي Si-Vision (عبر يوسف شريف)",
+      "tags": ["#General", "#Career"]
+    },
+    {
+      "title": "لا تهمل مهارات العرض (Presentation Skills)",
+      "summary": "مهارة عرض المعلومة وإقناع الناس بتصميمك لا تقل أهمية عن المهارة التقنية. ستستخدمها كثيرًا في مشروع التخرج وفي العمل. تعلم كيف تصمم PowerPoint احترافي.",
+      "fullText": "<p>\"اتعلم Presentation Skills قدر الإمكان قبل ما تتخرج من الكلية... لان في مشروع التخرج وفي الشغل هتعمل Presentations كتير علشان تعرض فكرتك وتقنع الناس بالـ Design بتاعك.\"</p><p>\"حاول اتعلم ازاي تعمل PowerPoint والـ Design بتاعها حلو والالوان متناسقة صدقني مهارة عرض المعلومة... هتخليك مميز.\"</p><p>\"المهندس الشاطر هو اللي بيعرف يشرح الحاجه للمهندسين اللي حواليه في اقل وقت وبعدد Slides قليل... بلاش تضيع وقت.\"</p>",
+      "source": "يوسف شريف",
+      "tags": ["#General", "#Presentation", "#Career", "#GP"]
+    },
+    {
+      "title": "قوة الـ Network والتدريب المبكر",
+      "summary": "اهتم ببناء Network قوية على LinkedIn. تواصل مع مهندسين، اسألهم، واعرض عليهم مشاريعك. التدريب في شركة هو أفضل وسيلة للحصول على مشروع تخرج (Sponsor) وفرصة توظيف.",
+      "fullText": "<p>\"اهتموا جدا انكوا تعملوا Network قوية وتتكلم مع بشمهندسين من شركات من خلال Linkedin وتعمل مشاريع تسألهم فيها وتوريلهم انك دورت ولقيت كذا وكذا.\"</p><p>\"الـ Network بتفيد انك تعرف تدخل تدريب او تشتغل او تدخل مشروع تخرج.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>التدريب ومشروع التخرج:</p><p>\"التدريب في شركات هي وسيلة كويسة جدا انك تعرف تاخد مشروع تخرج مع نفس الشركة... وبتحصل كتير ان الشركة هي اللي بتكلم الطلبة اللي معاها في التدريب انه تبقي Sponsor معاهم في مشروع التخرج... او انت اللي بتكلم الشركة لو انت Intern معاهم وبيكون ليك افضلية.\"</p>",
+      "source": "يوسف شريف",
+      "tags": ["#General", "#Career", "#Training", "#GP"]
+    },
+    {
+      "title": "احفظ الـ Flow جيدًا (سؤال مقابلة دائم)",
+      "summary": "يجب أن تحفظ وتفهم الـ ASIC Design Flow جيدًا. من أول مواصفات الـ System Designer حتى ملف الـ GDSII. هذا سؤال أساسي ودائم في أي مقابلة تقنية في المجال.",
+      "fullText": "<p>\"محتاج بردو تتعلم الـ Flow علشان تبقي فاهم ايه اللي بيحصل من اول ما الـ Client بيتكلم مع الـ System Designer لحد ما نبعت ملف الـ GDS II للمصنع.\"</p><p>\"...وخلي بالك لازم تحفظ الـ Flow كويس قبل اي Interview لانه دايماً بتتسأل فيه.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>المراحل الأساسية للـ Flow:</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>RTL Design (Verilog/VHDL)</li><li>RTL Verification (Simulation)</li><li>Synthesis (RTL -> Gate-level netlist)</li><li>DFT Insertion (Scan chains, etc.)</li><li>Place and Route (PnR)</li><li>Static Timing Analysis (STA)</li><li>Physical Verification (DRC, LVS)</li><li>Tapeout (GDSII)</li></ul>",
+      "source": "دليل المبتدئين (يوسف شريف)",
+      "tags": ["#General", "#Career", "#RTL", "#GP"]
+    },
+    {
+      "title": "استراتيجية التقديم لمشروع تخرج (GP)",
+      "summary": "ابدأ بإرسال رسالة احترافية للمهندسين على LinkedIn، وضح مهارات فريقك، أرفق الـ CVs، واسأل عن احتياجهم لـ Proposal. جهز Proposal قوي يوضح فكرتك وأهدافك.",
+      "fullText": "<p>\"اول خطوة انت بتبدأ تبعت للشركات انك عايز Sponsor... عن طريق انك تبعت للبشمهندسين اللي شغالين في الشركات علي LinkedIn.\"</p><p>\"هتبعت اسمك وكليتك وانك مهتم... وتقوله الـ Skills بتاعتك وبتاعت التيم والـ CVs بتاعتكوا وعايز تعمل المشروع في انهي مجال... وتسأله هل الشركة محتاجه انك تعمل Proposal ولا لا.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>نموذج الرسالة:</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>Introduce Yourself mentioning your faculty.</li><li>Here is the skill set of my team: [*Your Team Skills*]</li><li>Here are some of the projects we have done: [*Projects*]</li><li>Here are our CVs: [*Drive link to your CVs*]</li><li>End your message in a professional way.</li></ul><p>\"الـ Proposal بيكون PDF فيه تفاصيل الفكرة وانت عايز توصل لفين.\"</p>",
+      "source": "يوسف شريف (بمساعدة مؤمن سامح)",
+      "tags": ["#GP", "#Career"]
+    },
+    {
+      "title": "أهمية الـ Test Cases الشاملة في الـ Verification",
+      "summary": "لا تكتفِ باختبار الحالة المثالية. فكر في كل الاحتمالات: 'multiple consecutive frames', 'packets with noise', 'packets with different lengths', 'corner cases'. هدفك هو التأكد أن الـ System يعمل في كل الظروف.",
+      "fullText": "<p>\"لما تعملوا verification للمشروع اقعدوا فكروا في كل ال test cases المحتمله مثلا هتعمل RX و TX ... كده ممكن ال test cases تكون كالاتي:\"</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>Packet واحد بدون Noise.</li><li>Packet واحد مع Noise بـ SNR معين.</li><li>Packet واحد بدون Noise لكن قبله وبعده Noise.</li><li>Multiple Consecutive Frames بدون Noise.</li><li>Multiple Packets مع Noise بينهم.</li><li>Multiple Packets مع Noise على كل Packet.</li><li>تغيير الـ SNR ومشاهدة النتائج.</li><li>Packets بـ Lengths مختلفة مع تنويع الـ Noise.</li><li>...الخ.</li></ul><p>\"النقطة الأهم: اختبر كل الاحتمالات الممكنة لتتأكد من صحة الـ System.\"</p>",
+      "source": "يوسف شريف (تعلمها من فاطمة علي)",
+      "tags": ["#Verification", "#GP", "#RTL"]
+    },
+    {
+      "title": "قواعد عرض الرسوم البيانية (Graphs)",
+      "summary": "عند عرض Graph من MATLAB، لا تنسَ أبدًا وضع: Title, X-axis label, Y-axis label, و Figure Number. لا تضع Graph إلا إذا كان يقدم معلومة مفيدة لا يمكن كتابتها كنص عادي (مثل BER vs SNR).",
+      "fullText": "<p>\"لو انت حاطط Graphs من MATLAB مثلا في ال Presentation بتاعتك يبقى لازم تحط لهم Title وتقول ايه ال x-axis وال y-axis زي 1 Figure... اوعي تنساهم مهمين بجد علشان اللي قدامك يعرف ايه ده.\"</p><p>\"ومتحطش Graphs على الفاضي وخلاص... يعني لازم ال Graph يبقي فعلا بيقول معلومة مفيدة والافضل ان المعلومة دي تكون في شكل Graph... زي مثلا ال BER vs SNR... انما لو المعلومة عادية ومش محتاجه Graph يبقي خلاص قولها بشكل مباشر او اكتبها في Text.\"</p>",
+      "source": "نصيحة من مرشدي Si-Vision (عبر يوسف شريف)",
+      "tags": ["#Presentation", "#MATLAB", "#GP"]
+    },
+    {
+      "title": "استخدم Version Control (مثل Git/GitHub)",
+      "summary": "عند تعديل الـ Design، احتفظ دائمًا بنسخة من التصميم القديم الذي كان يعمل. هذا يتيح لك الرجوع إليه إذا سبب التعديل الجديد مشكلة. الطريقة الأفضل والأكثر احترافية هي استخدام Git/GitHub.",
+      "fullText": "<p>\"...ودايما احتفظوا بنسخه من اخر design كان شغال صح علشان وانت بتعمل تعديلات ممكن تخلي ال design مش شغال علي ولا test case ومش عارف ترجع تلغي التعديلات دي.\"</p><p>\"لو هتحفظ ال design علي جهازك ممكن تحطه في فولدر والاسم بتاع الفودر مثالا يبقي 2023_6_13_GP... ده التاريخ علشان لو معملتش كده هتلاقي انه النسخ بقت كتير عندك وانت مش عارف انهي اجدد نسخه.\"</p><p>\"...والافضل طبعا انك تحطه على github بدل ما تحطه عندك على الجهاز بالطريقة اللي بقول عليها دي.\"</p>",
+      "source": "يوسف شريف (تعلمها من فاطمة علي)",
+      "tags": ["#GP", "#Verification", "#RTL", "#General"]
+    },
+    {
+      "title": "تحضير الـ Thesis والـ Presentation مبكرًا",
+      "summary": "لا تنتظر لآخر لحظة. طباعة الـ Thesis قد تأخذ يومًا أو يومين. الأهم، يجب أن تتدربوا على الـ Presentation وتضبطوا الوقت (Time Limit) لكل فرد. وقت المناقشة محدود جدًا.",
+      "fullText": "<p>\"حاول اعمل ال thesis وال presentation قبل المناقشة بكذا يوم علشان تلحقوا تتدربوا علي ال presentation وتلحقوا تطبعوا ال thesis... لان الطباعة ممكن تاخد يوم او يومين.\"</p><p>\"وفي ال presentation حطوا وقت لكل واحد فيكوا ميزيدش عنه مهما يحصل... لان وقت المناقشة محدود يعني بيكون تقريبا ساعة presentation للتيم... لو الساعة خلصت وفيه ناس لسه متكلمتش هتلاقي الدكتور قطع ال presentation بتاعتكوا... علشان كده مهم جدا تتدربوا سوا... وتعملوا time limit لكل واحد.\"</p>",
+      "source": "يوسف شريف و د. ضياء خليل",
+      "tags": ["#Presentation", "#GP"]
+    },
+    {
+      "title": "تعلم Scripting (TCL/Python)",
+      "summary": "لغات الـ Scripting (خاصة TCL و Python) إجبارية تقريبًا. TCL هي لغة التحكم في أدوات Synopsys/Cadence. Python مهم جدًا للـ Automation والـ Verification.",
+      "fullText": "<p>\"الـ Scripting عامة هدفه الـ Automation.\"</p><p>\"انك بدل ما تعمل الحاجه علي الـ Interface بتاع الـ Tool فانت ممكن تعمل Script يعملك نفس الحاجه في وقت اقل وبـ Options اكثر.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>اللغات المطلوبة:</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li><strong>TCL:</strong> إجبارية لأدوات EDA. هي لغة التحكم في أدوات Synopsys/Cadence.</li><li><strong>Python:</strong> مهم جدًا للـ Automation والـ Verification. حاليًا يُستخدم في الـ Scripting أكثر من الـ Verification نفسه (المسيطر هو SystemVerilog)، ولكن تعلمه مفيد جدًا.</li><li><strong>Perl/Shell:</strong> مفيدة أيضًا، ولكن يمكن البدء بـ TCL و Python.</li></ul><p>\"فيه ناس كتير جداً جداً جداً بتتعين عادي وهي مش عارفه Shell ولا Perl ولا Python... وهما مش صعبين يعني فاتعلمهم اضمن.\"</p>",
+      "source": "ملف الأسئلة الشائعة وملف الأدوات",
+      "tags": ["#General", "#Career", "#RTL", "#Verification"]
+    },
+    {
+      "title": "VHDL أم Verilog؟",
+      "summary": "الكلية قد تدرس VHDL، لكن سوق العمل (خاصة الـ Big Centers) يعمل بـ Verilog و SystemVerilog بشكل شبه كامل. استغل VHDL في الكلية لفهم الـ Hardware Concepts جيدًا، ثم تعلم Verilog بنفسك.",
+      "fullText": "<p>\"احنا في الكلية بندرس VHDL... بس انا عرفت ان Verilog منتشر اكثر في سوق العمل...\"</p><p>\"العالم كله والـ Big Centers شغالين بـ Verilog ونادراً لما حد بيشتغل بـ VHDL.\"</p><p>\"بس الـ VHDL ميزيتها انها اكثر لغه بتعرف تخليك تـ master الـ Hardware Concept... انت استغل انك كده كده بتتعلمها في الكلية في انك تتعلم Hardware كويس... وبعد كده ممكن الـ Circuits اللي انت عملتها بـ VHDL في الكلية انك تعملها Verilog.\"</p><p>\"نصيحة اتعلم علي كل ال platforms وعلي كل ال Simulators وعلي كل ال Languages.\"</p>",
+      "source": "ملف الأسئلة الشائعة",
+      "tags": ["#General", "#Career", "#RTL"]
+    },
+    {
+      "title": "استخدام ChatGPT بفاعلية",
+      "summary": "استخدم ChatGPT لشرح كود، التحقق من Syntax، شرح Commands الـ PnR، كتابة Scripts، تحسين كود MATLAB، إنشاء أسئلة MCQ للمذاكرة، والمقارنة بين الـ Techniques.",
+      "fullText": "<p>\"هقول على امثلة واقعية بستخدم فيها ChatGPT...\"</p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li><strong>شرح Code:</strong> \"بديله كود SystemVerilog انا مش فاهمه وبقوله يشرحه ليا وممكن اقوله يعمل له Documentation كمان.\"</li><li><strong>Syntax Check:</strong> \"بسأله هل سطر الـ Syntax ده صح في Verilog ولا... ولو هو SystemVerilog بس؟...\"</li><li><strong>شرح Commands:</strong> \"بسأله علي command في أي جزء في الـ Flow بتاع الـ PnR واطلب منه يقولي ايه الـ Options...\"</li><li><strong>كتابة Scripts:</strong> \"بقوله يكتبلي Script اعمل بيه حاجه معينه.\"</li><li><strong>تحسين MATLAB:</strong> \"بديله MATLAB كود واقوله يقترح عليا حاجات اعملها تحسن الـ Performance...\"</li><li><strong>أسئلة MCQ:</strong> \"بقوله يكتبلي 10 اسئلة MCQs عن Topic معين... بحيث اختبر نفسي.\"</li><li><strong>Debugging:</strong> \"لو طالع ليا Error... بديله الايرور والكود واسأله ايه السبب واطلب منه حل.\"</li></ul><p>\"عايز بس اقول انه اوقات مش بيكون دقيق بنسبة 100% وهتلاقي عنده اخطاء... فلازم تراجع وراه...\"</p>",
+      "source": "يوسف شريف",
+      "tags": ["#General", "#MATLAB", "#RTL", "#Verification"]
+    },
+    {
+      "title": "أين أجد أجهزة FPGA للعمل عليها؟",
+      "summary": "لطلبة عين شمس، يمكن الذهاب إلى IHub في المدينة الجامعية بالعباسية. يوفرون أجهزة Artix-7 FPGA قوية و Workstations لتشغيل MATLAB للمشاريع الثقيلة.",
+      "fullText": "<p>\"النصيحة دي لطلبة عين شمس... وقت مشروع التخرج بتاعك روح IHub في العباسية في المدينة الجامعية انا كنت محتاج FPGA لمشروع التخرج بتاعي واخدت منهم Artix-7 ودي نوع محترم اوي ربنا يباركلهم.\"</p><p>\"وكنت محتاج Workstation علشان عايز أرن كود MATLAB... الـ Labtops عندي في التيم كانت كويسة بس مكانتش تستحمل عدد الـ bits الكبير ده... احنا لقينا Workstation في IHub وسطبنا عليها MATLAB وسيبنا الجهاز يـ run تقريبا 20 يوم متواصل...\"</p><p>\"الناس هناك محترمين جدا وبيقولوا ان الحاجات دي معمولة لينا اصلا علشان تساعد الطلبة وعلشان نستخدمها.\"</p>",
+      "source": "يوسف شريف وفريق مشروعه",
+      "tags": ["#FPGA", "#GP", "#MATLAB"]
+    },
+    {
+      "title": "حل مشكلة 'Out of Memory' في MATLAB",
+      "summary": "عند التعامل مع عدد كبير جدًا من الـ bits (مثل 50 مليون) لرسم BER vs SNR، قد تواجه خطأ 'Out of Memory'. الحل هو استخدام أمر `clear` لحذف الـ variables الكبيرة التي لم تعد بحاجة إليها.",
+      "fullText": "<p>\"في matlab لو انت عايز ترسم curve ال BER VS SNR هتحتاج تبعت عدد Bits كبير اوي اوي 50 مليون مثلا... المهم ان ممكن تسيب اللاب شغال كذا يوم ثم مرة واحدة تلاقي error بيقولك out of memory...\"</p><p>\"... فيه حل لطيف انك تعمل clear لل variables اللي انت مش محتاجها خلاص اثناء ما الكود شغال... مثال علي كده:\"</p><pre class='language-matlab' style='text-align: left; direction: ltr; background: #1a1a1a; color: #f6f6f6; padding: 1rem; border-radius: 0.5rem; overflow-x: auto;'><code>a = 1:1:1000000000;\nb = 1:1:1000000000;\nc = a + b;\n<strong style='color: #22C45D;'>clear a b</strong>\n\nfor i = 1: length(c)\n  % ... BLAH ...\nend\n% ... BLAH ... BLAH\n</code></pre><p>\"هنا انا مش هستخدم ال a وال b تاني اثناء ال flow وهمسحهم علشان حجمهم كبير اوي وواخدين مساحة كبيرة من ال memory.\"</p>",
+      "source": "يوسف شريف (تعلمها من فاطمة علي)",
+      "tags": ["#MATLAB", "#GP", "#Verification"]
+    }
+  ],
+  "expertStories": [
+    {
+      "title": "قصة تسريع MATLAB: من ساعتين إلى 4 ثواني!",
+      "story": "<p>\"في مشروع تخرجي كنا مستخدمين الطريقة الأولي (Concatenation in for-loop) وكان البرنامج بطئ اوي... <strong>كنا بنبعت 20 packet في ساعتين</strong>.\"</p><p>\"لما عملنا الطريقة التانيه بتاعت الـ <strong>preallocating</strong>... لقينا البرنامج بقي سريع اوي... <strong>بقي بيخلص في 4 ثواني بدل ساعتين !!!!!</strong>\"</p><p>\"ده بقي اسرع بـ 1800 ضعف تقريبا.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>الدرس المستفاد:</p><p>تجنب تكبير حجم الـ array داخل `for` loop (مثل `result = [result new_val];`). استخدم دائمًا `Pre-allocation` (مثل `result = zeros(1, N);`) أو الأفضل `Vectorization` (مثل `a = 2*a - 1;`) لزيادة سرعة الكود بشكل هائل.</p>",
+      "source": "يوسف شريف (تجربة مشروع التخرج)",
+      "tags": ["#MATLAB", "#GP"]
+    },
+    {
+      "title": "قصة Integration: البلوك الذي عمل لوحده وفشل مع النظام",
+      "story": "<p>\"حصل معايا اني كنت عامل بلوك في الـ RX وكان شغال صح لو احنا بنستقبل packet عليها noise... وكان بيشتغل لو الـ packet فيه قبلها وبعدها noise بس <strong>الـ length بتاع الـ noise كان مضاعفات رقم 16</strong>.\"</p><p>\"وكان بيطلع الـ outputs غلط لو الـ length بتاع الـ noise <strong>مش مضاعفات رقم 16</strong> (يعني مثلا 17 او 3).\"</p><p>\"...لما عرفت كده غيرت الـ architecture بتاع الـ block وعملتله verification لوحده بالاخذ في الاعتبار اني كنت بتاكد انه شغال صح في كل الحالات... ولما اشتغل الحمد لله حطيته في الـ integration ولقيت الدنيا تمام.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>الدرس المستفاد:</p><p>الـ Verification على مستوى الـ Block يجب أن يكون شاملًا لكل الـ Corner Cases. لا تفترض أن الـ Block الذي يعمل لوحده سيعمل بالضرورة عند دمجه في الـ System. كن مستعدًا لتعديل تصميمك عدة مرات.</p>",
+      "source": "يوسف شريف (تجربة مشروع التخرج)",
+      "tags": ["#Verification", "#GP", "#RTL"]
+    }
+  ],
+  "expertFAQ": [
+    {
+      "question": "الـ GPA بتاعي 2.6، هل ممكن أشتغل في المجال؟",
+      "answer": "<p><strong>نعم، ممكن.</strong></p><p>\"اه فيه ناس كتير اشتغلت بالـ GPA ده واقل منه، بس لازم تبقى مظبط نفسك Projects.\"</p><p>\"يعني انا في الآخر كشركة يهمني ان انت تكون مهتم بالمجال والـ GPA بتاعك ده مضاعش كده هباءً، لا انت كنت مهتم بحاجات تانيه وبتتعلم حاجات تانيه.\"</p><p>\"اهم حاجة انت عملت ايه للـ digital الى يدفعه يقبلك... والتقدير بيساعد بس مش عائق.\"</p><p>\"الـ GPA الكويس بيزود فرصك بس لو الـ CV بتاعك و مشروع تخرجك كويسين... الـ GPA القليل مش حيكون عائق كبير.\"</p><p><strong>نصيحة إضافية:</strong> \"ممكن بعد التخرج تقدم كمان على ITI هتزود فرصك أكثر وهتخلى الـ GPA عامل تأثيره أقل.\"</p>",
+      "source": "عدة مهندسين وأساتذة",
+      "tags": ["#Career", "#General"]
+    },
+    {
+      "question": "ما هي نطاقات الرواتب للمهندسين الجدد (Fresh) والسنيور (Senior)؟",
+      "answer": "<p><strong>للمهندس الجديد (Fresh Graduate):</strong></p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>\"اقل حاجة لـ fresh graduate اظن 900$ بس ممكن لحد 1200$ حسب الشركة.\"</li><li>\"بتبدأ من 10,000 جنية مش تقريباً... عموماً بتختلف من شركة للثانية.\"</li></ul><p><strong>للمهندس السنيور (Senior):</strong></p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>\"I think a conservative lower bound for a senior would be $1300 (net).\"</li><li>يعتمد اللقب على الشركة، \"some companies give the senior title in 2 years Others never give it to less than 4 years.\"</li></ul><p><strong>ملاحظة:</strong> \"And there is no significant difference between analog and digital designers.\"</p>",
+      "source": "عدة مهندسين",
+      "tags": ["#Career"]
+    },
+    {
+      "question": "هل الالتحاق ببرنامج ITI (منحة الـ 9 شهور) بيزود فرصي في الشغل؟",
+      "answer": "<p><strong>نعم، وبشدة.</strong></p><ul class='list-disc list-inside text-gray-400 text-sm space-y-1'><li>\"بيزود جداً.\"</li><li>\"بنسبة 100 % اعتقد.\"</li><li>\"لو أخذتها بجدية بيزود فرصتك بنسبة كبيرة جدا.\"</li><li>\"أغلب الخريجين إن ماكنش كلهم اشتغلوا بس في أوقات متفاوتة... اعمل اللي عليك ولو مشروعك مش ديجيتال ادخلها هتستفاد وهتقرب من السوق بسرعة.\"</li></ul><p>برنامج الـ ITI يغطي الـ Flow بالكامل (Frontend و Backend) وتتدرب عمليًا على أدوات Synopsys.</p>",
+      "source": "عدة مهندسين",
+      "tags": ["#Career", "#General"]
+    },
+    {
+      "question": "مشروع تخرجي لم يكن في مجال الـ VLSI / Digital. هل ما زال لدي فرصة؟",
+      "answer": "<p><strong>نعم، لكن بصعوبة أكبر.</strong></p><p>\"لو مشروعك في المجال حتحسن فرصك كثير طبعاً، لو مشروعك بعيد عن المجال دي اسوأ من الـ GPA القليل.\"</p><p class='font-semibold text-b-hl-light mt-4 mb-2'>الحل؟</p><p>\"اه ممكن تدخل الـ Academy Track بتاع Si-Vision او تاخد Program الديجيتال بتاع الـ ITI.\"</p><p>الـ ITI تحديدًا مفيد في هذه الحالة: \"فيه ناس كتير مكانتش عامله مشروع التخرج ديجيتال ودخلت عادي.\"</p>",
+      "source": "عدة مهندسين",
+      "tags": ["#GP", "#Career"]
+    },
+    {
+      "question": "هل فرص البنات في المجال كويسة؟",
+      "answer": "<p>الإجابات منقسمة:</p><p><strong>الرأي الأول (دبلوماسي):</strong> \"اه طبعاً الفرص متكافئة ومفيش فرق بين الولاد والبنات... الموضوع بيعتمد بشكل كبير على مهارات الشخص نفسة + المشاريع + ال GPA + مشروع التخرج + Internships... لكن عموما الشغل علي المكتب والـ Programming وكده بيبقي الولاد زي البنات.\"</p><p><strong>الرأي الثاني (واقعي):</strong> \"اه فرص البنات في مجال الـ Electronics عموما قليلة بسبب ان طبيعة الشغل صعبة.\"</p><p><strong>رأي ثالث (تحذيري):</strong> \"...بلاش ديجيتال علشان الشركات اللي في مصر... معظمها معندهاش سياسة تكافؤ فرص في الشغل وممكن تترفض لمجرد أن المتقدم بنت...\"</p><p><strong>تعقيب على الرأي الثالث:</strong> \"...الكلام دا حقيقي... بس كان زمان أكثر بكثير من دلوقتي، معظم الشركات توسعت... و التفرقة على اساس الجنس او الجامعة... اقل جداً جداً دلوقتي.\"</p>",
+      "source": "عدة مهندسين",
+      "tags": ["#Career", "#General"]
+    },
+    {
+      "question": "مين عددهم وفرصهم أكتر، مهندسين الـ Design ولا الـ Verification؟",
+      "answer": "<p><strong>الـ Verification عددهم وفرصهم أكثر (أو مساوية على الأقل).</strong></p><p>\"زمان كان التيم الواحد مثلا 8 مهندسين Design ومعاهم 5 مهندسين Verification... دلوقتي لا الـ Verification عددهم بقي اكثر في التيم الواحد.\"</p><p>\"بس في الغالب الـ Verification اکثر.\"</p><p>\"الفرص بتبقي متقاربه يعني مفيش فرق كبير جداً بين عدد الفرص هنا وهنا.\"</p>",
+      "source": "ملف الأسئلة الشائعة",
+      "tags": ["#Career", "#Verification", "#RTL"]
+    }
+  ]
+}
