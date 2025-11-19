@@ -16,10 +16,13 @@ function initMobileMenu() {
     }
 }
 
-// ==================== AI EXPERT BOT CLASS ====================
+// ==================== AI EXPERT BOT CLASS (Hybrid: Search + GenAI) ====================
 class ExpertBot {
     constructor(adviceData) {
         this.adviceData = adviceData;
+        // ⚠️ هام جداً: ضع مفتاح API الخاص بك هنا لكي يعمل الذكاء الاصطناعي
+        this.apiKey = "AIzaSyAEA1TD0jGUnA2zUPlan9sbVwpQjvZ9NsE"; // مثال: "AIzaSy..."
+        
         this.toggleBtn = document.getElementById('ai-toggle-btn');
         this.closeBtn = document.getElementById('ai-close-btn');
         this.chatWindow = document.getElementById('ai-chat-window');
@@ -33,11 +36,10 @@ class ExpertBot {
     }
 
     init() {
-        // Toggle Chat
+        // Event Listeners
         this.toggleBtn.addEventListener('click', () => this.toggleChat());
         this.closeBtn.addEventListener('click', () => this.toggleChat());
 
-        // Send Message
         this.sendBtn.addEventListener('click', () => this.handleUserMessage());
         this.input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
@@ -49,7 +51,7 @@ class ExpertBot {
         // Suggestion Chips
         this.suggestionsContainer.querySelectorAll('.suggestion-chip').forEach(chip => {
             chip.addEventListener('click', (e) => {
-                const text = e.target.textContent.trim().replace(/^[^\s]+\s/, ''); // Remove emoji prefix
+                const text = e.target.textContent.trim().replace(/^[^\s]+\s/, ''); 
                 this.input.value = text;
                 this.handleUserMessage();
             });
@@ -74,24 +76,48 @@ class ExpertBot {
         }
     }
 
-    addMessage(content, sender, isHtml = false) {
+    addMessage(content, sender, sources = []) {
         const div = document.createElement('div');
-        div.className = `flex gap-3 justify-${sender === 'user' ? 'end' : 'start'} animate-slide-in-up`;
+        div.className = `flex gap-3 justify-${sender === 'user' ? 'end' : 'start'} animate-slide-in-up mb-4`;
         
         const avatar = sender === 'bot' 
-            ? `<div class="w-8 h-8 rounded-full bg-bot-ai flex items-center justify-center flex-shrink-0 text-sm border border-gray-700">🧠</div>`
+            ? `<div class="w-8 h-8 rounded-full bg-bot-ai flex items-center justify-center flex-shrink-0 text-sm border border-gray-700 shadow-sm">🧠</div>`
             : '';
 
         const bubbleClass = sender === 'user' 
-            ? 'bg-bot-user text-white rounded-tl-none' 
-            : 'bg-bot-ai text-gray-100 rounded-tr-none border border-gray-700';
+            ? 'bg-bot-user text-white rounded-tl-none shadow-md' 
+            : 'bg-bot-ai text-gray-100 rounded-tr-none border border-gray-700 shadow-md';
 
-        const contentHtml = isHtml ? content : content.replace(/\n/g, '<br>');
+        // تنسيق النص (Markdown بسيط)
+        let formattedContent = content
+            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-b-hl-light">$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/^- (.*$)/gim, '<li class="ml-4 list-disc">$1</li>')
+            .replace(/\n/g, '<br>');
+
+        // إضافة المصادر (Sources) إذا وجدت
+        let sourcesHtml = '';
+        if (sources.length > 0) {
+            sourcesHtml = `
+                <div class="mt-3 pt-3 border-t border-gray-700">
+                    <p class="text-[10px] text-gray-400 mb-2">المصادر المستخدمة:</p>
+                    <div class="flex flex-col gap-2">
+                        ${sources.map(s => `
+                            <div class="bg-black/30 p-2 rounded border border-gray-700 hover:border-b-primary cursor-pointer transition-colors text-xs"
+                                 onclick="document.dispatchEvent(new CustomEvent('openAdvice', {detail: '${s.id}'}))">
+                                <i class="fas fa-link text-b-primary ml-1"></i> ${s.title}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
 
         div.innerHTML = `
             ${sender === 'bot' ? avatar : ''}
-            <div class="${bubbleClass} p-3 rounded-2xl max-w-[85%] text-sm leading-relaxed shadow-md">
-                ${contentHtml}
+            <div class="${bubbleClass} p-4 rounded-2xl max-w-[90%] text-sm leading-relaxed">
+                ${formattedContent}
+                ${sourcesHtml}
             </div>
         `;
 
@@ -102,7 +128,7 @@ class ExpertBot {
     addTypingIndicator() {
         const div = document.createElement('div');
         div.id = 'typing-indicator';
-        div.className = 'flex gap-3 justify-start animate-slide-in-up';
+        div.className = 'flex gap-3 justify-start animate-slide-in-up mb-4';
         div.innerHTML = `
             <div class="w-8 h-8 rounded-full bg-bot-ai flex items-center justify-center flex-shrink-0 text-sm border border-gray-700">🧠</div>
             <div class="bg-bot-ai text-gray-100 p-4 rounded-2xl rounded-tr-none border border-gray-700 flex gap-1 items-center h-10">
@@ -128,77 +154,141 @@ class ExpertBot {
         const text = this.input.value.trim();
         if (!text) return;
 
-        // 1. Add User Message
+        // 1. عرض رسالة المستخدم
         this.addMessage(text, 'user');
         this.input.value = '';
         this.input.style.height = 'auto';
 
-        // 2. Show Typing
+        // 2. إظهار مؤشر الكتابة
         this.addTypingIndicator();
 
-        // 3. Simulate Processing Delay (feels more like AI)
-        await new Promise(resolve => setTimeout(resolve, 600 + Math.random() * 500));
-
-        // 4. Search & Generate Response
-        this.removeTypingIndicator();
-        const response = this.generateResponse(text);
-        this.addMessage(response, 'bot', true);
+        // 3. المعالجة الهجينة (Hybrid Processing)
+        try {
+            const responseData = await this.processHybridQuery(text);
+            this.removeTypingIndicator();
+            this.addMessage(responseData.text, 'bot', responseData.sources);
+        } catch (error) {
+            console.error("Error:", error);
+            this.removeTypingIndicator();
+            this.addMessage("عذراً، حدث خطأ في الاتصال. تأكد من اتصال الإنترنت ومفتاح الـ API.", 'bot');
+        }
     }
 
-    // --- THE CORE "AI" LOGIC (Client-Side Search) ---
-    generateResponse(query) {
-        // A. Normalization (Arabic)
+    // ==================== القلب النابض (The Hybrid Logic) ====================
+    
+    async processHybridQuery(query) {
+        // الخطوة 1: البحث بالكلمات المفتاحية (Keyword Search)
+        // نبحث في الداتا المحلية عن أفضل 3 نصائح ذات صلة
+        const relevantContext = this.findRelevantContext(query);
+
+        // إذا لم يكن هناك API Key، نستخدم البحث التقليدي فقط
+        if (!this.apiKey) {
+            if (relevantContext.length > 0) {
+                return {
+                    text: "أنا شغال حالياً بوضعية البحث المباشر (بدون AI). دي النصايح اللي لقيتها مناسبة لسؤالك:",
+                    sources: relevantContext
+                };
+            } else {
+                return {
+                    text: "للأسف ملقيتش نصايح مباشرة عن الموضوع ده في قاعدة البيانات. جرب تبحث بكلمات تانية.",
+                    sources: []
+                };
+            }
+        }
+
+        // الخطوة 2: التوليد بالذكاء الاصطناعي (Generative AI)
+        // نرسل السياق + السؤال لـ Gemini
+        const aiResponse = await this.callGemini(query, relevantContext);
+        
+        return {
+            text: aiResponse,
+            sources: relevantContext // نرجع المصادر عشان نعرضها للمستخدم
+        };
+    }
+
+    // دالة البحث (Scoring Algorithm)
+    findRelevantContext(query) {
         const normalizedQuery = this.normalizeText(query);
-        const terms = normalizedQuery.split(' ').filter(t => t.length > 2); // Ignore short words
+        const terms = normalizedQuery.split(' ').filter(t => t.length > 2); // تجاهل الكلمات القصيرة
 
-        if (terms.length === 0) return "ممكن توضح سؤالك أكتر؟ انا جاهز اساعدك في أي حاجة تخص المجال.";
+        if (terms.length === 0) return [];
 
-        // B. Scoring System
         const results = this.adviceData.map(advice => {
             let score = 0;
             const normTitle = this.normalizeText(advice.title);
-            const normSummary = this.normalizeText(advice.summary);
             const normTags = advice.tags.map(t => this.normalizeText(t)).join(' ');
-            const normContent = this.normalizeText(advice.fullText); // Search in full text too
+            const normContent = this.normalizeText(advice.fullText);
+            const normSummary = this.normalizeText(advice.summary);
 
             terms.forEach(term => {
-                if (normTitle.includes(term)) score += 10;      // Title match is best
-                if (normTags.includes(term)) score += 8;        // Tag match is strong
-                if (normSummary.includes(term)) score += 5;     // Summary match
-                if (normContent.includes(term)) score += 1;     // Content match
+                // أوزان مختلفة حسب مكان التطابق
+                if (normTitle.includes(term)) score += 20;      // العنوان أهم شيء
+                if (normTags.includes(term)) score += 15;       // التاغ مهم جداً
+                if (normSummary.includes(term)) score += 10;    // الملخص
+                if (normContent.includes(term)) score += 5;     // المحتوى الكامل
             });
 
             return { advice, score };
         });
 
-        // C. Sort & Filter
-        const topMatches = results
+        // نأخذ أعلى 3 نتائج فقط لعدم تشتيت الـ AI
+        return results
             .filter(r => r.score > 0)
             .sort((a, b) => b.score - a.score)
-            .slice(0, 3); // Top 3 matches
+            .slice(0, 3)
+            .map(r => r.advice);
+    }
 
-        // D. Response Construction
-        if (topMatches.length > 0) {
-            let reply = `<p class="mb-2">لقيت لك نصايح ممتازة بخصوص سؤالك:</p>`;
-            
-            topMatches.forEach(match => {
-                reply += `
-                    <div class="mb-3 bg-black/20 p-3 rounded-lg border border-gray-700 hover:border-b-primary cursor-pointer transition-colors" 
-                         onclick="document.dispatchEvent(new CustomEvent('openAdvice', {detail: '${match.advice.id}'}))">
-                        <div class="font-bold text-b-hl-light text-sm mb-1">
-                            <i class="fas fa-star text-xs ml-1"></i>${match.advice.title}
-                        </div>
-                        <div class="text-xs text-gray-300 line-clamp-2">${match.advice.summary}</div>
-                    </div>
-                `;
-            });
-            
-            reply += `<p class="text-xs text-gray-400 mt-2">اضغط على أي كارت عشان تشوف النصيحة كاملة 👆</p>`;
-            return reply;
-        } else {
-            // Fallback / General Chat
-            return this.getFallbackResponse(normalizedQuery);
+    // دالة الاتصال بـ Gemini API
+    async callGemini(query, contextItems) {
+        // تحضير السياق (Context Construction)
+        let contextString = "";
+        if (contextItems.length > 0) {
+            contextString = contextItems.map((item, index) => 
+                `[نصيحة ${index + 1}]: العنوان: ${item.title} | المحتوى: ${item.summary}`
+            ).join('\n\n');
         }
+
+        const systemPrompt = `
+        أنت مساعد خبير لطلاب هندسة الإلكترونيات في مصر، اسمك "مساعد بوصلة".
+        
+        لديك مجموعة من "نصائح الخبراء" الموثوقة أدناه.
+        مهمتك: الإجابة على سؤال الطالب باستخدام هذه النصائح **فقط**.
+        
+        قواعد صارمة:
+        1. إذا وجدت الإجابة في النصائح، صغها بأسلوبك الودود (مصري هندسي) ولخصها.
+        2. إذا لم تجد الإجابة في النصائح، قل بوضوح: "معنديش نصيحة محددة من الخبراء عن الموضوع ده حالياً، بس بشكل عام..." ثم أجب من معرفتك العامة ولكن باختصار شديد.
+        3. استخدم التنسيق (Bold, Bullet points) لتسهيل القراءة.
+        4. لا تذكر معرفات تقنية (IDs) أو تفاصيل الكود.
+
+        نصائح الخبراء المتاحة (السياق):
+        ${contextString ? contextString : "لا يوجد نصائح مطابقة في قاعدة البيانات لهذا السؤال."}
+
+        سؤال الطالب: ${query}
+        `;
+
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${this.apiKey}`;
+        
+        const payload = {
+            contents: [{
+                parts: [{ text: systemPrompt }]
+            }]
+        };
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        
+        if (data.error) {
+            console.error("API Error:", data.error);
+            return "واجهت مشكلة تقنية بسيطة، حاول تسألني تاني.";
+        }
+
+        return data.candidates[0].content.parts[0].text;
     }
 
     normalizeText(text) {
@@ -207,28 +297,11 @@ class ExpertBot {
             .replace(/(أ|إ|آ)/g, 'ا')
             .replace(/ى/g, 'ي')
             .replace(/ة/g, 'ه')
-            .replace(/[^a-zA-Z0-9\u0600-\u06FF ]/g, ' '); // Keep Arabic & English only
-    }
-
-    getFallbackResponse(query) {
-        if (query.includes('شكرا') || query.includes('تسلم')) {
-            return "العفو يا هندسة! بالتوفيق دايماً ❤️";
-        }
-        if (query.includes('سلام') || query.includes('باي')) {
-            return "مع السلامة! في انتظارك في أي وقت.";
-        }
-        return `
-            للأسف ملقيتش نصيحة مباشرة عن الموضوع ده في قاعدة البيانات الحالية 😔.
-            <br>
-            جرب تسأل بكلمات مفتاحية زي:
-            <span class="text-b-hl-light">MATLAB</span>, 
-            <span class="text-b-hl-light">Verification</span>, 
-            <span class="text-b-hl-light">مشروع التخرج</span>.
-        `;
+            .replace(/[^a-zA-Z0-9\u0600-\u06FF ]/g, ' '); 
     }
 }
 
-// ==================== EXPERTS PAGE LOGIC ====================
+// ==================== باقي كود الصفحة (فلاتر وعرض) كما هو ====================
 document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const grid = document.getElementById('advice-grid');
@@ -257,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let allAdvice = [];
     let allData = {};
     let activeTag = 'All';
-    let expertBot = null; // Bot Instance
+    let expertBot = null;
 
     // ==================== UTILITY FUNCTIONS ====================
     
@@ -468,7 +541,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'auto';
     }
 
-    // Event to allow bot to open modal
     document.addEventListener('openAdvice', (e) => {
         const adviceId = e.detail;
         const advice = allAdvice.find(a => a.id === adviceId);
@@ -515,15 +587,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             allData = await response.json();
             
-            // Handle combined data or array
             allAdvice = allData.Advice || (Array.isArray(allData) ? allData : []);
             
-            // Filter duplicates
             allAdvice = allAdvice.filter((advice, index, self) =>
                 index === self.findIndex(a => a.title === advice.title)
             );
             
-            // Populate category filter
             if (allData.filterTags) {
                 allData.filterTags.forEach(tagInfo => {
                     if (tagInfo.tag !== 'All') {
@@ -535,7 +604,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
             
-            // Populate source filter
             const sources = [...new Set(allAdvice.map(a => a.source))];
             sources.forEach(source => {
                 const option = document.createElement('option');
@@ -544,7 +612,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 filterSource.appendChild(option);
             });
 
-            // Render content
             totalAdviceSpan.textContent = allAdvice.length;
             totalCountSpan.textContent = allAdvice.length;
             renderAdvice(allAdvice);
@@ -552,7 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (allData.expertStories) renderStories(allData.expertStories);
             if (allData.expertFAQ) renderFAQ(allData.expertFAQ);
 
-            // INITIALIZE EXPERT BOT AFTER DATA LOADED
+            // INITIALIZE EXPERT BOT (The Hybrid One)
             expertBot = new ExpertBot(allAdvice);
             
         } catch (error) {
@@ -579,7 +646,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeAdviceModal();
     });
 
-    // ==================== INITIALIZATION ====================
     initMobileMenu();
     loadAdvice();
 });
