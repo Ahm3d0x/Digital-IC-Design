@@ -18,36 +18,7 @@
         "يستخدم Vivado في الشرح",
         "مناسب جداً للمبتدئين"
       ],
-      "url": "https://www.youtube.com/playlist?list=..."
-    },
-    "contributor": {
-      "name": "Yousef Sherif",
-      "linkedin": "https://www.linkedin.com/in/yousef-sherif-6343b219b/",
-      "github": null,
-      "email": "shirefy49@gmail.com"
-    }
-  },
-  {
-    "id": "res002",
-    "title": "Digital VLSI Design Course - Adam Teman",
-    "author": "Adam Teman",
-    "description": "كورس شامل يغطي ASIC Flow بالتفصيل مع التركيز على RTL Design و Physical Design.",
-    "type": "video",
-    "tags": ["ASIC", "RTL", "Physical Design", "STA", "English"],
-    "stage": "stage1",
-    "track": "design",
-    "details": {
-      "level": "متوسط إلى متقدم",
-      "roadmap": "المرحلة الأولى والثانية",
-      "summary": "كورس ممتاز من جامعة إسرائيلية يشرح ASIC Flow بشكل كامل، من RTL حتى Physical Design. يتميز بشرح عملي وواقعي.",
-      "features": [
-        "يمشي معك في ASIC Flow كاملاً",
-        "شرح ممتاز لـ STA في المحاضرة رقم 5",
-        "فيديو مهم عن How to write Synthesizeable RTL",
-        "يتكلم عن Conventions مهمة لكتابة Clean Code",
-        "يغطي Topics مهمة جداً في ASIC Flow"
-      ],
-      "url": "https://www.youtube.com/playlist?list=..."
+      "url": "https://www.youtube.com/playlist?list=PL-iIOnHwN7NXw01eBDR7wI8KzGK4mu8Sr"
     },
     "contributor": {
       "name": "Yousef Sherif",
@@ -186,7 +157,7 @@
         "أمثلة محلولة",
         "شرح أكاديمي متعمق"
       ],
-      "url": "https://www.youtube.com/playlist?list=..."
+      "url": "https://nptel.ac.in/courses/106105165."
     },
     "contributor": {
       "name": "Yousef Sherif",

@@ -255,7 +255,10 @@
                 "author": "Anas Verilog (عربي)", 
                 "note": "**مفضل للمبتدئين.** شرح واضح ومشاريع عملية كثيرة على Vivado يمكن إضافتها للـ CV.", 
                 "links": [
-                    {"title": "فتح المصدر", "link": "https://www.youtube.com/playlist?list=PL-M-k-m-e-c-G-B-N-w-c-w-Q_k-g-g", "type": "video"}
+                    {"title": " youtube", "link": "https://www.youtube.com/playlist?list=PL-iIOnHwN7NXw01eBDR7wI8KzGK4mu8Sr", "type": "video"},
+                    {"title": "drive-pdfs", "link": "https://drive.google.com/drive/folders/1A6ZaHk8zShj0Tk9DtuNWgWmwlpHtBB2w", "type": "file"},
+                    {"title": "github-codes", "link": "https://github.com/aseddin/ece_3300", "type": "code"}
+
                 ]
               },
               { 
@@ -263,20 +266,32 @@
                 "author": "Adam Teman (English)", 
                 "note": "للفهم العميق والربط مع ASIC Flow. يحتوي فيديو مهم عن 'How to write Synthesizable RTL'.", 
                 "links": [
-                    {"title": "فتح المصدر", "link": "https://www.youtube.com/playlist?list=PLZU5hLL_713x0_AV_rVbay0pW_MED7992G", "type": "video"}
+                    {"title": "youtube", "link": "https://www.youtube.com/playlist?list=PLZU5hLL_713x0_AV_rVbay0pW_MED7992G", "type": "video"}
                 ]
               },
-              { "type": "video", "author": "NPTEL Hardware Modeling (Optional)", "note": "محتوى نظري ممتاز ومفصل.", "links": [] },
-              { "type": "video", "author": "Paul Franzon (Optional)", "note": "كورس أكاديمي جيد آخر.", "links": [] },
+              { "type": "video", "author": "NPTEL Hardware Modeling (Optional)", "note": "محتوى نظري ممتاز ومفصل.", "links": [
+                {"title": "youtube", "link": "https://www.youtube.com/playlist?list=PLUtfVcb-iqn-EkuBs3arreilxa2UKIChl", "type": "video"},
+                {"title": "course-NPTEL", "link": "https://nptel.ac.in/courses/106105165", "type": "link"},
+                {"title": "drive", "link": "https://drive.google.com/drive/folders/16ousUlKTwu6Y0dd3BP_GORjZ4oDuTlzi", "type": "file"}
+              ] },
+              { "type": "video", "author": "Paul Franzon (Optional)", "note": "كورس أكاديمي جيد آخر.", "links": [
+                {"title": "youtube", "link": "https://www.youtube.com/playlist?list=PLfGJEQLQIDBN0VsXQ68_FEYyqcym8CTDN", "type": "video"},
+                {"title": "drive", "link": "https://drive.google.com/drive/folders/1cNa7nktYvFQR78C9722m2xxE2FcV5vgg", "type": "file"},
+                
+              ] },
               { 
                 "type": "website", 
                 "author": "HDLBits (تطبيق عملي)", 
                 "note": "**ضروري جداً.** موقع لحل مسائل Verilog وتثبيت الفهم (Problem Solving).", 
                 "links": [
-                    {"title": "فتح المصدر", "link": "https://hdlbits.com/", "type": "website"}
+                    {"title": "Site", "link": "https://hdlbits.01xz.net/wiki/Main_Page", "type": "website"},
+                    {"title": "solutions 1", "link": "https://gitee.com/mosqlwj/Solutions-to-HDLbits-Verilog-sets", "type": "website"},
+                    {"title": "solutions 2", "link": "https://github.com/viduraakalanka/HDL-Bits-Solutions", "type": "website"}
                 ]
               },
-              { "type": "book", "author": "The Verilog Golden Reference Guide by DOULOS", "note": "مرجع مكتوب جيد للغة.", "links": [] }
+              { "type": "book", "author": "The Verilog Golden Reference Guide by DOULOS", "note": "مرجع مكتوب جيد للغة.", "links": [
+                {"title": "pdf", "link": "https://drive.google.com/file/d/1qS3fDkCeSwcsl-4lp93lWA51P-u6QxMx/view", "type": "file"}
+              ] }
             ],
             "guidance": [
               "شاهد أمثلة كثيرة لكتابة دوائر مختلفة (Full Adder, ALU, Counters, Registers).",
