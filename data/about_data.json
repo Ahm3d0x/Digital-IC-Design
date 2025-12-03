@@ -2,11 +2,11 @@
   "creator": [
     {
       "id": "ahmed_attia",
-      "name": "Ahmed Mohamed Attia",
-      "title": "Website Creator | Electronics & Communications Engineering Student",
+      "name": "أحمد محمد عطية",
+      "title": " منشئ الموقع | طالب هندسة اتصالات والإلكترونيات",
       "imageUrl": "https://placehold.co/400x400/006A67/F6F6F6?text=AMA",
-      "bio": "Student at the Faculty of Engineering, Electronics & Communications Department, Zagazig University. Passionate about Integrated Circuit (IC) Design and Digital Systems.",
-      "role": "Ideator and Developer of \"Compass\" (Bawsala). The goal was to organize scattered information in the field and present it as a clear, simplified roadmap to help every student start their journey without distraction.",
+      "bio": "طالب في كلية الهندسة، قسم الاتصالات والإلكترونيات، جامعة الزقازيق. مهتم بشدة بمجال تصميم الدوائر المتكاملة (IC Design) والأنظمة الرقمية.",
+      "role": "صاحب فكرة ومطور موقع \"بوصلة\". الهدف كان تنظيم المعلومات المتناثرة في المجال وتقديمها في شكل خريطة طريق واضحة ومبسطة، لمساعدة كل طالب يبدأ رحلته في هذا المجال دون تشتت.",
       "socials": [
         {
           "name": "LinkedIn",
@@ -26,11 +26,11 @@
   "mainContributor": [
     {
       "id": "yousef_sherif",
-      "name": "Eng. Yousef Sherif",
-      "title": "Owner of the Main Content Drive",
+      "name": "م.يوسف شريف",
+      "title": "صاحب درايف المحتوى الرئيسي",
       "imageUrl": "https://placehold.co/400x400/A2D5C6/000000?text=YS",
-      "bio": "Verification Engineer at ICpedia (Synopsys Contractor) and former TA at AUC. Yousef is considered the primary source of the rich scientific content upon which this website is built.",
-      "role": "Yousef put tremendous effort into compiling, reviewing, and organizing the \"Comprehensive Guide to Digital IC Design\" and its attachments. This website acts as an organized interactive interface for this valuable content.",
+      "bio": "Verification Engineer @ ICpedia (Synopsys Contractor) و TA سابق في AUC. يعتبر يوسف المصدر الرئيسي والأول للمحتوى العلمي الثري الذي بني عليه هذا الموقع.",
+      "role": "قام يوسف بجهد هائل في تجميع ومراجعة وتنظيم \"الدليل الشامل لمجال Digital IC Design\" والملفات المرفقة به. هذا الموقع هو بمثابة واجهة تفاعلية منظمة لهذا المحتوى القيم.",
       "socials": [
         {
           "name": "LinkedIn",
@@ -49,109 +49,109 @@
   ],
   "contributors": [
     {
-      "id": "ziad_mohammed",
-      "name": "Eng. Ziad Mohammed",
-      "title": "Data Organization & Content Structuring Contributor",
-      "imageUrl": "https://placehold.co/400x400/006A67/FFFFFF?text=ZM",
-      "bio": "Electrical Engineering Student interested in digital systems and data organization. He contributed significantly to coordinating content and preparing the internal data for Compass, ensuring a professional and organized output.",
-      "role": "Ziad played a pivotal role in arranging, formatting, and cleaning the data used to build the website pages. He worked on structuring the data for various sections to appear consistent and user-friendly, helping transform raw content into a clear and organized learning experience.",
-      "socials": [
-        {
-          "name": "LinkedIn",
-          "url": "https://www.linkedin.com/in/ziad-muhammed-1b71a434b/"
-        }
-      ]
-    },
+  "id": "ziad_mohammed",
+  "name": "م. زياد محمد",
+  "title": "مساهم في تنظيم البيانات وهيكلة محتوى الموقع",
+  "imageUrl": "https://placehold.co/400x400/006A67/FFFFFF?text=ZM",
+  "bio": "Electrical Engineering Student مهتم بالأنظمة الرقمية وتنظيم البيانات. ساهم بشكل جوهري في تنسيق المحتوى وتجهيز الداتا الداخليّة لموقع بوصلة، وضمان خروجها بصورة احترافية ومنظمة.",
+  "role": "كان لزياد دور محوري في ترتيب، تنسيق، وتنظيف البيانات المستخدمة في بناء صفحات الموقع. عمل على هيكلة الداتا الخاصة بالأقسام المختلفة لتظهر بشكل متسق وسهل الاستخدام، مما ساعد في تحويل المحتوى الخام إلى تجربة تعليمية واضحة ومرتّبة.",
+  "socials": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ziad-muhammed-1b71a434b/"
+    }
+  ]
+},
     {
       "id": "yaseen_salah",
-      "name": "Eng. Yaseen Salah",
-      "title": "Content Contributor",
+      "name": "م.ياسين صلاح",
+      "title": "مساهم بالمحتوى",
       "imageUrl": "https://placehold.co/400x400/E6FF94/000000?text=YS",
-      "bio": "Active contributor in compiling content.",
-      "role": "Provided valuable feedback and helped provide important resources to enrich the guide.",
+      "bio": "مساهم فعال في تجميع المحتوى.",
+      "role": "قدم ملاحظات قيمة وساعد في توفير مصادر هامة لإثراء الدليل.",
       "socials": []
     },
     {
       "id": "fatma_ali",
-      "name": "Eng. Fatma Ali",
-      "title": "Content Contributor",
+      "name": "م.فاطمة علي",
+      "title": "مساهمة بالمحتوى",
       "imageUrl": "https://placehold.co/400x400/FFF4B7/000000?text=FA",
-      "bio": "Active contributor in compiling content.",
-      "role": "Provided valuable tips and specialized resources in MATLAB and Verification.",
+      "bio": "مساهمة فعالة في تجميع المحتوى.",
+      "role": "قدمت نصائح قيمة ومصادر متخصصة في مجالي MATLAB والـ Verification.",
       "socials": []
     },
     {
       "id": "moumen_sameh",
-      "name": "Eng. Moumen Sameh",
-      "title": "Content Contributor",
+      "name": "م.مؤمن سامح",
+      "title": "مساهم بالمحتوى",
       "imageUrl": "https://placehold.co/400x400/CFFFE2/000000?text=MS",
-      "bio": "Active contributor in compiling content.",
-      "role": "Shared his valuable graduation project experience and offered practical advice to students.",
+      "bio": "مساهم فعال في تجميع المحتوى.",
+      "role": "شارك بتجربته القيمة في مشروع التخرج وقدم نصائح عملية للطلاب.",
       "socials": []
     }
   ],
   "experts": [
     {
       "id": "diaa_khalil",
-      "name": "Dr. Diaa Khalil",
-      "title": "Professor & Expert",
+      "name": "د. ضياء الدين خليل",
+      "title": "أستاذ وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=DK",
-      "bio": "Professor specializing in Integrated Circuit Design.",
-      "role": "Essential source for valuable lectures in VLSI.",
+      "bio": "أستاذ متخصص في تصميم الدوائر المتكاملة.",
+      "role": "مصدر أساسي للمحاضرات القيمة في مجال VLSI.",
       "socials": []
     },
     {
       "id": "hisham_omran",
-      "name": "Dr. Hisham Omran",
-      "title": "Professor & Expert",
+      "name": "د. هشام عمران",
+      "title": "أستاذ وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=HO",
-      "bio": "Professor specializing in Digital Integrated Circuit Design.",
-      "role": "Main source for advanced Digital IC Design courses.",
+      "bio": "أستاذ متخصص في تصميم الدوائر المتكاملة الرقمية.",
+      "role": "مصدر رئيسي لكورسات Digital IC Design المتقدمة.",
       "socials": []
     },
     {
       "id": "ayman_wahba",
-      "name": "Dr. Ayman Wahba",
-      "title": "Professor & Expert",
+      "name": "د. أيمن وهبة",
+      "title": "أستاذ وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=AW",
-      "bio": "Professor specializing in Logic Design and Verification.",
-      "role": "Important source for Logic Design and Digital Verification courses.",
+      "bio": "أستاذ متخصص في التصميم المنطقي والـ Verification.",
+      "role": "مصدر هام لكورسات Logic Design و Digital Verification.",
       "socials": []
     },
     {
       "id": "mohamed_khattab",
-      "name": "Dr. Mohamed Khattab",
-      "title": "Professor & Expert",
+      "name": "د. محمد خطاب",
+      "title": "أستاذ وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=MK",
-      "bio": "Professor specializing in Computer Architecture.",
-      "role": "Source for Computer Architecture courses.",
+      "bio": "أستاذ متخصص في معمارية الحاسبات.",
+      "role": "مصدر لكورسات Computer Architecture.",
       "socials": []
     },
     {
       "id": "hossam_fahmy",
-      "name": "Dr. Hossam Fahmy",
-      "title": "Professor & Expert",
+      "name": "د. حسام فهمي",
+      "title": "أستاذ وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=HF",
-      "bio": "Professor specializing in Advanced Computer Architecture.",
-      "role": "Source for Advanced Computer Architecture courses.",
+      "bio": "أستاذ متخصص في معمارية الحاسبات المتقدمة.",
+      "role": "مصدر لكورسات Advanced Computer Architecture.",
       "socials": []
     },
     {
       "id": "kareem_waseem",
-      "name": "Eng. Kareem Waseem",
-      "title": "Engineer & Expert",
+      "name": "م. كريم وسيم",
+      "title": "مهندس وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=KW",
-      "bio": "Expert Engineer in Digital Design.",
-      "role": "Provided important guidance and directions in the field (Digital Design Guidance).",
+      "bio": "مهندس خبير في مجال التصميم الرقمي.",
+      "role": "قدم توجيهات وإرشادات هامة في المجال (Digital Design Guidance).",
       "socials": []
     },
     {
       "id": "hisham_elready",
-      "name": "Eng. Hisham Elready",
-      "title": "Engineer & Expert",
+      "name": "م. هشام الراضي",
+      "title": "مهندس وخبير",
       "imageUrl": "https://placehold.co/300x300/444/F6F6F6?text=HE",
-      "bio": "Expert Engineer and Graduation Project Mentor.",
-      "role": "Provided valuable mentorship for graduation projects (GP Mentorship).",
+      "bio": "مهندس خبير ومرشد لمشاريع التخرج.",
+      "role": "قدم إرشاداً قيماً لمشاريع التخرج (GP Mentorship).",
       "socials": []
     }
   ]
