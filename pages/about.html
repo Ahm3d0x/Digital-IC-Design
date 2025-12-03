@@ -5,11 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عن موقع بوصلة</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="../css/global.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        * {
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(34, 196, 93, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(34, 196, 93, 0.6);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #22C45D 0%, #006A67 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(#111111, #111111) padding-box,
+                        linear-gradient(135deg, #006A67, #22C45D) border-box;
+            border: 2px solid transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+        }
+        
+        .expert-card {
+            transition: all 0.3s ease;
+        }
+        
+        .expert-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+            background: #006A67;
+            border-radius: 4px;
+        }
+        
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+            background: #22C45D;
+        }
+    </style>
 
     <script>
         tailwind.config = {
@@ -36,7 +134,6 @@
     </script>
 </head> 
 <body class="antialiased bg-b-bg text-b-text font-cairo">
-
     <!-- Header -->
     <header class="bg-b-surface shadow-2xl border-b border-b-border sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
         <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -84,80 +181,111 @@
     <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 md:py-20">
 
         <!-- Hero Section -->
-        <section class="mb-20 text-center animate-fade-in-up">
-            <div class="inline-block -mb-6">
-            <i data-feather="info" class="w-20 h-20 text-b-primary mx-auto"></i>
+        <section class="mb-24 text-center animate-fade-in-up relative">
+            <!-- Background decoration -->
+            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-b-primary opacity-5 rounded-full blur-3xl -z-10"></div>
+            
+            <div class="inline-block mb-8 animate-float">
+                <div class="w-24 h-24 bg-gradient-to-br from-b-primary to-b-hl-light rounded-full flex items-center justify-center shadow-2xl" style="animation: pulse-glow 2s infinite;">
+                    <i data-feather="info" class="w-12 h-12 text-white"></i>
+                </div>
             </div>
-            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 p-6 gradient-text">عن بوصلة</h1>
-            <div class="max-w-4xl mx-auto bg-b-surface border border-b-border rounded-2xl p-8 md:p-10 shadow-2xl">
-                <p class="text-lg md:text-xl text-gray-300 leading-relaxed">
-                    في عالم الـ <span class="text-b-hl-light font-semibold">Digital IC Design</span>، المعلومة موجودة لكنها مبعثرة. 
-                    <span class="text-b-hl-green font-semibold">بوصلة</span> وُجد ليكون المرشد.
-                    هدفنا ليس فقط تجميع المصادر، بل تنظيمها في مسار واضح، خطوة بخطوة، يبدأ معك من الصفر 
-                    ويأخذ بيدك حتى تصل إلى مستوى متقدم يمكنك من بناء مشاريع حقيقية.
-                </p>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-8 gradient-text leading-tight">
+                عن بوصلة
+            </h1>
+            
+            <div class="max-w-4xl mx-auto gradient-border rounded-3xl p-1 shadow-2xl">
+                <div class="bg-b-surface rounded-3xl p-8 md:p-12">
+                    <p class="text-xl md:text-2xl text-gray-300 leading-relaxed mb-6">
+                        في عالم الـ <span class="text-b-hl-light font-bold">Digital IC Design</span>، المعلومة موجودة لكنها مبعثرة.
+                    </p>
+                    <div class="w-20 h-1 bg-gradient-to-r from-b-primary to-b-hl-light mx-auto mb-6 rounded-full"></div>
+                    <p class="text-lg md:text-xl text-gray-400 leading-relaxed">
+                        <span class="text-b-hl-green font-bold text-2xl">بوصلة</span> وُجد ليكون المرشد.
+                        هدفنا ليس فقط تجميع المصادر، بل تنظيمها في مسار واضح، خطوة بخطوة، يبدأ معك من الصفر 
+                        ويأخذ بيدك حتى تصل إلى مستوى متقدم يمكنك من بناء مشاريع حقيقية.
+                    </p>
+                </div>
             </div>
         </section>
 
         <!-- قسم: منشئ الموقع -->
-        <section class="mb-20 animate-fade-in-up stagger-1">
-            <div class="text-center mb-12">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <i data-feather="user" class="w-8 h-8 text-b-primary"></i>
-                    <h2 class="text-4xl font-bold text-b-hl-light">منشئ الموقع</h2>
+        <section class="mb-28 animate-fade-in-up stagger-1">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-4 bg-b-surface px-6 py-3 rounded-full border border-b-border">
+                    <i data-feather="star" class="w-6 h-6 text-b-hl-yellow"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">منشئ الموقع</h2>
                 </div>
-                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-b-primary to-transparent mx-auto"></div>
+                <p class="text-gray-400 mt-4 text-lg">العقل المدبر وراء بوصلة</p>
             </div>
+            
             <div id="creator-container" class="flex justify-center">
                 <!-- سيتم ملء هذا الكارت بواسطة JavaScript -->
             </div>
         </section>
 
         <!-- قسم: المساهمون الرئيسيون -->
-        <section class="mb-20 animate-fade-in-up stagger-2">
-            <div class="text-center mb-12">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <i data-feather="users" class="w-8 h-8 text-b-hl-light"></i>
-                    <h2 class="text-4xl font-bold text-b-hl-light">المساهمون الرئيسيون</h2>
+        <section class="mb-28 animate-fade-in-up stagger-2">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-4 bg-b-surface px-6 py-3 rounded-full border border-b-border">
+                    <i data-feather="users" class="w-6 h-6 text-b-hl-light"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white">فريق العمل</h2>
                 </div>
-                <p class="text-gray-400 mt-4">الأشخاص الذين ساهموا في بناء وإثراء محتوى بوصلة</p>
-                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-b-hl-light to-transparent mx-auto mt-4"></div>
+                <p class="text-gray-400 mt-4 text-lg">الأشخاص الذين ساهموا في بناء وإثراء محتوى بوصلة</p>
+                <div class="w-32 h-1 bg-gradient-to-r from-transparent via-b-hl-light to-transparent mx-auto mt-6 rounded-full"></div>
             </div>
-            <div id="contributors-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            
+            <div id="contributors-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- سيتم ملء الكروت هنا بواسطة JavaScript -->
             </div>
         </section>
 
         <!-- قسم: الأساتذة والخبراء -->
-        <section class="mb-20 animate-fade-in-up stagger-3">
-            <div class="text-center mb-12">
-                <div class="flex items-center justify-center gap-3 mb-4">
-                    <i data-feather="award" class="w-8 h-8 text-b-hl-green"></i>
-                    <h2 class="text-4xl font-bold text-b-hl-green">شكر خاص للأساتذة والخبراء</h2>
+        <section class="mb-28 animate-fade-in-up stagger-3">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-3 mb-4 bg-gradient-to-r from-b-surface to-b-bg px-6 py-3 rounded-full border border-b-hl-green">
+                    <i data-feather="award" class="w-6 h-6 text-b-hl-green"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold text-b-hl-green">شكر خاص للأساتذة والخبراء</h2>
                 </div>
-                <p class="text-gray-400 mt-4">الذين قدموا علمهم وخبرتهم لإثراء المجتمع التعليمي</p>
-                <div class="w-24 h-1 bg-gradient-to-r from-transparent via-b-hl-green to-transparent mx-auto mt-4"></div>
+                <p class="text-gray-400 mt-4 text-lg">الذين قدموا علمهم وخبرتهم لإثراء المجتمع التعليمي</p>
+                <div class="w-32 h-1 bg-gradient-to-r from-transparent via-b-hl-green to-transparent mx-auto mt-6 rounded-full"></div>
             </div>
-            <div id="experts-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            
+            <div id="experts-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
                 <!-- سيتم ملء الكروت هنا بواسطة JavaScript -->
             </div>
         </section>
 
         <!-- قسم: رسالة شكر -->
-        <section class="text-center max-w-4xl mx-auto animate-fade-in-up stagger-4">
-            <div class="bg-gradient-to-br from-b-surface via-b-bg to-b-surface p-10 md:p-12 rounded-2xl border border-b-border shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-40 h-40 bg-b-primary opacity-5 rounded-full -mr-20 -mt-20"></div>
-                <div class="absolute bottom-0 left-0 w-40 h-40 bg-b-hl-light opacity-5 rounded-full -ml-20 -mb-20"></div>
-                <div class="relative z-10">
-                    <div class="inline-block mb-6">
-                        <i data-feather="heart" class="w-16 h-16 text-red-500 mx-auto"></i>
+        <section class="text-center max-w-5xl mx-auto animate-fade-in-up stagger-4">
+            <div class="gradient-border rounded-3xl p-1 shadow-2xl">
+                <div class="bg-gradient-to-br from-b-surface via-b-bg to-b-surface rounded-3xl p-10 md:p-16 relative overflow-hidden">
+                    <!-- Decorative elements -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-b-primary opacity-5 rounded-full -mr-32 -mt-32"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-b-hl-light opacity-5 rounded-full -ml-32 -mb-32"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="inline-block mb-8">
+                            <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+                                <i data-feather="heart" class="w-10 h-10 text-white"></i>
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">شكر وتقدير</h2>
+                        
+                        <div class="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
+                            <p>
+                                هذا العمل لم يكن ليظهر للنور لولا فضل الله أولاً، ثم جهود ومساهمات كل شخص مذكور في هذه الصفحة.
+                            </p>
+                            <p>
+                                كل الشكر والتقدير لكل من ساهم بوقته، معرفته، أو حتى بكلمة تشجيعية.
+                            </p>
+                            <p class="text-2xl font-bold text-b-hl-light">
+                                بوصلة هو نتاج جهد جماعي نأمل أن يكون علماً ينتفع به 🌟
+                            </p>
+                        </div>
                     </div>
-                    <h2 class="text-4xl font-bold mb-6 text-b-hl-yellow">شكر وتقدير</h2>
-                    <p class="text-lg text-gray-300 leading-relaxed">
-                        هذا العمل لم يكن ليظهر للنور لولا فضل الله أولاً، ثم جهود ومساهمات كل شخص مذكور في هذه الصفحة.
-                        كل الشكر والتقدير لكل من ساهم بوقته، معرفته، أو حتى بكلمة تشجيعية. 
-                        <span class="text-b-hl-light font-semibold">بوصلة</span> هو نتاج جهد جماعي نأمل أن يكون علماً يُنتفع به.
-                    </p>
                 </div>
             </div>
         </section>
@@ -165,12 +293,11 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-b-surface border-t border-b-border mt-32" aria-labelledby="footer-heading">
-        <h2 id="footer-heading" class="sr-only">Footer</h2>
+    <footer class="bg-b-surface border-t border-b-border mt-32">
         <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
             <div class="text-center">
                 <div class="flex justify-center items-center gap-2 mb-4">
-                    <i data-feather="heart" class="w-5 h-5 text-red-500"></i>
+                    <i data-feather="heart" class="w-5 h-5 text-red-500 animate-pulse"></i>
                     <p class="text-gray-400">صُنع بكل حب لمساعدة الطلاب</p>
                 </div>
                 <p class="text-gray-500 text-sm">
@@ -184,9 +311,9 @@
     </footer>
 
     <!-- النافذة العائمة (Modal) -->
-    <div id="modal-overlay" class="fixed inset-0 w-full h-full z-[100] bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center p-4 hidden transition-all duration-300">
-        <div id="modal-content" class="bg-b-surface border border-b-border w-full max-w-2xl rounded-2xl shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button id="modal-close-btn" class="absolute top-4 left-4 w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center text-2xl font-bold transition-all z-10 shadow-lg">
+    <div id="modal-overlay" class="fixed inset-0 w-full h-full z-[100] bg-black bg-opacity-90 modal-backdrop hidden items-center justify-center p-4 transition-all duration-300 opacity-0">
+        <div id="modal-content" class="bg-b-surface border-2 border-b-primary w-full max-w-3xl rounded-3xl shadow-2xl relative max-h-[90vh] overflow-y-auto scrollbar-thin transform scale-95 transition-all duration-300">
+            <button id="modal-close-btn" class="absolute top-6 left-6 w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-full flex items-center justify-center text-2xl font-bold transition-all z-10 shadow-2xl hover:scale-110">
                 ×
             </button>
             
@@ -195,12 +322,6 @@
             </div>
         </div>
     </div>
-
-    <script src="https://unpkg.com/feather-icons"></script>
-    <script type="module" src="../js/about.js"></script>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-        feather.replace();
-    </script>
+ <script src="../js/about.js"></script>
 </body>
 </html>
