@@ -258,7 +258,6 @@
                     {"title": " youtube", "link": "https://www.youtube.com/playlist?list=PL-iIOnHwN7NXw01eBDR7wI8KzGK4mu8Sr", "type": "video"},
                     {"title": "drive-pdfs", "link": "https://drive.google.com/drive/folders/1A6ZaHk8zShj0Tk9DtuNWgWmwlpHtBB2w", "type": "file"},
                     {"title": "github-codes", "link": "https://github.com/aseddin/ece_3300", "type": "code"}
-
                 ]
               },
               { 
@@ -276,8 +275,7 @@
               ] },
               { "type": "video", "author": "Paul Franzon (Optional)", "note": "كورس أكاديمي جيد آخر.", "links": [
                 {"title": "youtube", "link": "https://www.youtube.com/playlist?list=PLfGJEQLQIDBN0VsXQ68_FEYyqcym8CTDN", "type": "video"},
-                {"title": "drive", "link": "https://drive.google.com/drive/folders/1cNa7nktYvFQR78C9722m2xxE2FcV5vgg", "type": "file"},
-                
+                {"title": "drive", "link": "https://drive.google.com/drive/folders/1cNa7nktYvFQR78C9722m2xxE2FcV5vgg", "type": "file"}
               ] },
               { 
                 "type": "website", 
