@@ -20,7 +20,6 @@ function initMobileMenu() {
 class ExpertBot {
     constructor(adviceData) {
         this.adviceData = adviceData;
-        // ⚠️ هام جداً: ضع مفتاح API الخاص بك هنا لكي يعمل الذكاء الاصطناعي
         this.apiKey = "AIzaSyAEA1TD0jGUnA2zUPlan9sbVwpQjvZ9NsE"; // مثال: "AIzaSy..."
         
         this.toggleBtn = document.getElementById('ai-toggle-btn');
@@ -154,15 +153,11 @@ class ExpertBot {
         const text = this.input.value.trim();
         if (!text) return;
 
-        // 1. عرض رسالة المستخدم
         this.addMessage(text, 'user');
         this.input.value = '';
         this.input.style.height = 'auto';
 
-        // 2. إظهار مؤشر الكتابة
         this.addTypingIndicator();
-
-        // 3. المعالجة الهجينة (Hybrid Processing)
         try {
             const responseData = await this.processHybridQuery(text);
             this.removeTypingIndicator();
@@ -174,14 +169,11 @@ class ExpertBot {
         }
     }
 
-    // ==================== القلب النابض (The Hybrid Logic) ====================
+    
     
     async processHybridQuery(query) {
-        // الخطوة 1: البحث بالكلمات المفتاحية (Keyword Search)
-        // نبحث في الداتا المحلية عن أفضل 3 نصائح ذات صلة
         const relevantContext = this.findRelevantContext(query);
 
-        // إذا لم يكن هناك API Key، نستخدم البحث التقليدي فقط
         if (!this.apiKey) {
             if (relevantContext.length > 0) {
                 return {
@@ -196,20 +188,17 @@ class ExpertBot {
             }
         }
 
-        // الخطوة 2: التوليد بالذكاء الاصطناعي (Generative AI)
-        // نرسل السياق + السؤال لـ Gemini
         const aiResponse = await this.callGemini(query, relevantContext);
         
         return {
             text: aiResponse,
-            sources: relevantContext // نرجع المصادر عشان نعرضها للمستخدم
+            sources: relevantContext 
         };
     }
 
-    // دالة البحث (Scoring Algorithm)
     findRelevantContext(query) {
         const normalizedQuery = this.normalizeText(query);
-        const terms = normalizedQuery.split(' ').filter(t => t.length > 2); // تجاهل الكلمات القصيرة
+        const terms = normalizedQuery.split(' ').filter(t => t.length > 2); 
 
         if (terms.length === 0) return [];
 
@@ -221,17 +210,16 @@ class ExpertBot {
             const normSummary = this.normalizeText(advice.summary);
 
             terms.forEach(term => {
-                // أوزان مختلفة حسب مكان التطابق
-                if (normTitle.includes(term)) score += 20;      // العنوان أهم شيء
-                if (normTags.includes(term)) score += 15;       // التاغ مهم جداً
-                if (normSummary.includes(term)) score += 10;    // الملخص
-                if (normContent.includes(term)) score += 5;     // المحتوى الكامل
+                if (normTitle.includes(term)) score += 20;      
+                if (normTags.includes(term)) score += 15;       
+                if (normSummary.includes(term)) score += 10;    
+                if (normContent.includes(term)) score += 5;     
             });
 
             return { advice, score };
         });
 
-        // نأخذ أعلى 3 نتائج فقط لعدم تشتيت الـ AI
+
         return results
             .filter(r => r.score > 0)
             .sort((a, b) => b.score - a.score)
@@ -239,9 +227,7 @@ class ExpertBot {
             .map(r => r.advice);
     }
 
-    // دالة الاتصال بـ Gemini API
     async callGemini(query, contextItems) {
-        // تحضير السياق (Context Construction)
         let contextString = "";
         if (contextItems.length > 0) {
             contextString = contextItems.map((item, index) => 
