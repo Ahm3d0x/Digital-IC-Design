@@ -23,11 +23,21 @@
                 "author": "Yusuf Sherif - Digital Design Introduction", 
                 "note": "مقدمة عن المجال كجزء من كورس FPGA.", 
                 "links": [
-                    {"title": "الجزء الأول", "link": "https://www.youtube.com/watch?v=dGQw4n0Av2w", "type": "video"},
-                    {"title": "الجزء الثاني", "link": "https://www.youtube.com/watch?v=dGQw4n0Av2w", "type": "video"},
-                    {"title": "الجزء الثالث", "link": "https://www.youtube.com/watch?v=dGQw4n0Av2w", "type": "video"}
+                    {"title": " Digital IC Design - Intro Session", "link": "https://www.youtube.com/watch?v=dGQw4n0Av2w", "type": "video"}
                 ]
               },
+              {
+                "type": "video",
+                "author": "Eng. Mostafa Sheshtawy",
+                "note": "فيديو تمهيدي مهم جدًا لفهم الفرق بين الأنالوج والديجيتال قبل الدخول في مسار الـ Digital IC Design.",
+                "links": [
+              {
+                "title": "  Analog IC Design - Intro Session",
+                "link": "https://www.youtube.com/watch?v=-rOk8fO3PEQ",
+                "type": "youtube"
+              }
+            ]
+          },
               { 
                 "type": "video", 
                 "author": "Kareem Waseem - Digital Orientation Session", 
